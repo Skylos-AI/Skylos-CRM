@@ -113,13 +113,18 @@ export function Sidebar() {
 
   return (
     <div className={cn(
-      "flex h-full flex-col bg-slate-900 shadow-sidebar transition-all duration-300 rounded-r-3xl",
+      "flex h-full flex-col transition-all duration-300 rounded-r-3xl",
+      "bg-light-bg-secondary dark:bg-slate-900",
+      "shadow-light-sidebar dark:shadow-sidebar",
       isCollapsed ? "w-16" : "w-64"
     )}>
       {/* Header */}
-      <div className="flex h-16 items-center justify-between px-4 bg-slate-800/50 rounded-tr-3xl" 
+      <div className={cn(
+        "flex h-16 items-center justify-between px-4 rounded-tr-3xl",
+        "bg-gray-50/80 dark:bg-slate-800/50"
+      )}
            style={{
-             borderBottom: 'linear-gradient(to right, transparent, rgba(51, 65, 85, 0.2), transparent)'
+             borderBottom: 'linear-gradient(to right, transparent, rgba(229, 231, 235, 0.3), transparent)'
            }}>
         {!isCollapsed && (
           <Link href="/dashboard" className="flex items-center space-x-2">
@@ -198,8 +203,8 @@ export function Sidebar() {
                   className={cn(
                     "w-full justify-start h-9 transition-all duration-200 ease-in-out rounded-lg",
                     isActive 
-                      ? "bg-slate-700/40 border-l-3 border-primary-500 shadow-glow font-medium text-slate-50" 
-                      : "text-slate-300 hover:bg-slate-800/60 hover:text-slate-50 hover:translate-x-0.5",
+                      ? "bg-white/80 dark:bg-slate-700/40 border-l-3 border-primary-500 font-medium text-light-text-primary dark:text-slate-50 shadow-light-soft dark:shadow-glow" 
+                      : "text-light-text-secondary dark:text-slate-300 hover:bg-gray-200/60 dark:hover:bg-slate-800/60 hover:text-light-text-primary dark:hover:text-slate-50 hover:translate-x-0.5",
                     isCollapsed && "px-2"
                   )}
                   style={isActive ? {
@@ -231,9 +236,9 @@ export function Sidebar() {
       {!isCollapsed && (
         <div className="px-4 py-2" 
              style={{
-               borderTop: 'linear-gradient(to right, transparent, rgba(51, 65, 85, 0.2), transparent)'
+               borderTop: 'linear-gradient(to right, transparent, rgba(229, 231, 235, 0.3), transparent)'
              }}>
-          <Button variant="ghost" className="w-full justify-start h-9 text-slate-300 hover:bg-slate-800/60 hover:text-slate-50">
+          <Button variant="ghost" className="w-full justify-start h-9 text-light-text-secondary dark:text-slate-300 hover:bg-gray-200/60 dark:hover:bg-slate-800/60 hover:text-light-text-primary dark:hover:text-slate-50">
             <Bell className="mr-3 h-4 w-4" />
             <span className="flex-1 text-left">Notifications</span>
             <Badge variant="destructive" className="ml-auto h-5 px-1.5 text-xs">
@@ -259,7 +264,7 @@ export function Sidebar() {
       {!isCollapsed && (
         <div className="p-4" 
              style={{
-               borderTop: 'linear-gradient(to right, transparent, rgba(51, 65, 85, 0.2), transparent)'
+               borderTop: 'linear-gradient(to right, transparent, rgba(229, 231, 235, 0.3), transparent)'
              }}>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

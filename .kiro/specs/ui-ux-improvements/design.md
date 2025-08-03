@@ -37,6 +37,28 @@ The dark theme will implement a sophisticated layered color system that creates 
 - **Tertiary Text**: `slate-400` (#94a3b8) - Metadata and less important content
 - **Muted Text**: `slate-500` (#64748b) - Placeholder and disabled states
 
+### Enhanced Light Theme Color Architecture
+
+The light theme will implement a sophisticated layered color system using light grey tones to reduce harsh white contrasts and create visual depth:
+
+#### Background Layers
+- **Primary Background**: `gray-50` (#f9fafb) - Main application background (replaces pure white)
+- **Secondary Background**: `gray-100` (#f3f4f6) - Sidebar and elevated panels
+- **Tertiary Background**: `white` (#ffffff) - Cards and content containers (elevated above grey base)
+- **Interactive Background**: `gray-200` (#e5e7eb) - Hover states and active elements
+
+#### Border and Separation System
+- **Subtle Borders**: `gray-200/60` - Soft separation between sections
+- **Emphasis Borders**: `gray-300/80` - Clear definition for important containers
+- **Soft Shadows**: `0 1px 3px rgba(0, 0, 0, 0.1)` - Gentle elevation for cards
+- **Gradient Separations**: Linear gradients from transparent to `gray-200/30` for smooth transitions
+
+#### Text Hierarchy
+- **Primary Text**: `gray-900` (#111827) - Main content and headings
+- **Secondary Text**: `gray-700` (#374151) - Supporting information
+- **Tertiary Text**: `gray-500` (#6b7280) - Metadata and less important content
+- **Muted Text**: `gray-400` (#9ca3af) - Placeholder and disabled states
+
 ### Visual Hierarchy Strategy
 
 Information will be prioritized using the following hierarchy principles:
@@ -48,9 +70,9 @@ Information will be prioritized using the following hierarchy principles:
 
 ### 1. Enhanced Sidebar Design
 
-#### Soft Visual Separation
+#### Dark Theme - Soft Visual Separation
 ```typescript
-interface EnhancedSidebarDesign {
+interface EnhancedSidebarDesignDark {
   container: {
     background: 'slate-900'
     borderRight: 'none' // Remove sharp border
@@ -86,17 +108,56 @@ interface EnhancedSidebarDesign {
 }
 ```
 
+#### Light Theme - Soft Visual Separation
+```typescript
+interface EnhancedSidebarDesignLight {
+  container: {
+    background: 'gray-100' // Light grey instead of white
+    borderRight: 'none' // Remove sharp border
+    boxShadow: '4px 0 24px -8px rgba(0, 0, 0, 0.1)' // Soft shadow separation
+    borderRadius: '0 12px 12px 0' // Soft rounded right edge
+  }
+  sections: {
+    header: {
+      background: 'gray-50/80' // Lighter grey for header
+      borderBottom: 'gradient from transparent to gray-200/30'
+      borderRadius: '0 12px 0 0'
+    }
+    navigation: {
+      background: 'gray-100'
+      itemHover: {
+        background: 'gray-200/60' // Light grey hover
+        borderRadius: '8px'
+        transition: 'all 200ms ease-in-out'
+        transform: 'translateX(2px)'
+      }
+      activeItem: {
+        background: 'white/80' // White active state on grey
+        borderLeft: '3px solid primary-500'
+        boxShadow: 'inset 0 0 0 1px rgba(59, 130, 246, 0.1)'
+      }
+    }
+    footer: {
+      background: 'gray-50/50'
+      borderTop: 'gradient from gray-200/30 to transparent'
+      borderRadius: '0 0 12px 0'
+    }
+  }
+}
+```
+
 **Design Decisions:**
 - Replace sharp `border-r` with soft shadow separation
 - Use gradient borders instead of hard lines
 - Implement subtle hover animations with gentle transforms
 - Create visual depth through progressive background colors
+- Light theme uses grey tones instead of pure white for reduced eye strain
 
 ### 2. Enhanced Container and Card Design
 
-#### Professional Border System
+#### Dark Theme - Professional Border System
 ```typescript
-interface EnhancedContainerDesign {
+interface EnhancedContainerDesignDark {
   dataContainers: {
     background: 'slate-800'
     border: '1px solid slate-700/40'
@@ -133,11 +194,56 @@ interface EnhancedContainerDesign {
 }
 ```
 
+#### Light Theme - Professional Border System
+```typescript
+interface EnhancedContainerDesignLight {
+  dataContainers: {
+    background: 'white' // White cards on grey background
+    border: '1px solid gray-200/60'
+    borderRadius: '12px'
+    boxShadow: [
+      '0 1px 3px rgba(0, 0, 0, 0.1)', // Subtle depth
+      '0 0 0 1px rgba(0, 0, 0, 0.02)' // Very soft inner definition
+    ]
+    hover: {
+      borderColor: 'gray-300/80'
+      boxShadow: [
+        '0 4px 12px rgba(0, 0, 0, 0.08)',
+        '0 0 0 1px rgba(0, 0, 0, 0.04)'
+      ]
+      transform: 'translateY(-1px)'
+      transition: 'all 200ms ease-in-out'
+    }
+  }
+  nestedContainers: {
+    background: 'gray-50' // Light grey for nested content
+    border: '1px solid gray-200/40'
+    borderRadius: '8px'
+  }
+  elevatedCards: {
+    background: 'white'
+    boxShadow: [
+      '0 4px 6px rgba(0, 0, 0, 0.05)',
+      '0 1px 3px rgba(0, 0, 0, 0.04)',
+      'inset 0 0 0 1px rgba(0, 0, 0, 0.02)' // Very subtle inner highlight
+    ]
+    borderRadius: '16px'
+    padding: '24px'
+  }
+  mainContentArea: {
+    background: 'gray-50' // Light grey base instead of white
+    minHeight: '100vh'
+  }
+}
+```
+
 **Design Decisions:**
 - Use subtle borders with transparency for soft definition
 - Implement soft glow effects instead of harsh borders
 - Create visual hierarchy through progressive background lightness
 - Add gentle hover animations for interactive feedback
+- Light theme uses white cards on light grey background for better visual separation
+- Main content area uses light grey to reduce eye strain from pure white
 
 ### 3. Enhanced Dashboard Layout
 
@@ -410,6 +516,31 @@ export const enhancedDesignTokens = {
         subtle: '0 0 0 1px rgba(148, 163, 184, 0.05)',
         soft: '0 0 0 1px rgba(148, 163, 184, 0.1)',
         emphasis: '0 0 0 1px rgba(148, 163, 184, 0.15)',
+      }
+    },
+    // Enhanced light theme color system
+    light: {
+      background: {
+        primary: '#f9fafb',    // gray-50 - Main app background
+        secondary: '#f3f4f6',  // gray-100 - Sidebar background
+        tertiary: '#ffffff',   // white - Card backgrounds
+        elevated: '#e5e7eb',   // gray-200 - Hover states
+      },
+      text: {
+        primary: '#111827',    // gray-900
+        secondary: '#374151',  // gray-700
+        tertiary: '#6b7280',   // gray-500
+        muted: '#9ca3af',      // gray-400
+      },
+      border: {
+        subtle: 'rgba(229, 231, 235, 0.6)',   // gray-200/60
+        default: 'rgba(209, 213, 219, 0.8)',  // gray-300/80
+        emphasis: 'rgba(156, 163, 175, 0.6)', // gray-400/60
+      },
+      shadow: {
+        subtle: '0 1px 3px rgba(0, 0, 0, 0.1)',
+        soft: '0 4px 6px rgba(0, 0, 0, 0.05)',
+        emphasis: '0 4px 12px rgba(0, 0, 0, 0.08)',
       }
     },
     semantic: {

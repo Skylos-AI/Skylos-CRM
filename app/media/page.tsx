@@ -2,14 +2,12 @@
 
 import { useState } from 'react'
 import { CrmLayout } from "@/components/layout/crm-layout"
-import { MediaLibrary } from "@/components/media/media-library"
-import { MediaUpload } from "@/components/media/media-upload"
-import { MediaSelectionModal } from "@/components/media/media-selection-modal"
+import { SimpleMediaLibrary } from "@/components/media/simple-media-library"
+import { SimpleMediaUpload } from "@/components/media/simple-media-upload"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MediaAsset } from "@/lib/types/media"
-import { mockMediaAssets } from "@/lib/mock-data/campaigns"
-import { Plus, Upload, Library, TestTube } from "lucide-react"
+import { Plus, Upload, Library, TestTube2 } from "lucide-react"
 
 export default function MediaPage() {
   const [selectionModalOpen, setSelectionModalOpen] = useState(false)
@@ -40,7 +38,7 @@ export default function MediaPage() {
               variant="outline"
               onClick={() => setSelectionModalOpen(true)}
             >
-              <TestTube className="mr-2 h-4 w-4" />
+              <TestTube2 className="mr-2 h-4 w-4" />
               Test Selection
             </Button>
             <Button>
@@ -63,29 +61,24 @@ export default function MediaPage() {
           </TabsList>
 
           <TabsContent value="library">
-            <MediaLibrary />
+            <SimpleMediaLibrary />
           </TabsContent>
 
           <TabsContent value="upload">
-            <MediaUpload
-              onUploadComplete={handleUploadComplete}
-              onUploadError={(error) => {
-                console.error('Upload error:', error)
-              }}
-            />
+            <SimpleMediaUpload />
           </TabsContent>
         </Tabs>
 
-        {/* Selection Modal for Testing */}
-        <MediaSelectionModal
-          open={selectionModalOpen}
-          onOpenChange={setSelectionModalOpen}
-          onSelect={handleSelectionComplete}
-          selectedAssets={selectedAssets}
-          selectionMode="multiple"
-          title="Select Media Files"
-          description="Choose media files to test the selection functionality"
-        />
+        {/* Selection Modal for Testing - Temporarily disabled */}
+        {selectionModalOpen && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg">
+              <h3 className="text-lg font-medium mb-2">Selection Modal</h3>
+              <p className="text-muted-foreground mb-4">Modal is temporarily disabled for debugging.</p>
+              <Button onClick={() => setSelectionModalOpen(false)}>Close</Button>
+            </div>
+          </div>
+        )}
 
         {/* Show selected assets for testing */}
         {selectedAssets.length > 0 && (

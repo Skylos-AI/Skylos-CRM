@@ -15,7 +15,7 @@ export function CrmLayout({ children }: CrmLayoutProps) {
       <Sidebar />
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">
         <CrmHeader />
-        <main className="flex-1 overflow-auto p-6">
+        <main className="flex-1 overflow-auto p-6 bg-light-bg-primary dark:bg-dark-bg-primary">
           <PageTransition>
             {children}
           </PageTransition>

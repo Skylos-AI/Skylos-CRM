@@ -125,9 +125,11 @@ export function EnhancedLeadCard({
         style={style}
         className={cn(
           "group cursor-pointer transition-all duration-200 ease-in-out",
-          // Enhanced professional border system
-          "bg-slate-800 border border-slate-700/40 rounded-xl shadow-card",
-          "hover:border-slate-600/60 hover:shadow-card-hover hover:-translate-y-0.5",
+          // Enhanced professional border system with light theme support
+          "bg-white dark:bg-slate-800 border border-light-border-subtle/60 dark:border-slate-700/40 rounded-xl",
+          "shadow-light-card dark:shadow-card",
+          "hover:border-light-border-default/80 dark:hover:border-slate-600/60",
+          "hover:shadow-light-card-hover dark:hover:shadow-card-hover hover:-translate-y-0.5",
           // Subtle stage accent with enhanced styling
           stageAccents[lead.stage],
           // Dragging state
@@ -137,7 +139,7 @@ export function EnhancedLeadCard({
           ...style,
           boxShadow: isDragging 
             ? '0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(148, 163, 184, 0.1)'
-            : '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(148, 163, 184, 0.05)'
+            : undefined // Let CSS classes handle the normal shadow
         }}
         onClick={() => onClick?.(lead)}
       >
@@ -154,7 +156,7 @@ export function EnhancedLeadCard({
                 {...listeners}
                 onClick={(e) => e.stopPropagation()}
               >
-                <GripVertical className="h-3 w-3 text-muted-foreground" />
+                <GripVertical className="h-3 w-3 text-light-text-muted dark:text-slate-400" />
               </Button>
               
               {/* Avatar */}
@@ -186,12 +188,12 @@ export function EnhancedLeadCard({
 
           {/* Name and Company */}
           <div className="mb-3 space-y-1">
-            <h3 className="font-semibold text-sm leading-tight text-foreground truncate">
+            <h3 className="font-semibold text-sm leading-tight text-light-text-primary dark:text-slate-50 truncate">
               {lead.name}
             </h3>
             <div className="flex items-center space-x-1">
-              <Building2 className="h-3 w-3 text-muted-foreground" />
-              <p className="text-xs text-muted-foreground truncate">
+              <Building2 className="h-3 w-3 text-light-text-muted dark:text-slate-400" />
+              <p className="text-xs text-light-text-muted dark:text-slate-400 truncate">
                 {lead.company}
               </p>
             </div>
@@ -209,14 +211,14 @@ export function EnhancedLeadCard({
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center space-x-2">
               {/* Platform Source Icon */}
-              <div className="flex items-center space-x-1 px-2 py-1 bg-muted/50 rounded-md">
+              <div className="flex items-center space-x-1 px-2 py-1 bg-gray-100 dark:bg-slate-700/50 rounded-md">
                 {lead.source === 'facebook' && <Facebook className="h-3 w-3 text-blue-600" />}
                 {lead.source === 'instagram' && <Instagram className="h-3 w-3 text-pink-600" />}
                 {lead.source === 'linkedin' && <Linkedin className="h-3 w-3 text-blue-700" />}
                 {lead.source === 'twitter' && <Twitter className="h-3 w-3 text-blue-400" />}
                 {lead.source === 'youtube' && <Youtube className="h-3 w-3 text-red-600" />}
                 {(!lead.source || lead.source === 'website') && <Globe className="h-3 w-3 text-gray-600" />}
-                <span className="text-xs text-muted-foreground capitalize">
+                <span className="text-xs text-light-text-tertiary dark:text-slate-400 capitalize">
                   {lead.source || 'website'}
                 </span>
               </div>
@@ -226,7 +228,7 @@ export function EnhancedLeadCard({
                 variant="badge"
               />
             </div>
-            <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+            <div className="flex items-center space-x-2 text-xs text-light-text-muted dark:text-slate-400">
               <Mail className="h-3 w-3" />
               <Phone className="h-3 w-3" />
             </div>

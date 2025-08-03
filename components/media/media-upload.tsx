@@ -72,7 +72,7 @@ export function MediaUpload({
 
     // Initialize progress tracking
     const initialProgress = validFiles.map(file => ({
-      id: crypto?.randomUUID?.() || `upload-${Date.now()}-${Math.random()}`,
+      id: `upload-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       fileName: file.name,
       progress: 0,
       status: 'uploading' as const

@@ -125,9 +125,33 @@
   - Add performance tests for animation and rendering optimization
   - _Requirements: All requirements - testing coverage_
 
-- [ ] 15. Implement design system documentation and usage guidelines
+- [x] 15. Implement enhanced light theme with sophisticated grey tones
+  - Update design tokens with light theme color system using gray palette (gray-50, gray-100, gray-200, gray-300)
+  - Replace pure white backgrounds with light grey (gray-50) for main content areas to reduce eye strain
+  - Implement layered background system with white cards on light grey base for visual hierarchy
+  - Create subtle border system using gray-200/60 and gray-300/80 for soft definition
+  - Add professional shadow system for light theme with reduced opacity shadows
+  - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8_
+
+- [ ] 16. Enhance light theme sidebar with soft visual separation
+  - Replace sharp sidebar borders with soft shadow separation for light theme
+  - Implement gray-100 sidebar background with rounded corners (0 12px 12px 0)
+  - Create gradient borders using gray-200/30 instead of hard lines
+  - Update navigation item styling with gray-200/60 hover states and white/80 active states
+  - Add subtle shadow effects for light theme sidebar separation
+  - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6_
+
+- [ ] 17. Enhance light theme data containers with professional styling
+  - Implement white container backgrounds on gray-50 base for clear visual separation
+  - Add subtle borders using gray-200/60 for default and gray-300/80 for emphasis
+  - Create soft shadow system with reduced opacity for light theme containers
+  - Implement gentle hover animations with light theme appropriate shadows
+  - Add nested container styling using gray-50 backgrounds for visual hierarchy
+  - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8_
+
+- [ ] 18. Implement design system documentation and usage guidelines
   - Create component documentation with usage examples and accessibility guidelines
   - Document design tokens and their proper usage across the application
-  - Create style guide with typography, color, and spacing examples
+  - Create style guide with typography, color, and spacing examples for both themes
   - Implement design system validation tools to ensure consistency
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6_

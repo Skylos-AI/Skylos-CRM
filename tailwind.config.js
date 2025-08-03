@@ -152,6 +152,21 @@ module.exports = {
           900: '#0f172a',
           950: '#020617',
         },
+        // Enhanced gray palette for light theme
+        gray: {
+          25: '#fcfcfd',
+          50: '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#374151',
+          800: '#1f2937',
+          900: '#111827',
+          950: '#030712',
+        },
         // Dark theme optimized colors
         'dark-bg': {
           primary: '#020617',    // slate-950
@@ -169,6 +184,24 @@ module.exports = {
           subtle: '#334155',     // slate-700
           default: '#475569',    // slate-600
           emphasis: '#64748b',   // slate-500
+        },
+        // Light theme optimized colors
+        'light-bg': {
+          primary: '#f9fafb',    // gray-50 - Main app background
+          secondary: '#f3f4f6',  // gray-100 - Sidebar background
+          tertiary: '#ffffff',   // white - Card backgrounds
+          elevated: '#e5e7eb',   // gray-200 - Hover states
+        },
+        'light-text': {
+          primary: '#111827',    // gray-900
+          secondary: '#374151',  // gray-700
+          tertiary: '#6b7280',   // gray-500
+          muted: '#9ca3af',      // gray-400
+        },
+        'light-border': {
+          subtle: '#e5e7eb',     // gray-200
+          default: '#d1d5db',    // gray-300
+          emphasis: '#9ca3af',   // gray-400
         },
       },
       // Design system spacing
@@ -232,6 +265,11 @@ module.exports = {
         glow: '0 0 0 1px rgba(148, 163, 184, 0.1)',
         'glow-soft': '0 0 0 1px rgba(148, 163, 184, 0.05)',
         'glow-emphasis': '0 0 0 1px rgba(148, 163, 184, 0.15)',
+        // Light theme shadows
+        'light-sidebar': '4px 0 24px -8px rgba(0, 0, 0, 0.1)',
+        'light-card': '0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.02)',
+        'light-card-hover': '0 4px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04)',
+        'light-soft': '0 1px 3px rgba(0, 0, 0, 0.1)',
       },
       // Design system animations
       transitionDuration: {

@@ -110,7 +110,22 @@ This feature focuses on enhancing the user experience and visual design of the C
 4. WHEN viewing the kanban board THEN the system SHALL adapt to single-column or simplified multi-column layout
 5. WHEN displaying forms THEN the system SHALL optimize field sizing and keyboard interactions for mobile input
 
-### Requirement 9: Enhanced Data Visualization
+### Requirement 9: Enhanced Light Theme and Visual Separation
+
+**User Story:** As a CRM user working in light mode, I want a sophisticated color palette with proper visual separation between interface elements using lighter grey tones, so that I can work comfortably without harsh white/dark contrasts.
+
+#### Acceptance Criteria
+
+1. WHEN using light theme THEN the system SHALL implement a layered color system using multiple shades of light grey (gray-50, gray-100, gray-200, gray-300) for different interface levels instead of pure white backgrounds
+2. WHEN displaying the sidebar THEN the system SHALL use soft rounded corners and subtle color transitions with light grey backgrounds (gray-50/gray-100) instead of sharp white edges
+3. WHEN showing data containers and cards THEN the system SHALL provide clear border definition using subtle border colors (gray-200/gray-300) and soft shadows on light grey backgrounds
+4. WHEN separating interface sections THEN the system SHALL use gradient transitions from light grey tones instead of hard white-to-white transitions
+5. WHEN displaying nested content THEN the system SHALL create visual depth using progressive light grey backgrounds (gray-50 to gray-100 to gray-200)
+6. WHEN showing interactive elements THEN the system SHALL use soft hover states with gentle grey color transitions and subtle elevation changes
+7. WHEN displaying the main content area THEN the system SHALL use a light grey background (gray-50) instead of pure white to reduce eye strain
+8. WHEN showing cards and panels THEN the system SHALL use slightly lighter backgrounds (white/gray-25) on the grey base to create proper visual hierarchy
+
+### Requirement 10: Enhanced Data Visualization
 
 **User Story:** As a business analyst, I want dashboard charts and metrics to be visually clear and informative, so that I can quickly understand business performance trends.
 

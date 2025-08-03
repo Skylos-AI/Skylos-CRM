@@ -11,23 +11,37 @@ export class MediaService {
         throw new Error(validation.error)
       }
 
-      const formData = new FormData()
-      formData.append('file', file)
-      formData.append('type', this.getMediaType(file.type))
-
-      const uploadId = crypto?.randomUUID?.() || `upload-${Date.now()}-${Math.random()}`
+      const uploadId = `upload-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
       
       try {
-        const response = await fetch(`${this.baseUrl}/upload`, {
-          method: 'POST',
-          body: formData,
-        })
-
-        if (!response.ok) {
-          throw new Error(`Upload failed: ${response.statusText}`)
+        // Simulate upload progress
+        const progressSteps = [20, 40, 60, 80, 100]
+        for (const progress of progressSteps) {
+          await new Promise(resolve => setTimeout(resolve, 200))
+          onProgress?.([{
+            id: uploadId,
+            fileName: file.name,
+            progress,
+            status: 'uploading'
+          }])
         }
 
-        const mediaAsset: MediaAsset = await response.json()
+        // Create mock media asset
+        const mediaAsset: MediaAsset = {
+          id: uploadId,
+          name: file.name,
+          type: this.getMediaType(file.type),
+          url: URL.createObjectURL(file),
+          thumbnailUrl: file.type.startsWith('image/') ? URL.createObjectURL(file) : undefined,
+          fileSize: file.size,
+          mimeType: file.type,
+          dimensions: file.type.startsWith('image/') ? { width: 800, height: 600 } : undefined,
+          metadata: {},
+          tags: [],
+          createdBy: 'current-user',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        }
         
         // Notify progress completion
         onProgress?.([{
@@ -55,31 +69,35 @@ export class MediaService {
   }
 
   static async getMediaAssets(filters?: MediaLibraryFilters): Promise<MediaAsset[]> {
-    const params = new URLSearchParams()
+    // For development, return mock data
+    // In production, this would make an actual API call
+    const { mockMediaAssets } = await import('@/lib/mock-data/campaigns')
     
+    let filteredAssets = [...mockMediaAssets]
+    
+    // Apply filters
     if (filters?.type?.length) {
-      params.append('type', filters.type.join(','))
+      filteredAssets = filteredAssets.filter(asset => filters.type!.includes(asset.type))
     }
-    if (filters?.tags?.length) {
-      params.append('tags', filters.tags.join(','))
-    }
+    
     if (filters?.search) {
-      params.append('search', filters.search)
+      const searchLower = filters.search.toLowerCase()
+      filteredAssets = filteredAssets.filter(asset => 
+        asset.name.toLowerCase().includes(searchLower) ||
+        asset.tags.some(tag => tag.toLowerCase().includes(searchLower))
+      )
     }
-    if (filters?.createdBy) {
-      params.append('createdBy', filters.createdBy)
+    
+    if (filters?.tags?.length) {
+      filteredAssets = filteredAssets.filter(asset =>
+        filters.tags!.some(tag => asset.tags.includes(tag))
+      )
     }
-    if (filters?.dateRange) {
-      params.append('startDate', filters.dateRange.start.toISOString())
-      params.append('endDate', filters.dateRange.end.toISOString())
-    }
-
-    const response = await fetch(`${this.baseUrl}?${params}`)
-    if (!response.ok) {
-      throw new Error('Failed to fetch media assets')
-    }
-
-    return response.json()
+    
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500))
+    
+    return filteredAssets
   }
 
   static async getMediaAsset(id: string): Promise<MediaAsset> {
@@ -107,13 +125,12 @@ export class MediaService {
   }
 
   static async deleteMediaAsset(id: string): Promise<void> {
-    const response = await fetch(`${this.baseUrl}/${id}`, {
-      method: 'DELETE',
-    })
-
-    if (!response.ok) {
-      throw new Error('Failed to delete media asset')
-    }
+    // For development, simulate deletion
+    // In production, this would make an actual API call
+    await new Promise(resolve => setTimeout(resolve, 300))
+    
+    // In a real implementation, this would remove the asset from the backend
+    console.log(`Deleted media asset: ${id}`)
   }
 
   static async generateThumbnail(id: string): Promise<string> {

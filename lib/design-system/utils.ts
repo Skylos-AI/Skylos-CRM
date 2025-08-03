@@ -137,39 +137,59 @@ export function truncate(lines: number = 1) {
  */
 export function containerStyles(
   variant: 'default' | 'elevated' | 'nested' | 'interactive' = 'default',
-  priority: 'normal' | 'primary' = 'normal'
+  priority: 'normal' | 'primary' = 'normal',
+  theme: 'light' | 'dark' = 'dark'
 ) {
-  const baseStyles = cn(
-    'bg-slate-800 border rounded-xl transition-all duration-200 ease-in-out'
-  )
+  // Base styles for different themes
+  const baseStyles = theme === 'light' 
+    ? cn('bg-white border rounded-xl transition-all duration-200 ease-in-out')
+    : cn('bg-slate-800 border rounded-xl transition-all duration-200 ease-in-out')
   
+  // Priority styles for different themes
   const priorityStyles = priority === 'primary' 
-    ? cn(
-        'border-primary-500/30 shadow-glow-soft',
-        'hover:border-primary-400/50 hover:shadow-glow-emphasis'
-      )
-    : cn(
-        'border-slate-700/40 shadow-glow-soft',
-        'hover:border-slate-600/60 hover:shadow-glow'
-      )
+    ? theme === 'light'
+      ? cn(
+          'border-primary-500/30 shadow-light-card',
+          'hover:border-primary-400/50 hover:shadow-light-card-hover'
+        )
+      : cn(
+          'border-primary-500/30 shadow-glow-soft',
+          'hover:border-primary-400/50 hover:shadow-glow-emphasis'
+        )
+    : theme === 'light'
+      ? cn(
+          'border-light-border-subtle/60 shadow-light-card',
+          'hover:border-light-border-default/80 hover:shadow-light-card-hover'
+        )
+      : cn(
+          'border-slate-700/40 shadow-glow-soft',
+          'hover:border-slate-600/60 hover:shadow-glow'
+        )
   
   switch (variant) {
     case 'elevated':
       return cn(
         baseStyles, 
         priorityStyles,
-        'shadow-card hover:shadow-card-hover hover:-translate-y-0.5'
+        theme === 'light' 
+          ? 'shadow-light-card hover:shadow-light-card-hover hover:-translate-y-0.5'
+          : 'shadow-card hover:shadow-card-hover hover:-translate-y-0.5'
       )
     case 'nested':
       return cn(
-        'bg-slate-750 border border-slate-600/30 rounded-lg',
+        theme === 'light' 
+          ? 'bg-gray-50 border border-light-border-subtle/40 rounded-lg'
+          : 'bg-slate-750 border border-slate-600/30 rounded-lg',
         'transition-all duration-200 ease-in-out'
       )
     case 'interactive':
       return cn(
         baseStyles,
         priorityStyles,
-        'cursor-pointer shadow-card hover:shadow-card-hover hover:-translate-y-0.5'
+        'cursor-pointer',
+        theme === 'light' 
+          ? 'shadow-light-card hover:shadow-light-card-hover hover:-translate-y-0.5'
+          : 'shadow-card hover:shadow-card-hover hover:-translate-y-0.5'
       )
     default:
       return cn(baseStyles, priorityStyles)
