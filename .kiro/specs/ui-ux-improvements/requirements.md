@@ -30,6 +30,8 @@ This feature focuses on enhancing the user experience and visual design of the C
 4. WHEN indicating overdue follow-ups THEN the system SHALL use conventional warning colors and clear visual cues
 5. WHEN displaying contact information THEN the system SHALL truncate appropriately while maintaining readability
 6. WHEN showing tags and badges THEN the system SHALL limit visual clutter while preserving important information
+7. WHEN viewing lead cards THEN the system SHALL display cards with adequate width to prevent block-like appearance and ensure proper card proportions
+8. WHEN displaying lead cards THEN the system SHALL use elevated card design with proper shadows, rounded corners, and white space to create distinct card appearance rather than flat information blocks
 
 ### Requirement 3: Enhanced Kanban Board Usability
 
@@ -43,6 +45,8 @@ This feature focuses on enhancing the user experience and visual design of the C
 4. WHEN columns contain many leads THEN the system SHALL implement proper scrolling with visual indicators
 5. WHEN the board is loading THEN the system SHALL show skeleton states that match the final layout structure
 6. WHEN drag operations fail THEN the system SHALL provide clear error feedback and revert to previous state
+7. WHEN viewing kanban columns THEN the system SHALL display prominent stage colors at the top of each column header (incoming leads/decision making/negotiation/final decision) rather than on individual card borders
+8. WHEN displaying lead cards within columns THEN the system SHALL show only subtle color indicators that reference the column's primary color while maintaining card readability and visual hierarchy
 
 ### Requirement 4: Consistent Visual Design System
 

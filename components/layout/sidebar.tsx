@@ -24,7 +24,9 @@ import {
   LogOut,
   User,
   ChevronsUpDown,
-  MoreHorizontal
+  MoreHorizontal,
+  Megaphone,
+  Image
 } from "lucide-react"
 import {
   DropdownMenu,
@@ -63,6 +65,18 @@ const mainNavigation = [
     name: "Contacts",
     href: "/contacts",
     icon: UserCheck,
+    badge: null,
+  },
+  {
+    name: "Campaigns",
+    href: "/campaigns",
+    icon: Megaphone,
+    badge: "2",
+  },
+  {
+    name: "Media Library",
+    href: "/media",
+    icon: Image,
     badge: null,
   },
   {

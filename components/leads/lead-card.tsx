@@ -31,10 +31,10 @@ const priorityColors = {
 }
 
 const stageColors = {
-  incoming: "border-l-blue-500",
-  decision: "border-l-yellow-500",
-  negotiation: "border-l-orange-500",
-  final: "border-l-green-500"
+  incoming: "border-l-2 border-l-blue-200 dark:border-l-blue-800",
+  decision: "border-l-2 border-l-yellow-200 dark:border-l-yellow-800",
+  negotiation: "border-l-2 border-l-orange-200 dark:border-l-orange-800",
+  final: "border-l-2 border-l-green-200 dark:border-l-green-800"
 }
 
 export function LeadCard({ lead, onClick }: LeadCardProps) {
@@ -60,13 +60,14 @@ export function LeadCard({ lead, onClick }: LeadCardProps) {
       ref={setNodeRef}
       style={style}
       className={cn(
-        "cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-[1.02] border-l-4",
+        "cursor-pointer transition-all duration-200 hover:shadow-md hover:scale-[1.02]",
+        "shadow-sm border border-border/50 bg-card/50 backdrop-blur-sm rounded-lg",
         stageColors[lead.stage],
         isDragging && "opacity-50 rotate-3 shadow-xl scale-105"
       )}
       onClick={() => onClick?.(lead)}
     >
-      <CardContent className="p-4">
+      <CardContent className="p-5">
         {/* Drag Handle */}
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center space-x-2">

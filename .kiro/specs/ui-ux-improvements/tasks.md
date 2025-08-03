@@ -39,12 +39,16 @@
   - Enhance upcoming follow-ups section with overdue highlighting and empty state messaging
   - _Requirements: 1.3, 1.4, 1.5, 6.2_
 
-- [ ] 4. Redesign lead cards with enhanced information architecture
+- [x] 4. Redesign lead cards with enhanced information architecture
+
+
   - Restructure lead card layout with clear information grouping using proximity principles
   - Implement consistent visual patterns for priority indicators using border colors and badges
   - Add proper typography hierarchy for deal amounts and contact information
   - Create truncation system with tooltips for overflow content while maintaining readability
-  - _Requirements: 2.1, 2.2, 2.3, 2.5_
+  - Increase card width and improve proportions to prevent block-like appearance
+  - Add elevated card design with shadows, rounded corners, and proper white space for distinct card appearance
+  - _Requirements: 2.1, 2.2, 2.3, 2.5, 2.7, 2.8_
 
 - [ ] 5. Enhance lead card status and priority indicators
   - Implement color-coded priority system (red urgent, orange high, blue medium, gray low)
@@ -60,12 +64,17 @@
   - Create error handling for failed drag operations with visual feedback and state reversion
   - _Requirements: 3.1, 3.2, 3.6, 6.4_
 
+
+
+
 - [ ] 7. Redesign kanban column headers and layout
   - Update column headers with consistent color coding and clear typography hierarchy
   - Add stage information display with count and total value metrics
   - Implement proper scrolling for columns with many leads including visual scroll indicators
   - Create responsive column layout that adapts to different screen sizes
-  - _Requirements: 3.3, 3.4, 7.4_
+  - Move prominent stage colors to column headers (incoming leads/decision making/negotiation/final decision)
+  - Replace card left borders with subtle color indicators that reference the column's primary color
+  - _Requirements: 3.3, 3.4, 3.7, 3.8, 7.4_
 
 - [ ] 8. Implement comprehensive loading and empty states
   - Create skeleton screen components that match final content structure for dashboard and leads

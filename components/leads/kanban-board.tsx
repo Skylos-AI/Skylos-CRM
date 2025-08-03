@@ -247,7 +247,7 @@ export function KanbanBoard({ showFilters = true }: KanbanBoardProps) {
       )}
       
       <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-        <div className="flex gap-6 overflow-x-auto pb-4">
+        <div className="flex gap-6 overflow-x-auto pb-4 px-1">
           {columns.map((column) => (
             <KanbanColumnComponent
               key={column.id}
