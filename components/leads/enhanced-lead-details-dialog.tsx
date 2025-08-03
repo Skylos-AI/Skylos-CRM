@@ -18,10 +18,10 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { 
-  Mail, 
-  Phone, 
-  Building2, 
+import {
+  Mail,
+  Phone,
+  Building2,
   Calendar,
   DollarSign,
   User,
@@ -250,7 +250,7 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
             <TabsTrigger value="follow-up">Follow-up Messages</TabsTrigger>
             <TabsTrigger value="activity">Activity History</TabsTrigger>
           </TabsList>
-          
+
           <div className="flex-1 overflow-y-auto">
             <TabsContent value="details" className="space-y-6 p-1">
               {/* Quick Status Overview */}
@@ -291,7 +291,7 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
                         </div>
                       )}
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone</Label>
                       {isEditing ? (
@@ -327,7 +327,7 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
                         <span className="capitalize">{currentLead.source.replace('_', ' ')}</span>
                       )}
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="assignedTo">Assigned To</Label>
                       {isEditing ? (
@@ -369,7 +369,7 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
                         </div>
                       )}
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="stage">Stage</Label>
                       {isEditing ? (
@@ -392,7 +392,7 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
                         <StatusIndicator stage={currentLead.stage} size="md" variant="badge" />
                       )}
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label htmlFor="priority">Priority</Label>
                       {isEditing ? (
@@ -418,7 +418,7 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
 
                   <div className="space-y-2">
                     <Label>Tags</Label>
-                    <EnhancedTagSystem 
+                    <EnhancedTagSystem
                       tags={currentLead.tags}
                       maxVisible={10}
                       size="md"
@@ -485,9 +485,9 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
                       <Input
                         type="datetime-local"
                         value={newMessage.scheduledDate ? new Date(newMessage.scheduledDate).toISOString().slice(0, 16) : ''}
-                        onChange={(e) => setNewMessage({ 
-                          ...newMessage, 
-                          scheduledDate: e.target.value ? new Date(e.target.value) : undefined 
+                        onChange={(e) => setNewMessage({
+                          ...newMessage,
+                          scheduledDate: e.target.value ? new Date(e.target.value) : undefined
                         })}
                       />
                     </div>

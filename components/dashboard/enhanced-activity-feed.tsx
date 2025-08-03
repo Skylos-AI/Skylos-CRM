@@ -4,11 +4,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { cn, badgeVariants } from "@/lib/design-system"
+import { cn } from "@/lib/design-system"
 import { 
   CheckCircle, 
   AlertTriangle, 
-  Info, 
   UserPlus, 
   DollarSign, 
   Calendar,
@@ -16,7 +15,6 @@ import {
   Mail,
   MessageSquare,
   TrendingUp,
-  Clock,
   ArrowRight,
   MoreHorizontal
 } from "lucide-react"
@@ -50,50 +48,50 @@ const ACTIVITY_CONFIG = {
   lead_created: {
     icon: UserPlus,
     color: 'text-blue-600 dark:text-blue-400',
-    bgColor: 'bg-blue-100 dark:bg-blue-900/30',
-    borderColor: 'border-blue-200 dark:border-blue-800',
+    bgColor: 'bg-blue-50 dark:bg-blue-500/10',
+    borderColor: 'border-blue-200 dark:border-blue-500/20',
     label: 'New Lead'
   },
   deal_closed: {
     icon: CheckCircle,
-    color: 'text-green-600 dark:text-green-400',
-    bgColor: 'bg-green-100 dark:bg-green-900/30',
-    borderColor: 'border-green-200 dark:border-green-800',
+    color: 'text-emerald-600 dark:text-emerald-400',
+    bgColor: 'bg-emerald-50 dark:bg-emerald-500/10',
+    borderColor: 'border-emerald-200 dark:border-emerald-500/20',
     label: 'Deal Closed'
   },
   follow_up_due: {
     icon: AlertTriangle,
-    color: 'text-orange-600 dark:text-orange-400',
-    bgColor: 'bg-orange-100 dark:bg-orange-900/30',
-    borderColor: 'border-orange-200 dark:border-orange-800',
+    color: 'text-amber-600 dark:text-amber-400',
+    bgColor: 'bg-amber-50 dark:bg-amber-500/10',
+    borderColor: 'border-amber-200 dark:border-amber-500/20',
     label: 'Follow-up Due'
   },
   stage_changed: {
     icon: TrendingUp,
-    color: 'text-purple-600 dark:text-purple-400',
-    bgColor: 'bg-purple-100 dark:bg-purple-900/30',
-    borderColor: 'border-purple-200 dark:border-purple-800',
+    color: 'text-violet-600 dark:text-violet-400',
+    bgColor: 'bg-violet-50 dark:bg-violet-500/10',
+    borderColor: 'border-violet-200 dark:border-violet-500/20',
     label: 'Stage Updated'
   },
   call_made: {
     icon: Phone,
     color: 'text-indigo-600 dark:text-indigo-400',
-    bgColor: 'bg-indigo-100 dark:bg-indigo-900/30',
-    borderColor: 'border-indigo-200 dark:border-indigo-800',
+    bgColor: 'bg-indigo-50 dark:bg-indigo-500/10',
+    borderColor: 'border-indigo-200 dark:border-indigo-500/20',
     label: 'Call Made'
   },
   email_sent: {
     icon: Mail,
     color: 'text-cyan-600 dark:text-cyan-400',
-    bgColor: 'bg-cyan-100 dark:bg-cyan-900/30',
-    borderColor: 'border-cyan-200 dark:border-cyan-800',
+    bgColor: 'bg-cyan-50 dark:bg-cyan-500/10',
+    borderColor: 'border-cyan-200 dark:border-cyan-500/20',
     label: 'Email Sent'
   },
   meeting_scheduled: {
     icon: Calendar,
-    color: 'text-emerald-600 dark:text-emerald-400',
-    bgColor: 'bg-emerald-100 dark:bg-emerald-900/30',
-    borderColor: 'border-emerald-200 dark:border-emerald-800',
+    color: 'text-green-600 dark:text-green-400',
+    bgColor: 'bg-green-50 dark:bg-green-500/10',
+    borderColor: 'border-green-200 dark:border-green-500/20',
     label: 'Meeting Scheduled'
   }
 }
@@ -113,9 +111,9 @@ export function EnhancedActivityFeed({
       case 'high':
         return 'border-l-4 border-l-red-500 dark:border-l-red-400'
       case 'medium':
-        return 'border-l-4 border-l-yellow-500 dark:border-l-yellow-400'
+        return 'border-l-4 border-l-amber-500 dark:border-l-amber-400'
       default:
-        return 'border-l-4 border-l-gray-300 dark:border-l-gray-600'
+        return 'border-l-4 border-l-slate-300 dark:border-l-slate-600'
     }
   }
 
@@ -131,12 +129,19 @@ export function EnhancedActivityFeed({
   }
 
   return (
-    <Card className={cn("h-full", className)}>
+    <Card className={cn(
+      "h-full",
+      "bg-card/50 dark:bg-dark-bg-elevated/30 backdrop-blur-sm",
+      "border-border dark:border-dark-border-default",
+      className
+    )}>
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle className="text-lg font-semibold text-foreground">Recent Activity</CardTitle>
-            <CardDescription className="text-sm text-muted-foreground">
+            <CardTitle className="text-lg font-semibold text-foreground dark:text-dark-text-primary">
+              Recent Activity
+            </CardTitle>
+            <CardDescription className="text-sm text-muted-foreground dark:text-dark-text-tertiary">
               Latest updates from your CRM
             </CardDescription>
           </div>
@@ -166,20 +171,21 @@ export function EnhancedActivityFeed({
                   key={activity.id}
                   className={cn(
                     "relative flex items-start space-x-4 p-3 rounded-lg transition-all duration-200",
-                    "hover:bg-muted/50 cursor-pointer group",
+                    "hover:bg-muted/30 dark:hover:bg-dark-bg-tertiary/20 cursor-pointer group",
                     getPriorityIndicator(activity.priority)
                   )}
                 >
                   {/* Timeline connector */}
                   {index < activities.length - 1 && (
-                    <div className="absolute left-8 top-12 w-px h-8 bg-border" />
+                    <div className="absolute left-8 top-12 w-px h-8 bg-border dark:bg-dark-border-subtle" />
                   )}
                   
                   {/* Activity Icon */}
                   <div className={cn(
-                    "flex items-center justify-center rounded-full p-2 shrink-0",
+                    "flex items-center justify-center rounded-lg p-2 shrink-0 border",
                     config.bgColor,
-                    "ring-2 ring-background"
+                    config.borderColor,
+                    "ring-2 ring-background dark:ring-dark-bg-primary"
                   )}>
                     <IconComponent className={cn("h-4 w-4", config.color)} />
                   </div>
@@ -188,18 +194,18 @@ export function EnhancedActivityFeed({
                   <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        <p className="text-sm font-medium text-foreground truncate">
+                        <p className="text-sm font-medium text-foreground dark:text-dark-text-primary truncate">
                           {activity.title}
                         </p>
                         <Badge 
                           variant="secondary" 
-                          className="text-xs px-2 py-0"
+                          className="text-xs px-2 py-0 bg-muted/50 dark:bg-dark-bg-tertiary/50 text-muted-foreground dark:text-dark-text-tertiary"
                         >
                           {config.label}
                         </Badge>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <span className="text-xs text-muted-foreground whitespace-nowrap">
+                        <span className="text-xs text-muted-foreground dark:text-dark-text-muted whitespace-nowrap">
                           {formatTime(activity.time)}
                         </span>
                         <Button
@@ -212,13 +218,13 @@ export function EnhancedActivityFeed({
                       </div>
                     </div>
                     
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground dark:text-dark-text-tertiary">
                       {activity.description}
                     </p>
                     
                     {/* Metadata */}
                     {activity.metadata && (
-                      <div className="flex items-center space-x-4 text-xs text-muted-foreground pt-1">
+                      <div className="flex items-center space-x-4 text-xs text-muted-foreground dark:text-dark-text-tertiary pt-1">
                         {activity.metadata.amount && (
                           <div className="flex items-center space-x-1">
                             <DollarSign className="h-3 w-3" />
@@ -245,7 +251,7 @@ export function EnhancedActivityFeed({
                             {activity.actor.name.split(' ').map(n => n[0]).join('').toUpperCase()}
                           </AvatarFallback>
                         </Avatar>
-                        <span className="text-xs text-muted-foreground">
+                        <span className="text-xs text-muted-foreground dark:text-dark-text-tertiary">
                           by {activity.actor.name}
                         </span>
                       </div>
@@ -257,11 +263,13 @@ export function EnhancedActivityFeed({
           </div>
         ) : (
           <div className="text-center py-8">
-            <div className="mx-auto w-12 h-12 bg-muted rounded-full flex items-center justify-center mb-4">
-              <MessageSquare className="h-6 w-6 text-muted-foreground" />
+            <div className="mx-auto w-12 h-12 bg-muted/50 dark:bg-dark-bg-tertiary/50 rounded-full flex items-center justify-center mb-4">
+              <MessageSquare className="h-6 w-6 text-muted-foreground dark:text-dark-text-muted" />
             </div>
-            <h3 className="text-sm font-medium text-foreground mb-1">No recent activity</h3>
-            <p className="text-xs text-muted-foreground">
+            <h3 className="text-sm font-medium text-foreground dark:text-dark-text-primary mb-1">
+              No recent activity
+            </h3>
+            <p className="text-xs text-muted-foreground dark:text-dark-text-tertiary">
               Activity will appear here as you work with leads and deals
             </p>
           </div>

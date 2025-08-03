@@ -77,20 +77,32 @@ export const buttonVariants = cva(
 )
 
 /**
- * Card component variants
+ * Card component variants - optimized for dark theme readability
  */
 export const cardVariants = cva(
   [
-    'rounded-lg border bg-white text-neutral-950',
+    'rounded-lg border bg-card text-card-foreground',
     'transition-all duration-150 ease-in-out'
   ],
   {
     variants: {
       variant: {
-        default: 'border-neutral-200 shadow-sm hover:shadow-md',
-        elevated: 'border-neutral-200 shadow-md hover:shadow-lg',
-        outlined: 'border-2 border-neutral-300 shadow-none hover:border-neutral-400',
-        ghost: 'border-transparent shadow-none hover:bg-neutral-50'
+        default: [
+          'border-border shadow-sm hover:shadow-md',
+          'dark:border-dark-border-default dark:bg-dark-bg-elevated/50'
+        ],
+        elevated: [
+          'border-border shadow-md hover:shadow-lg',
+          'dark:border-dark-border-emphasis dark:bg-dark-bg-elevated'
+        ],
+        outlined: [
+          'border-2 border-border shadow-none hover:border-border',
+          'dark:border-dark-border-emphasis dark:hover:border-dark-border-emphasis'
+        ],
+        ghost: [
+          'border-transparent shadow-none hover:bg-muted/50',
+          'dark:hover:bg-dark-bg-tertiary/30'
+        ]
       },
       padding: {
         none: 'p-0',
@@ -291,7 +303,7 @@ export const skeletonVariants = cva(
 )
 
 /**
- * Priority indicator variants for leads
+ * Priority indicator variants for leads - optimized for dark theme readability
  */
 export const priorityVariants = cva(
   [
@@ -301,10 +313,22 @@ export const priorityVariants = cva(
   {
     variants: {
       priority: {
-        low: 'border-gray-200 bg-gray-100 text-gray-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300',
-        medium: 'border-blue-200 bg-blue-100 text-blue-700 dark:border-blue-600 dark:bg-blue-900/30 dark:text-blue-300',
-        high: 'border-orange-200 bg-orange-100 text-orange-700 dark:border-orange-600 dark:bg-orange-900/30 dark:text-orange-300',
-        urgent: 'border-red-200 bg-red-100 text-red-700 dark:border-red-600 dark:bg-red-900/30 dark:text-red-300'
+        low: [
+          'border-neutral-200 bg-neutral-50 text-neutral-700',
+          'dark:border-neutral-650 dark:bg-neutral-800/50 dark:text-neutral-300'
+        ],
+        medium: [
+          'border-blue-200 bg-blue-50 text-blue-700',
+          'dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-300'
+        ],
+        high: [
+          'border-orange-200 bg-orange-50 text-orange-700',
+          'dark:border-orange-500/30 dark:bg-orange-500/10 dark:text-orange-300'
+        ],
+        urgent: [
+          'border-red-200 bg-red-50 text-red-700',
+          'dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-300'
+        ]
       },
       size: {
         sm: 'px-2 py-0.5 text-xs',
@@ -319,20 +343,32 @@ export const priorityVariants = cva(
 )
 
 /**
- * Stage indicator variants for kanban
+ * Stage indicator variants for kanban - optimized for dark theme readability
  */
 export const stageVariants = cva(
   [
-    'inline-flex items-center rounded-md font-medium',
+    'inline-flex items-center rounded-md font-medium border-l-4',
     'transition-colors duration-150 ease-in-out'
   ],
   {
     variants: {
       stage: {
-        incoming: 'bg-info-100 text-info-700 border-l-4 border-info-500',
-        decision: 'bg-warning-100 text-warning-700 border-l-4 border-warning-500',
-        negotiation: 'bg-orange-100 text-orange-700 border-l-4 border-orange-500',
-        final: 'bg-success-100 text-success-700 border-l-4 border-success-500'
+        incoming: [
+          'bg-blue-50 text-blue-700 border-blue-500',
+          'dark:bg-blue-500/10 dark:text-blue-300 dark:border-blue-400'
+        ],
+        decision: [
+          'bg-yellow-50 text-yellow-700 border-yellow-500',
+          'dark:bg-yellow-500/10 dark:text-yellow-300 dark:border-yellow-400'
+        ],
+        negotiation: [
+          'bg-orange-50 text-orange-700 border-orange-500',
+          'dark:bg-orange-500/10 dark:text-orange-300 dark:border-orange-400'
+        ],
+        final: [
+          'bg-green-50 text-green-700 border-green-500',
+          'dark:bg-green-500/10 dark:text-green-300 dark:border-green-400'
+        ]
       },
       size: {
         sm: 'px-2 py-1 text-xs',

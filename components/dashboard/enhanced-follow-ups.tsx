@@ -63,11 +63,11 @@ export function EnhancedFollowUps({
       case 'urgent':
         return 'text-red-600 dark:text-red-400'
       case 'high':
-        return 'text-orange-600 dark:text-orange-400'
+        return 'text-amber-600 dark:text-amber-400'
       case 'medium':
         return 'text-blue-600 dark:text-blue-400'
       default:
-        return 'text-gray-600 dark:text-gray-400'
+        return 'text-slate-600 dark:text-slate-400'
     }
   }
 
@@ -103,14 +103,19 @@ export function EnhancedFollowUps({
   })
 
   return (
-    <Card className={cn("h-full", className)}>
+    <Card className={cn(
+      "h-full",
+      "bg-card/50 dark:bg-dark-bg-elevated/30 backdrop-blur-sm",
+      "border-border dark:border-dark-border-default",
+      className
+    )}>
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle className="text-lg font-semibold text-foreground">
+            <CardTitle className="text-lg font-semibold text-foreground dark:text-dark-text-primary">
               Upcoming Follow-ups
             </CardTitle>
-            <CardDescription className="text-sm text-muted-foreground">
+            <CardDescription className="text-sm text-muted-foreground dark:text-dark-text-tertiary">
               Don't miss these important follow-ups
             </CardDescription>
           </div>
@@ -141,12 +146,14 @@ export function EnhancedFollowUps({
                   key={lead.id}
                   className={cn(
                     "relative flex items-center space-x-4 p-3 rounded-lg transition-all duration-200",
-                    "hover:bg-muted/50 cursor-pointer group border",
+                    "cursor-pointer group border",
                     overdue ? [
-                      "border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-900/10",
-                      "hover:bg-red-50 dark:hover:bg-red-900/20"
+                      "border-red-200 dark:border-red-500/20 bg-red-50/50 dark:bg-red-500/5",
+                      "hover:bg-red-50 dark:hover:bg-red-500/10"
                     ] : [
-                      "border-border hover:border-muted-foreground/20"
+                      "border-border dark:border-dark-border-default",
+                      "hover:bg-muted/30 dark:hover:bg-dark-bg-tertiary/20",
+                      "hover:border-muted-foreground/20 dark:hover:border-dark-border-emphasis"
                     ]
                   )}
                   onClick={() => onFollowUpClick?.(lead)}
@@ -154,10 +161,10 @@ export function EnhancedFollowUps({
                   {/* Priority Indicator */}
                   <div className={cn(
                     "absolute left-0 top-0 bottom-0 w-1 rounded-l-lg",
-                    overdue ? "bg-red-500" : 
-                    lead.priority === 'urgent' ? "bg-red-500" :
-                    lead.priority === 'high' ? "bg-orange-500" :
-                    lead.priority === 'medium' ? "bg-blue-500" : "bg-gray-300"
+                    overdue ? "bg-red-500 dark:bg-red-400" : 
+                    lead.priority === 'urgent' ? "bg-red-500 dark:bg-red-400" :
+                    lead.priority === 'high' ? "bg-amber-500 dark:bg-amber-400" :
+                    lead.priority === 'medium' ? "bg-blue-500 dark:bg-blue-400" : "bg-slate-300 dark:bg-slate-600"
                   )} />
                   
                   {/* Avatar */}
@@ -170,7 +177,7 @@ export function EnhancedFollowUps({
                   {/* Lead Info */}
                   <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-sm font-medium text-foreground truncate">
+                      <h4 className="text-sm font-medium text-foreground dark:text-dark-text-primary truncate">
                         {lead.name}
                       </h4>
                       <div className="flex items-center space-x-2">
@@ -180,7 +187,7 @@ export function EnhancedFollowUps({
                         <Badge 
                           className={cn(
                             priorityVariants({ priority: lead.priority, size: 'sm' }),
-                            overdue && "bg-red-100 text-red-800 border-red-200 dark:bg-red-900/30 dark:text-red-400 dark:border-red-800"
+                            overdue && "bg-red-50 text-red-700 border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20"
                           )}
                         >
                           {overdue ? 'Overdue' : lead.priority}
@@ -190,21 +197,21 @@ export function EnhancedFollowUps({
                     
                     <div className="flex items-center justify-between">
                       <div className="space-y-1">
-                        <p className="text-xs text-muted-foreground truncate">
+                        <p className="text-xs text-muted-foreground dark:text-dark-text-tertiary truncate">
                           {lead.company}
                         </p>
                         <div className="flex items-center space-x-2 text-xs">
-                          <CalendarDays className="h-3 w-3 text-muted-foreground" />
+                          <CalendarDays className="h-3 w-3 text-muted-foreground dark:text-dark-text-muted" />
                           <span className={cn(
                             "font-medium",
                             getPriorityColor(lead.priority, overdue)
                           )}>
                             {new Date(lead.nextFollowUp!).toLocaleDateString()}
                           </span>
-                          <span className="text-muted-foreground">•</span>
+                          <span className="text-muted-foreground dark:text-dark-text-muted">•</span>
                           <span className={cn(
                             "font-medium",
-                            overdue ? "text-red-600 dark:text-red-400" : "text-muted-foreground"
+                            overdue ? "text-red-600 dark:text-red-400" : "text-muted-foreground dark:text-dark-text-tertiary"
                           )}>
                             {timeInfo}
                           </span>
@@ -213,10 +220,10 @@ export function EnhancedFollowUps({
                       
                       {/* Deal Amount */}
                       <div className="text-right">
-                        <p className="text-sm font-semibold text-foreground">
+                        <p className="text-sm font-semibold text-foreground dark:text-dark-text-primary">
                           ${lead.dealAmount.toLocaleString()}
                         </p>
-                        <p className="text-xs text-muted-foreground capitalize">
+                        <p className="text-xs text-muted-foreground dark:text-dark-text-tertiary capitalize">
                           {lead.stage.replace('_', ' ')}
                         </p>
                       </div>
@@ -255,11 +262,13 @@ export function EnhancedFollowUps({
           </div>
         ) : (
           <div className="text-center py-8">
-            <div className="mx-auto w-12 h-12 bg-muted rounded-full flex items-center justify-center mb-4">
-              <Clock className="h-6 w-6 text-muted-foreground" />
+            <div className="mx-auto w-12 h-12 bg-muted/50 dark:bg-dark-bg-tertiary/50 rounded-full flex items-center justify-center mb-4">
+              <Clock className="h-6 w-6 text-muted-foreground dark:text-dark-text-muted" />
             </div>
-            <h3 className="text-sm font-medium text-foreground mb-1">No upcoming follow-ups</h3>
-            <p className="text-xs text-muted-foreground mb-4">
+            <h3 className="text-sm font-medium text-foreground dark:text-dark-text-primary mb-1">
+              No upcoming follow-ups
+            </h3>
+            <p className="text-xs text-muted-foreground dark:text-dark-text-tertiary mb-4">
               You're all caught up! Schedule follow-ups to stay connected with your leads.
             </p>
             <Button variant="outline" size="sm">

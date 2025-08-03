@@ -246,4 +246,78 @@
   - Review and refine API service layer interfaces
   - Document API endpoints and data structures needed
   - Create environment configuration for development/production
-  - _Requirements: 9.2_
+  - _Requirements: 11.2_
+
+- [ ] 14. Build AI Agents Management Interface
+- [x] 14.1 Create agent data models and mock data
+
+
+  - Define Agent and CallSession TypeScript interfaces
+  - Create mock data for SDR and Customer Service agents
+  - Implement AgentsService with mock API integration
+  - _Requirements: 9.1, 9.2, 11.1_
+
+
+
+
+- [ ] 14.2 Build agent gallery and cards
+  - Create AgentGallery component with responsive grid layout
+  - Implement AgentCard component with status indicators and metrics
+  - Add agent type categorization and filtering
+  - _Requirements: 9.1, 9.2_
+
+- [ ] 14.3 Implement agent configuration dialog
+  - Build AgentConfigDialog with comprehensive settings forms
+  - Add working hours, channel integration, and behavior configuration
+  - Implement form validation and configuration saving
+  - _Requirements: 9.3, 9.7_
+
+- [ ] 14.4 Create custom agent builder interface
+  - Build CustomAgentBuilder with requirement specification forms
+  - Add template selection and capability definition
+  - Implement request submission and tracking functionality
+  - _Requirements: 9.4_
+
+- [ ] 14.5 Add agent management features
+  - Implement bulk actions for enabling/disabling agents
+  - Create real-time activity feeds and workload status
+  - Add agent performance monitoring dashboard
+  - _Requirements: 9.5, 9.6_
+
+- [ ] 15. Implement AI Assistant Call Interface
+- [ ] 15.1 Create call interface dialog
+  - Build CallInterface component with phone call-like design
+  - Implement call controls (mute, speaker, end call)
+  - Add call duration timer and connection status indicators
+  - _Requirements: 10.1, 10.2_
+
+- [ ] 15.2 Add voice controls and feedback
+  - Create VoiceControls component with audio management
+  - Implement visual feedback for speaking/listening states
+  - Add audio quality indicators and connection monitoring
+  - _Requirements: 10.3_
+
+- [ ] 15.3 Implement call transcription
+  - Build CallTranscription component with real-time text display
+  - Add speaker identification and timestamp markers
+  - Create conversation history and export functionality
+  - _Requirements: 10.4_
+
+- [ ] 15.4 Add call summary and CRM integration
+  - Implement call summary generation after call ends
+  - Create functionality to save call information to CRM
+  - Add call history and follow-up action items
+  - _Requirements: 10.5_
+
+- [ ] 16. Final integration and testing
+- [ ] 16.1 Test AI agents management workflow
+  - Test agent configuration and management features
+  - Verify custom agent request and approval process
+  - Test agent performance monitoring and bulk actions
+  - _Requirements: 9.1-9.7_
+
+- [ ] 16.2 Test call interface functionality
+  - Test call initiation and interface responsiveness
+  - Verify voice controls and transcription accuracy
+  - Test call summary and CRM integration features
+  - _Requirements: 10.1-10.5_

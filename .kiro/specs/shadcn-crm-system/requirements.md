@@ -100,7 +100,33 @@ This document outlines the requirements for developing a shadcn-based CRM (Custo
 4. WHEN the dashboard loads THEN it SHALL demonstrate the potential for real-time reporting integration
 5. IF the user interacts with dashboard elements THEN the system SHALL provide appropriate visual feedback
 
-### Requirement 9: System Infrastructure and API Integration
+### Requirement 9: AI Agents Management Interface
+
+**User Story:** As a sales manager, I want to manage and configure AI agents for my team, so that I can automate customer interactions and customize agent behavior based on business needs.
+
+#### Acceptance Criteria
+
+1. WHEN the user accesses the AI Agents Tab THEN the system SHALL display a gallery of available agents (SDR, Customer Service) with status indicators and performance metrics
+2. WHEN the user views an agent card THEN the system SHALL show agent type, capabilities, current status, and key performance indicators
+3. WHEN the user clicks on an agent THEN the system SHALL open a configuration dialog with settings for behavior, working hours, and channel integrations
+4. WHEN the user wants to create a custom agent THEN the system SHALL provide a "Request Custom Agent" interface with requirement specification forms
+5. WHEN the user manages multiple agents THEN the system SHALL provide bulk actions for enabling/disabling agents and scheduling
+6. WHEN agents are active THEN the system SHALL display real-time activity feeds and current workload status
+7. WHEN the user configures agent integrations THEN the system SHALL connect agents to available communication channels (WhatsApp, Email, etc.)
+
+### Requirement 10: AI Assistant Call Interface
+
+**User Story:** As a CRM user, I want to initiate voice calls with the AI assistant, so that I can get immediate support through a natural conversation interface.
+
+#### Acceptance Criteria
+
+1. WHEN the user clicks the call button in the AI assistant widget THEN the system SHALL open a call interface popup that resembles a phone call
+2. WHEN the call interface opens THEN it SHALL display call controls (mute, speaker, end call), call duration timer, and visual call status
+3. WHEN the user is in a call THEN the system SHALL provide visual feedback for speaking/listening states and connection quality
+4. WHEN the call is active THEN the system SHALL show real-time transcription of the conversation in the call interface
+5. WHEN the user ends the call THEN the system SHALL provide a call summary and option to save important information to the CRM
+
+### Requirement 11: System Infrastructure and API Integration
 
 **User Story:** As a developer, I want a well-structured frontend architecture, so that the system can easily integrate with backend services and maintain code quality.
 

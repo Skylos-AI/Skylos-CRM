@@ -93,20 +93,34 @@ export const colors = {
     },
   },
   
-  // Neutral colors for backgrounds and text
+  // Neutral colors for backgrounds and text - optimized for dark theme readability
   neutral: {
     0: '#ffffff',
+    25: '#fdfdfd',
     50: '#f9fafb',
+    75: '#f6f7f8',
     100: '#f3f4f6',
+    150: '#eef0f2',
     200: '#e5e7eb',
+    250: '#dde0e4',
     300: '#d1d5db',
+    350: '#c4c9d0',
     400: '#9ca3af',
+    450: '#8b92a5',
     500: '#6b7280',
+    550: '#5d6370',
     600: '#4b5563',
+    650: '#424954',
     700: '#374151',
+    750: '#2f3441',
     800: '#1f2937',
+    825: '#1c2532',
+    850: '#18212e',
+    875: '#151d2a',
     900: '#111827',
+    925: '#0f1419',
     950: '#030712',
+    975: '#020509',
   },
   
   // Priority colors for lead management
@@ -133,27 +147,56 @@ export const colors = {
     },
   },
   
-  // Stage colors for kanban board
+  // Stage colors for kanban board with dark theme variants
   stage: {
     incoming: {
-      bg: '#dbeafe',
-      border: '#3b82f6',
-      text: '#1e40af',
+      light: { bg: '#dbeafe', border: '#3b82f6', text: '#1e40af' },
+      dark: { bg: '#1e3a8a20', border: '#60a5fa', text: '#93c5fd' },
     },
     decision: {
-      bg: '#fef3c7',
-      border: '#f59e0b',
-      text: '#d97706',
+      light: { bg: '#fef3c7', border: '#f59e0b', text: '#d97706' },
+      dark: { bg: '#f59e0b20', border: '#fbbf24', text: '#fcd34d' },
     },
     negotiation: {
-      bg: '#fed7aa',
-      border: '#f97316',
-      text: '#c2410c',
+      light: { bg: '#fed7aa', border: '#f97316', text: '#c2410c' },
+      dark: { bg: '#f9731620', border: '#fb923c', text: '#fdba74' },
     },
     final: {
-      bg: '#dcfce7',
-      border: '#22c55e',
-      text: '#16a34a',
+      light: { bg: '#dcfce7', border: '#22c55e', text: '#16a34a' },
+      dark: { bg: '#22c55e20', border: '#4ade80', text: '#86efac' },
+    },
+  },
+  
+  // Dark theme optimized colors
+  darkTheme: {
+    // Softer backgrounds that are easier on the eyes
+    background: {
+      primary: '#0a0e1a',      // Very dark blue-gray
+      secondary: '#111827',     // Dark gray
+      tertiary: '#1f2937',     // Medium dark gray
+      elevated: '#374151',     // Lighter gray for cards
+    },
+    // Better text colors with proper contrast
+    text: {
+      primary: '#f8fafc',      // Almost white, but softer
+      secondary: '#cbd5e1',    // Light gray
+      tertiary: '#94a3b8',     // Medium gray
+      muted: '#64748b',        // Darker gray for less important text
+    },
+    // Accent colors that work well in dark mode
+    accent: {
+      blue: '#60a5fa',
+      green: '#4ade80',
+      yellow: '#fbbf24',
+      orange: '#fb923c',
+      red: '#f87171',
+      purple: '#a78bfa',
+    },
+    // Border colors that provide subtle separation
+    border: {
+      subtle: '#1e293b',
+      default: '#334155',
+      emphasis: '#475569',
     },
   },
 } as const

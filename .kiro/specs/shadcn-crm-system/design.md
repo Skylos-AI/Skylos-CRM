@@ -25,13 +25,23 @@ graph TB
     C --> J[Dashboard/Analytics]
     C --> K[Authentication Pages]
     C --> L[Channel Configuration]
+    C --> M[AI Agents Management]
+    C --> N[AI Assistant Call Interface]
     
-    G --> M[Lead Card Components]
-    G --> N[Drag & Drop System]
-    G --> O[Lead Details Dialog]
+    G --> O[Lead Card Components]
+    G --> P[Drag & Drop System]
+    G --> Q[Lead Details Dialog]
     
-    P[API Service Layer] --> Q[Mock Data Provider]
-    P --> R[Future Backend Integration]
+    M --> R[Agent Gallery]
+    M --> S[Agent Configuration]
+    M --> T[Custom Agent Builder]
+    
+    N --> U[Call Interface Dialog]
+    N --> V[Voice Controls]
+    N --> W[Call Transcription]
+    
+    X[API Service Layer] --> Y[Mock Data Provider]
+    X --> Z[Future Backend Integration]
     
     S[shadcn/ui Components] --> T[Button, Card, Dialog]
     S --> U[Table, Form, Input]
@@ -50,6 +60,7 @@ app/
 ├── companies/
 ├── contacts/
 ├── channels/
+├── agents/
 ├── layout.tsx
 └── page.tsx
 
@@ -66,6 +77,15 @@ components/
 │   ├── lead-card.tsx
 │   ├── lead-details-dialog.tsx
 │   └── lead-filters.tsx
+├── agents/
+│   ├── agent-gallery.tsx
+│   ├── agent-card.tsx
+│   ├── agent-config-dialog.tsx
+│   └── custom-agent-builder.tsx
+├── ai-assistant/
+│   ├── chat-widget.tsx
+│   ├── call-interface.tsx
+│   └── voice-controls.tsx
 ├── layout/
 │   ├── sidebar.tsx
 │   ├── header.tsx
@@ -80,11 +100,13 @@ lib/
 │   ├── leads.ts
 │   ├── companies.ts
 │   ├── contacts.ts
+│   ├── agents.ts
 │   └── mock-data.ts
 ├── types/
 │   ├── lead.ts
 │   ├── company.ts
-│   └── contact.ts
+│   ├── contact.ts
+│   └── agent.ts
 └── utils.ts
 ```
 
@@ -172,6 +194,70 @@ lib/
   - Clear filters action
   - Saved filter presets
 
+### AI Agents Management Components
+
+#### Agent Gallery
+- **Purpose**: Display and manage available AI agents
+- **Components Used**: shadcn Card, Badge, Avatar, Button
+- **Features**:
+  - Agent status indicators
+  - Performance metrics display
+  - Quick actions (enable/disable)
+  - Agent type categorization
+  - Real-time activity indicators
+
+#### Agent Configuration Dialog
+- **Purpose**: Configure agent settings and behavior
+- **Components Used**: shadcn Dialog, Form, Input, Select, Switch
+- **Features**:
+  - Working hours configuration
+  - Channel integration settings
+  - Behavior customization
+  - Performance monitoring
+  - Bulk configuration options
+
+#### Custom Agent Builder
+- **Purpose**: Interface for requesting custom agents
+- **Components Used**: shadcn Form, Textarea, Select, Button
+- **Features**:
+  - Requirement specification forms
+  - Template selection
+  - Custom capability definition
+  - Integration requirements
+  - Request submission and tracking
+
+### AI Assistant Call Interface Components
+
+#### Call Interface Dialog
+- **Purpose**: Voice call interface with the AI assistant
+- **Components Used**: shadcn Dialog, Button, Progress
+- **Features**:
+  - Phone call-like interface
+  - Call controls (mute, speaker, end call)
+  - Call duration timer
+  - Connection status indicator
+  - Visual call state feedback
+
+#### Voice Controls
+- **Purpose**: Audio control interface during calls
+- **Components Used**: shadcn Button, Slider, Badge
+- **Features**:
+  - Mute/unmute functionality
+  - Speaker volume control
+  - Audio quality indicators
+  - Speaking/listening visual feedback
+  - Call recording controls
+
+#### Call Transcription
+- **Purpose**: Real-time conversation transcription
+- **Components Used**: shadcn ScrollArea, Badge
+- **Features**:
+  - Real-time text display
+  - Speaker identification
+  - Timestamp markers
+  - Conversation history
+  - Export/save functionality
+
 ## Data Models
 
 ### Lead Model
@@ -227,6 +313,64 @@ interface Contact {
   socialProfiles?: SocialProfile[]
   createdAt: Date
   updatedAt: Date
+}
+```
+
+### Agent Model
+```typescript
+interface Agent {
+  id: string
+  name: string
+  type: 'sdr' | 'customer-service' | 'custom'
+  description: string
+  capabilities: string[]
+  status: 'active' | 'inactive' | 'training' | 'maintenance'
+  avatar?: string
+  performance: {
+    leadsGenerated?: number
+    ticketsResolved?: number
+    responseTime?: number
+    satisfactionScore?: number
+  }
+  configuration: {
+    workingHours: {
+      start: string
+      end: string
+      timezone: string
+    }
+    channels: string[]
+    behavior: {
+      tone: 'professional' | 'friendly' | 'casual'
+      responseStyle: 'concise' | 'detailed'
+      escalationRules: string[]
+    }
+  }
+  createdAt: Date
+  updatedAt: Date
+  lastActiveAt?: Date
+}
+```
+
+### Call Session Model
+```typescript
+interface CallSession {
+  id: string
+  userId: string
+  startTime: Date
+  endTime?: Date
+  duration?: number
+  status: 'connecting' | 'active' | 'ended' | 'failed'
+  transcript: {
+    timestamp: Date
+    speaker: 'user' | 'assistant'
+    text: string
+  }[]
+  summary?: string
+  actionItems?: string[]
+  quality: {
+    audioQuality: 'excellent' | 'good' | 'fair' | 'poor'
+    connectionStability: number
+  }
 }
 ```
 

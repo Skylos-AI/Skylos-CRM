@@ -13,6 +13,7 @@ import {
   Building2, 
   UserCheck, 
   MessageSquare,
+  Bot,
   Settings,
   ChevronLeft,
   ChevronRight,
@@ -63,6 +64,12 @@ const mainNavigation = [
     href: "/contacts",
     icon: UserCheck,
     badge: null,
+  },
+  {
+    name: "AI Agents",
+    href: "/agents",
+    icon: Bot,
+    badge: "3",
   },
   {
     name: "Channels",
