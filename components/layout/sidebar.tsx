@@ -113,11 +113,14 @@ export function Sidebar() {
 
   return (
     <div className={cn(
-      "flex h-full flex-col bg-background border-r transition-all duration-300",
+      "flex h-full flex-col bg-slate-900 shadow-sidebar transition-all duration-300 rounded-r-3xl",
       isCollapsed ? "w-16" : "w-64"
     )}>
       {/* Header */}
-      <div className="flex h-16 items-center justify-between border-b px-4">
+      <div className="flex h-16 items-center justify-between px-4 bg-slate-800/50 rounded-tr-3xl" 
+           style={{
+             borderBottom: 'linear-gradient(to right, transparent, rgba(51, 65, 85, 0.2), transparent)'
+           }}>
         {!isCollapsed && (
           <Link href="/dashboard" className="flex items-center space-x-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
@@ -191,12 +194,17 @@ export function Sidebar() {
             return (
               <Link key={item.name} href={item.href}>
                 <Button
-                  variant={isActive ? "secondary" : "ghost"}
+                  variant="ghost"
                   className={cn(
-                    "w-full justify-start h-9",
-                    isActive && "bg-secondary font-medium",
+                    "w-full justify-start h-9 transition-all duration-200 ease-in-out rounded-lg",
+                    isActive 
+                      ? "bg-slate-700/40 border-l-3 border-primary-500 shadow-glow font-medium text-slate-50" 
+                      : "text-slate-300 hover:bg-slate-800/60 hover:text-slate-50 hover:translate-x-0.5",
                     isCollapsed && "px-2"
                   )}
+                  style={isActive ? {
+                    boxShadow: 'inset 0 0 0 1px rgba(59, 130, 246, 0.1)'
+                  } : {}}
                 >
                   <item.icon className={cn(
                     "h-4 w-4",
@@ -206,7 +214,7 @@ export function Sidebar() {
                     <>
                       <span className="flex-1 text-left">{item.name}</span>
                       {item.badge && (
-                        <Badge variant="secondary" className="ml-auto h-5 px-1.5 text-xs">
+                        <Badge variant="secondary" className="ml-auto h-5 px-1.5 text-xs bg-slate-800 text-slate-300">
                           {item.badge}
                         </Badge>
                       )}
@@ -221,8 +229,11 @@ export function Sidebar() {
 
       {/* Notifications */}
       {!isCollapsed && (
-        <div className="px-4 py-2 border-t">
-          <Button variant="ghost" className="w-full justify-start h-9">
+        <div className="px-4 py-2" 
+             style={{
+               borderTop: 'linear-gradient(to right, transparent, rgba(51, 65, 85, 0.2), transparent)'
+             }}>
+          <Button variant="ghost" className="w-full justify-start h-9 text-slate-300 hover:bg-slate-800/60 hover:text-slate-50">
             <Bell className="mr-3 h-4 w-4" />
             <span className="flex-1 text-left">Notifications</span>
             <Badge variant="destructive" className="ml-auto h-5 px-1.5 text-xs">
@@ -246,7 +257,10 @@ export function Sidebar() {
 
       {/* User Profile */}
       {!isCollapsed && (
-        <div className="p-4 border-t">
+        <div className="p-4" 
+             style={{
+               borderTop: 'linear-gradient(to right, transparent, rgba(51, 65, 85, 0.2), transparent)'
+             }}>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="w-full justify-start h-auto p-2">

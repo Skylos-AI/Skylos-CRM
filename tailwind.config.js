@@ -138,23 +138,37 @@ module.exports = {
           950: '#030712',
           975: '#020509',
         },
+        // Enhanced dark theme color system using slate palette
+        slate: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+          950: '#020617',
+        },
         // Dark theme optimized colors
         'dark-bg': {
-          primary: '#0a0e1a',
-          secondary: '#111827',
-          tertiary: '#1f2937',
-          elevated: '#374151',
+          primary: '#020617',    // slate-950
+          secondary: '#0f172a',  // slate-900
+          tertiary: '#1e293b',   // slate-800
+          elevated: '#334155',   // slate-700
         },
         'dark-text': {
-          primary: '#f8fafc',
-          secondary: '#cbd5e1',
-          tertiary: '#94a3b8',
-          muted: '#64748b',
+          primary: '#f8fafc',    // slate-50
+          secondary: '#cbd5e1',  // slate-300
+          tertiary: '#94a3b8',   // slate-400
+          muted: '#64748b',      // slate-500
         },
         'dark-border': {
-          subtle: '#1e293b',
-          default: '#334155',
-          emphasis: '#475569',
+          subtle: '#334155',     // slate-700
+          default: '#475569',    // slate-600
+          emphasis: '#64748b',   // slate-500
         },
       },
       // Design system spacing
@@ -183,6 +197,7 @@ module.exports = {
         base: '0.25rem',
         xl: '0.75rem',
         '2xl': '1rem',
+        '3xl': '1.5rem',
         full: '9999px',
       },
       // Design system typography
@@ -209,6 +224,14 @@ module.exports = {
         lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
         xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
         inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
+        // Enhanced shadows for professional UI
+        soft: '0 1px 3px rgba(0, 0, 0, 0.2)',
+        sidebar: '4px 0 24px -8px rgba(0, 0, 0, 0.3)',
+        card: '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)',
+        'card-hover': '0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1)',
+        glow: '0 0 0 1px rgba(148, 163, 184, 0.1)',
+        'glow-soft': '0 0 0 1px rgba(148, 163, 184, 0.05)',
+        'glow-emphasis': '0 0 0 1px rgba(148, 163, 184, 0.15)',
       },
       // Design system animations
       transitionDuration: {
@@ -222,6 +245,9 @@ module.exports = {
       scale: {
         102: '1.02',
         105: '1.05',
+      },
+      translate: {
+        '0.5': '2px',
       },
       keyframes: {
         "accordion-down": {

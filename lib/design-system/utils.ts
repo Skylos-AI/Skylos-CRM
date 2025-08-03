@@ -133,7 +133,51 @@ export function truncate(lines: number = 1) {
 }
 
 /**
- * Generate card styles with consistent design
+ * Generate enhanced container styles with professional border system
+ */
+export function containerStyles(
+  variant: 'default' | 'elevated' | 'nested' | 'interactive' = 'default',
+  priority: 'normal' | 'primary' = 'normal'
+) {
+  const baseStyles = cn(
+    'bg-slate-800 border rounded-xl transition-all duration-200 ease-in-out'
+  )
+  
+  const priorityStyles = priority === 'primary' 
+    ? cn(
+        'border-primary-500/30 shadow-glow-soft',
+        'hover:border-primary-400/50 hover:shadow-glow-emphasis'
+      )
+    : cn(
+        'border-slate-700/40 shadow-glow-soft',
+        'hover:border-slate-600/60 hover:shadow-glow'
+      )
+  
+  switch (variant) {
+    case 'elevated':
+      return cn(
+        baseStyles, 
+        priorityStyles,
+        'shadow-card hover:shadow-card-hover hover:-translate-y-0.5'
+      )
+    case 'nested':
+      return cn(
+        'bg-slate-750 border border-slate-600/30 rounded-lg',
+        'transition-all duration-200 ease-in-out'
+      )
+    case 'interactive':
+      return cn(
+        baseStyles,
+        priorityStyles,
+        'cursor-pointer shadow-card hover:shadow-card-hover hover:-translate-y-0.5'
+      )
+    default:
+      return cn(baseStyles, priorityStyles)
+  }
+}
+
+/**
+ * Generate card styles with consistent design (legacy support)
  */
 export function cardStyles(variant: 'default' | 'elevated' | 'outlined' = 'default') {
   const baseStyles = cn(

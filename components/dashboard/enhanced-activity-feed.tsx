@@ -130,11 +130,14 @@ export function EnhancedActivityFeed({
 
   return (
     <Card className={cn(
-      "h-full",
-      "bg-card/50 dark:bg-dark-bg-elevated/30 backdrop-blur-sm",
-      "border-border dark:border-dark-border-default",
+      "h-full bg-slate-800 border border-slate-700/40 rounded-xl shadow-card",
+      "hover:border-slate-600/60 hover:shadow-card-hover",
+      "transition-all duration-200 ease-in-out",
       className
-    )}>
+    )}
+    style={{
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(148, 163, 184, 0.05)'
+    }}>
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
           <div>

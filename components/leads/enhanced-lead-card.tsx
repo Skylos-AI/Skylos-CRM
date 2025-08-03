@@ -124,14 +124,21 @@ export function EnhancedLeadCard({
         ref={setNodeRef}
         style={style}
         className={cn(
-          "group cursor-pointer transition-all duration-200",
-          "shadow-sm hover:shadow-md hover:scale-[1.02] border border-border/50",
-          "bg-card/50 backdrop-blur-sm rounded-lg",
-          // Subtle stage accent
+          "group cursor-pointer transition-all duration-200 ease-in-out",
+          // Enhanced professional border system
+          "bg-slate-800 border border-slate-700/40 rounded-xl shadow-card",
+          "hover:border-slate-600/60 hover:shadow-card-hover hover:-translate-y-0.5",
+          // Subtle stage accent with enhanced styling
           stageAccents[lead.stage],
           // Dragging state
           isDragging && "opacity-50 rotate-2 shadow-xl scale-105 z-50"
         )}
+        style={{
+          ...style,
+          boxShadow: isDragging 
+            ? '0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(148, 163, 184, 0.1)'
+            : '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(148, 163, 184, 0.05)'
+        }}
         onClick={() => onClick?.(lead)}
       >
         <CardContent className={cn("p-4", compact && "p-3")}>

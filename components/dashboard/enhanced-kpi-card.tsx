@@ -85,25 +85,30 @@ export function EnhancedKPICard({
     <FadeIn delay={delay}>
       <Card 
         className={cn(
-          cardVariants({ 
-            variant: 'default',
-            interactive: true 
-          }),
-          // Primary cards have subtle accent styling that respects dark mode
+          // Enhanced professional border system
+          'bg-slate-800 border border-slate-700/40 rounded-xl shadow-card',
+          'hover:border-slate-600/60 hover:shadow-card-hover hover:-translate-y-0.5',
+          'transition-all duration-200 ease-in-out',
+          // Primary cards have subtle accent styling
           isPrimary && [
-            'border-primary-200 dark:border-primary-800',
-            'bg-gradient-to-br from-primary-50/30 to-background dark:from-primary-950/30',
-            'hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-700'
+            'border-primary-500/30 bg-gradient-to-br from-slate-800 to-slate-800/80',
+            'shadow-glow-soft hover:shadow-glow-emphasis',
+            'hover:border-primary-400/50'
           ],
-          // Secondary cards have standard styling
+          // Secondary cards have standard professional styling
           !isPrimary && [
-            'hover:shadow-md hover:border-neutral-300 dark:hover:border-neutral-600'
+            'shadow-glow-soft hover:shadow-glow',
           ],
           // Ensure consistent height across all cards
           'h-[160px] flex flex-col',
-          'group transition-all duration-300 ease-in-out',
+          'group',
           className
         )}
+        style={{
+          boxShadow: isPrimary 
+            ? '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(59, 130, 246, 0.05)'
+            : '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(148, 163, 184, 0.05)'
+        }}
       >
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <div className="flex items-center space-x-3">

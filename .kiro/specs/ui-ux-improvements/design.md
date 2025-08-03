@@ -12,8 +12,30 @@ The improvements will be built on a cohesive design system that ensures consiste
 
 - **Spacing System**: 4px base unit with multiples (4, 8, 12, 16, 24, 32, 48, 64px)
 - **Typography Scale**: Clear hierarchy with 2 font families maximum (Inter for UI, system fonts as fallback)
-- **Color Palette**: Semantic color system with accessibility-compliant contrast ratios
-- **Component Library**: Consistent patterns for buttons, cards, forms, and interactive elements
+- **Enhanced Dark Theme Color System**: Layered approach using slate color palette for sophisticated depth
+- **Component Library**: Consistent patterns for buttons, cards, forms, and interactive elements with soft visual separation
+
+### Enhanced Dark Theme Color Architecture
+
+The dark theme will implement a sophisticated layered color system that creates visual depth and reduces eye strain:
+
+#### Background Layers
+- **Primary Background**: `slate-950` (#020617) - Main application background
+- **Secondary Background**: `slate-900` (#0f172a) - Sidebar and elevated panels
+- **Tertiary Background**: `slate-800` (#1e293b) - Cards and content containers
+- **Interactive Background**: `slate-700` (#334155) - Hover states and active elements
+
+#### Border and Separation System
+- **Subtle Borders**: `slate-700/30` - Soft separation between sections
+- **Emphasis Borders**: `slate-600/50` - Clear definition for important containers
+- **Glow Effects**: `0 0 0 1px rgba(148, 163, 184, 0.1)` - Soft glow for elevated elements
+- **Gradient Separations**: Linear gradients from transparent to `slate-700/20` for smooth transitions
+
+#### Text Hierarchy
+- **Primary Text**: `slate-50` (#f8fafc) - Main content and headings
+- **Secondary Text**: `slate-300` (#cbd5e1) - Supporting information
+- **Tertiary Text**: `slate-400` (#94a3b8) - Metadata and less important content
+- **Muted Text**: `slate-500` (#64748b) - Placeholder and disabled states
 
 ### Visual Hierarchy Strategy
 
@@ -24,7 +46,100 @@ Information will be prioritized using the following hierarchy principles:
 
 ## Components and Interfaces
 
-### 1. Enhanced Dashboard Layout
+### 1. Enhanced Sidebar Design
+
+#### Soft Visual Separation
+```typescript
+interface EnhancedSidebarDesign {
+  container: {
+    background: 'slate-900'
+    borderRight: 'none' // Remove sharp border
+    boxShadow: '4px 0 24px -8px rgba(0, 0, 0, 0.3)' // Soft shadow separation
+    borderRadius: '0 12px 12px 0' // Soft rounded right edge
+  }
+  sections: {
+    header: {
+      background: 'slate-800/50'
+      borderBottom: 'gradient from transparent to slate-700/20'
+      borderRadius: '0 12px 0 0'
+    }
+    navigation: {
+      background: 'slate-900'
+      itemHover: {
+        background: 'slate-800/60'
+        borderRadius: '8px'
+        transition: 'all 200ms ease-in-out'
+        transform: 'translateX(2px)'
+      }
+      activeItem: {
+        background: 'slate-700/40'
+        borderLeft: '3px solid primary-500'
+        boxShadow: 'inset 0 0 0 1px rgba(59, 130, 246, 0.1)'
+      }
+    }
+    footer: {
+      background: 'slate-800/30'
+      borderTop: 'gradient from slate-700/20 to transparent'
+      borderRadius: '0 0 12px 0'
+    }
+  }
+}
+```
+
+**Design Decisions:**
+- Replace sharp `border-r` with soft shadow separation
+- Use gradient borders instead of hard lines
+- Implement subtle hover animations with gentle transforms
+- Create visual depth through progressive background colors
+
+### 2. Enhanced Container and Card Design
+
+#### Professional Border System
+```typescript
+interface EnhancedContainerDesign {
+  dataContainers: {
+    background: 'slate-800'
+    border: '1px solid slate-700/40'
+    borderRadius: '12px'
+    boxShadow: [
+      '0 1px 3px rgba(0, 0, 0, 0.2)', // Subtle depth
+      '0 0 0 1px rgba(148, 163, 184, 0.05)' // Soft inner glow
+    ]
+    hover: {
+      borderColor: 'slate-600/60'
+      boxShadow: [
+        '0 4px 12px rgba(0, 0, 0, 0.15)',
+        '0 0 0 1px rgba(148, 163, 184, 0.1)'
+      ]
+      transform: 'translateY(-1px)'
+      transition: 'all 200ms ease-in-out'
+    }
+  }
+  nestedContainers: {
+    background: 'slate-750' // Slightly lighter for hierarchy
+    border: '1px solid slate-600/30'
+    borderRadius: '8px'
+  }
+  elevatedCards: {
+    background: 'slate-800'
+    boxShadow: [
+      '0 4px 6px rgba(0, 0, 0, 0.1)',
+      '0 1px 3px rgba(0, 0, 0, 0.08)',
+      'inset 0 0 0 1px rgba(148, 163, 184, 0.05)' // Subtle inner highlight
+    ]
+    borderRadius: '16px'
+    padding: '24px'
+  }
+}
+```
+
+**Design Decisions:**
+- Use subtle borders with transparency for soft definition
+- Implement soft glow effects instead of harsh borders
+- Create visual hierarchy through progressive background lightness
+- Add gentle hover animations for interactive feedback
+
+### 3. Enhanced Dashboard Layout
 
 #### KPI Cards Redesign
 ```typescript
@@ -260,9 +375,9 @@ interface DashboardAnalytics {
 
 ## Implementation Considerations
 
-### Design Tokens
+### Enhanced Design Tokens
 ```typescript
-export const designTokens = {
+export const enhancedDesignTokens = {
   spacing: {
     xs: '4px',
     sm: '8px',
@@ -272,10 +387,30 @@ export const designTokens = {
     xxl: '48px'
   },
   colors: {
-    primary: {
-      50: '#eff6ff',
-      500: '#3b82f6',
-      900: '#1e3a8a'
+    // Enhanced dark theme color system
+    dark: {
+      background: {
+        primary: '#020617',    // slate-950
+        secondary: '#0f172a',  // slate-900
+        tertiary: '#1e293b',   // slate-800
+        elevated: '#334155',   // slate-700
+      },
+      text: {
+        primary: '#f8fafc',    // slate-50
+        secondary: '#cbd5e1',  // slate-300
+        tertiary: '#94a3b8',   // slate-400
+        muted: '#64748b',      // slate-500
+      },
+      border: {
+        subtle: 'rgba(51, 65, 85, 0.3)',      // slate-700/30
+        default: 'rgba(71, 85, 105, 0.4)',    // slate-600/40
+        emphasis: 'rgba(71, 85, 105, 0.6)',   // slate-600/60
+      },
+      glow: {
+        subtle: '0 0 0 1px rgba(148, 163, 184, 0.05)',
+        soft: '0 0 0 1px rgba(148, 163, 184, 0.1)',
+        emphasis: '0 0 0 1px rgba(148, 163, 184, 0.15)',
+      }
     },
     semantic: {
       success: '#22c55e',
@@ -283,6 +418,34 @@ export const designTokens = {
       error: '#ef4444',
       info: '#3b82f6'
     }
+  },
+  shadows: {
+    soft: '0 1px 3px rgba(0, 0, 0, 0.2)',
+    medium: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    large: '0 10px 15px rgba(0, 0, 0, 0.1)',
+    sidebar: '4px 0 24px -8px rgba(0, 0, 0, 0.3)',
+    card: [
+      '0 4px 6px rgba(0, 0, 0, 0.1)',
+      '0 1px 3px rgba(0, 0, 0, 0.08)',
+      'inset 0 0 0 1px rgba(148, 163, 184, 0.05)'
+    ],
+    cardHover: [
+      '0 8px 25px rgba(0, 0, 0, 0.15)',
+      '0 4px 10px rgba(0, 0, 0, 0.1)',
+      'inset 0 0 0 1px rgba(148, 163, 184, 0.1)'
+    ]
+  },
+  borderRadius: {
+    soft: '8px',
+    medium: '12px',
+    large: '16px',
+    sidebar: '0 12px 12px 0'
+  },
+  transitions: {
+    fast: '150ms ease-in-out',
+    normal: '200ms ease-in-out',
+    slow: '300ms ease-in-out',
+    bounce: '200ms cubic-bezier(0.68, -0.55, 0.265, 1.55)'
   },
   typography: {
     fontFamily: {
