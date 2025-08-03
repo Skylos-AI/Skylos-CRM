@@ -15,7 +15,7 @@ export class MediaService {
       formData.append('file', file)
       formData.append('type', this.getMediaType(file.type))
 
-      const uploadId = crypto.randomUUID()
+      const uploadId = crypto?.randomUUID?.() || `upload-${Date.now()}-${Math.random()}`
       
       try {
         const response = await fetch(`${this.baseUrl}/upload`, {

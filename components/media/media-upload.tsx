@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useCallback } from 'react'
-import { useDropzone } from 'react-dropzone'
+// import { useDropzone } from 'react-dropzone' // Using simple file input instead
 import { MediaAsset, MediaUploadProgress, MEDIA_UPLOAD_CONFIGS } from '@/lib/types/media'
 import { MediaService } from '@/lib/api/media'
 import { Card, CardContent } from '@/components/ui/card'
@@ -72,7 +72,7 @@ export function MediaUpload({
 
     // Initialize progress tracking
     const initialProgress = validFiles.map(file => ({
-      id: crypto.randomUUID(),
+      id: crypto?.randomUUID?.() || `upload-${Date.now()}-${Math.random()}`,
       fileName: file.name,
       progress: 0,
       status: 'uploading' as const
@@ -109,15 +109,13 @@ export function MediaUpload({
     }
   }, [onUploadComplete, onUploadError])
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: getAllowedMimeTypes().reduce((acc, type) => {
-      acc[type] = []
-      return acc
-    }, {} as Record<string, string[]>),
-    maxFiles,
-    maxSize: getMaxFileSize()
-  })
+  // Simple file input approach instead of react-dropzone
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files || [])
+    if (files.length > 0) {
+      onDrop(files)
+    }
+  }
 
   const getFileIcon = (fileName: string) => {
     const extension = fileName.split('.').pop()?.toLowerCase()
@@ -143,35 +141,34 @@ export function MediaUpload({
       {/* Upload Area */}
       <Card>
         <CardContent className="p-6">
-          <div
-            {...getRootProps()}
-            className={cn(
-              "border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors",
-              isDragActive 
-                ? "border-primary bg-primary/5" 
-                : "border-muted-foreground/25 hover:border-primary/50"
-            )}
-          >
-            <input {...getInputProps()} />
-            <Upload className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-            <div className="space-y-2">
-              <p className="text-lg font-medium">
-                {isDragActive ? 'Drop files here' : 'Upload media files'}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Drag and drop files here, or click to browse
-              </p>
-              <div className="flex flex-wrap justify-center gap-2 mt-4">
-                {acceptedTypes.map(type => (
-                  <Badge key={type} variant="secondary" className="text-xs">
-                    {type.toUpperCase()}
-                  </Badge>
-                ))}
+          <div className="border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors border-muted-foreground/25 hover:border-primary/50">
+            <input
+              type="file"
+              multiple
+              accept={getAllowedMimeTypes().join(',')}
+              onChange={handleFileSelect}
+              className="hidden"
+              id="file-upload"
+            />
+            <label htmlFor="file-upload" className="cursor-pointer">
+              <Upload className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+              <div className="space-y-2">
+                <p className="text-lg font-medium">Upload media files</p>
+                <p className="text-sm text-muted-foreground">
+                  Click to browse and select files
+                </p>
+                <div className="flex flex-wrap justify-center gap-2 mt-4">
+                  {acceptedTypes.map(type => (
+                    <Badge key={type} variant="secondary" className="text-xs">
+                      {type.toUpperCase()}
+                    </Badge>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Max {maxFiles} files, up to {MediaService.formatFileSize(getMaxFileSize())} each
+                </p>
               </div>
-              <p className="text-xs text-muted-foreground">
-                Max {maxFiles} files, up to {MediaService.formatFileSize(getMaxFileSize())} each
-              </p>
-            </div>
+            </label>
           </div>
         </CardContent>
       </Card>

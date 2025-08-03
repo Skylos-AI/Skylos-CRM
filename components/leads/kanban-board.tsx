@@ -8,6 +8,7 @@ import { LeadsService } from "@/lib/api/leads"
 import { KanbanColumnComponent } from "./kanban-column"
 import { EnhancedLeadCard } from "./enhanced-lead-card"
 import { EnhancedLeadDetailsDialog } from "./enhanced-lead-details-dialog"
+import { EnhancedFollowUpDialog } from "@/components/follow-up/enhanced-follow-up-dialog"
 import { LeadFiltersComponent } from "./lead-filters"
 import { KanbanSkeleton } from "@/components/shared/loading-skeleton"
 import { useErrorHandler } from "@/hooks/use-error-handler"
@@ -51,6 +52,8 @@ export function KanbanBoard({ showFilters = true }: KanbanBoardProps) {
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [dialogDefaultTab, setDialogDefaultTab] = useState('details')
+  const [followUpDialogOpen, setFollowUpDialogOpen] = useState(false)
+  const [followUpLead, setFollowUpLead] = useState<Lead | null>(null)
   const [filters, setFilters] = useState<LeadFilters>({})
   const [error, setError] = useState<string | null>(null)
   const { handleError, handleSuccess } = useErrorHandler()
@@ -175,6 +178,11 @@ export function KanbanBoard({ showFilters = true }: KanbanBoardProps) {
     setDialogOpen(true)
   }
 
+  const handleFollowUpClick = (lead: Lead) => {
+    setFollowUpLead(lead)
+    setFollowUpDialogOpen(true)
+  }
+
   const handleLeadSave = async (updatedLead: Lead) => {
     try {
       await LeadsService.updateLead(updatedLead.id, updatedLead)
@@ -253,6 +261,7 @@ export function KanbanBoard({ showFilters = true }: KanbanBoardProps) {
               key={column.id}
               column={column}
               onLeadClick={handleLeadClick}
+              onFollowUpClick={handleFollowUpClick}
             />
           ))}
         </div>
@@ -275,6 +284,16 @@ export function KanbanBoard({ showFilters = true }: KanbanBoardProps) {
         open={dialogOpen}
         onOpenChange={setDialogOpen}
         onSave={handleLeadSave}
+      />
+      
+      <EnhancedFollowUpDialog
+        lead={followUpLead}
+        open={followUpDialogOpen}
+        onOpenChange={setFollowUpDialogOpen}
+        onFollowUpCreated={(followUp) => {
+          console.log('Follow-up created:', followUp)
+          // Refresh leads or update UI as needed
+        }}
       />
       </DndContext>
     </div>

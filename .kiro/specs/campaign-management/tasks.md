@@ -18,6 +18,8 @@
   - Implement media preview component for all supported file types
   - Build media library grid view with search and filtering
 
+
+
   - Add media tagging and organization features
   - Create media selection modal for campaign use
   - _Requirements: 1.1, 1.2, 1.3, 1.7, 6.2_

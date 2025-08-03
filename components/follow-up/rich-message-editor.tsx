@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
+// import { Separator } from '@/components/ui/separator' // Using div instead
 import { 
   Select,
   SelectContent,
@@ -259,7 +259,7 @@ export function RichMessageEditor({
               </Tooltip>
             </div>
 
-            <Separator orientation="vertical" className="h-6" />
+            <div className="w-px h-6 bg-border" />
 
             {/* Alignment */}
             <div className="flex items-center space-x-1">
@@ -306,7 +306,7 @@ export function RichMessageEditor({
               </Tooltip>
             </div>
 
-            <Separator orientation="vertical" className="h-6" />
+            <div className="w-px h-6 bg-border" />
 
             {/* Font Size */}
             <Select
@@ -326,7 +326,7 @@ export function RichMessageEditor({
               </SelectContent>
             </Select>
 
-            <Separator orientation="vertical" className="h-6" />
+            <div className="w-px h-6 bg-border" />
 
             {/* Personalization */}
             <DropdownMenu open={showPersonalizationMenu} onOpenChange={setShowPersonalizationMenu}>
@@ -353,7 +353,7 @@ export function RichMessageEditor({
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Separator orientation="vertical" className="h-6" />
+            <div className="w-px h-6 bg-border" />
 
             {/* Media Attachment */}
             <Button
