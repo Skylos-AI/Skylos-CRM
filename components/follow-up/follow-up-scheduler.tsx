@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { FollowUpMessage } from '@/lib/types/campaign'
 import { Lead } from '@/lib/types/lead'
+import { MediaAsset } from '@/lib/types/media'
+import { MediaSelectionModal } from '@/components/media/media-selection-modal'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -31,7 +33,13 @@ import {
   Video,
   Repeat,
   User,
-  Building2
+  Building2,
+  Paperclip,
+  Image,
+  FileVideo,
+  FileText,
+  Music,
+  X
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 // import { format } from 'date-fns' // Not needed for simple date input
@@ -54,12 +62,14 @@ export function FollowUpScheduler({
   const [messageType, setMessageType] = useState<FollowUpMessage['type']>('email')
   const [isRecurring, setIsRecurring] = useState(false)
   const [recurringFrequency, setRecurringFrequency] = useState<'daily' | 'weekly' | 'monthly'>('weekly')
+  const [selectedMedia, setSelectedMedia] = useState<MediaAsset[]>([])
+  const [mediaModalOpen, setMediaModalOpen] = useState(false)
 
   const messageTypes = [
-    { value: 'email', label: 'Email', icon: Mail, description: 'Send an email message' },
-    { value: 'sms', label: 'SMS', icon: MessageSquare, description: 'Send a text message' },
+    { value: 'email', label: 'Email', icon: Mail, description: 'Send email with media attachments' },
+    { value: 'sms', label: 'WhatsApp/SMS', icon: MessageSquare, description: 'Send message with media (video, images, docs)' },
     { value: 'call', label: 'Phone Call', icon: Phone, description: 'Schedule a phone call' },
-    { value: 'meeting', label: 'Meeting', icon: Video, description: 'Schedule a meeting' },
+    { value: 'meeting', label: 'Video Meeting', icon: Video, description: 'Schedule a video meeting' },
   ] as const
 
   const timeSlots = [
@@ -82,8 +92,8 @@ export function FollowUpScheduler({
       status: 'scheduled',
       content: {
         subject: messageType === 'email' ? `Follow-up: ${lead.name}` : undefined,
-        body: '',
-        mediaAttachments: [],
+        body: selectedMedia.length > 0 ? `Sharing ${selectedMedia.length} file${selectedMedia.length !== 1 ? 's' : ''} with you...` : '',
+        mediaAttachments: selectedMedia,
         personalizations: [],
         formatting: {
           fontSize: '16px',
@@ -102,6 +112,32 @@ export function FollowUpScheduler({
     if (!messageType) return <Mail className="h-4 w-4" />
     const Icon = messageType.icon
     return <Icon className="h-4 w-4" />
+  }
+
+  const handleMediaSelect = (assets: MediaAsset[]) => {
+    setSelectedMedia(assets)
+  }
+
+  const removeMediaAsset = (assetId: string) => {
+    setSelectedMedia(prev => prev.filter(asset => asset.id !== assetId))
+  }
+
+  const getMediaIcon = (type: MediaAsset['type']) => {
+    switch (type) {
+      case 'image': return <Image className="h-4 w-4" />
+      case 'video': return <FileVideo className="h-4 w-4" />
+      case 'audio': return <Music className="h-4 w-4" />
+      case 'document': return <FileText className="h-4 w-4" />
+      default: return <Paperclip className="h-4 w-4" />
+    }
+  }
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return '0 Bytes'
+    const k = 1024
+    const sizes = ['Bytes', 'KB', 'MB', 'GB']
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
   }
 
   return (
@@ -166,6 +202,76 @@ export function FollowUpScheduler({
               )
             })}
           </div>
+        </div>
+
+        {/* Media Selection */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <Label>Media Attachments (Optional)</Label>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setMediaModalOpen(true)}
+            >
+              <Paperclip className="h-4 w-4 mr-2" />
+              Add Media
+            </Button>
+          </div>
+          
+          {selectedMedia.length > 0 && (
+            <div className="space-y-2">
+              <div className="text-sm text-muted-foreground">
+                {selectedMedia.length} file{selectedMedia.length !== 1 ? 's' : ''} selected
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                {selectedMedia.map((asset) => (
+                  <Card key={asset.id} className="p-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="flex-shrink-0">
+                        {asset.thumbnailUrl ? (
+                          <img
+                            src={asset.thumbnailUrl}
+                            alt={asset.name}
+                            className="w-10 h-10 object-cover rounded"
+                          />
+                        ) : (
+                          <div className="w-10 h-10 bg-muted rounded flex items-center justify-center">
+                            {getMediaIcon(asset.type)}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">{asset.name}</p>
+                        <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+                          <Badge variant="outline" className="text-xs">
+                            {asset.type}
+                          </Badge>
+                          <span>{formatFileSize(asset.fileSize)}</span>
+                        </div>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => removeMediaAsset(asset.id)}
+                        className="h-8 w-8 p-0 text-muted-foreground hover:text-red-600"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {selectedMedia.length === 0 && (
+            <div className="text-center py-6 border-2 border-dashed border-muted-foreground/25 rounded-lg">
+              <Paperclip className="h-8 w-8 mx-auto text-muted-foreground mb-2" />
+              <p className="text-sm text-muted-foreground">
+                No media selected. Click "Add Media" to attach files.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Date and Time Selection */}
@@ -273,6 +379,12 @@ export function FollowUpScheduler({
                   <span>Repeats {recurringFrequency}</span>
                 </div>
               )}
+              {selectedMedia.length > 0 && (
+                <div className="flex items-center space-x-2 text-muted-foreground">
+                  <Paperclip className="h-3 w-3" />
+                  <span>{selectedMedia.length} media file{selectedMedia.length !== 1 ? 's' : ''} attached</span>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -291,6 +403,17 @@ export function FollowUpScheduler({
           </Button>
         </div>
       </CardContent>
+      
+      {/* Media Selection Modal */}
+      <MediaSelectionModal
+        open={mediaModalOpen}
+        onOpenChange={setMediaModalOpen}
+        onSelect={handleMediaSelect}
+        selectedAssets={selectedMedia}
+        selectionMode="multiple"
+        title="Select Media for Follow-up"
+        description="Choose media files to include with your follow-up message"
+      />
     </Card>
   )
 }
