@@ -20,6 +20,7 @@ import {
   PhoneCall
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useCallInterface } from "@/hooks/use-call-interface"
 
 interface Message {
   id: string
@@ -36,6 +37,7 @@ interface ChatWidgetProps {
 export function ChatWidget({ className }: ChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
+  const { openCall, isOpen: isCallOpen } = useCallInterface()
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -51,6 +53,22 @@ export function ChatWidget({ className }: ChatWidgetProps) {
   const [isOnCall, setIsOnCall] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  // Monitor call interface state
+  useEffect(() => {
+    if (!isCallOpen && isOnCall) {
+      // Call was ended, update state and add message
+      setIsOnCall(false)
+      const endCallMessage: Message = {
+        id: Date.now().toString(),
+        content: "Voice call ended. Feel free to continue chatting or start another call anytime!",
+        sender: 'ai',
+        timestamp: new Date(),
+        type: 'text'
+      }
+      setMessages(prev => [...prev, endCallMessage])
+    }
+  }, [isCallOpen, isOnCall])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -112,10 +130,15 @@ export function ChatWidget({ className }: ChatWidgetProps) {
   }
 
   const handleCallToggle = () => {
-    setIsOnCall(!isOnCall)
-    // Voice call logic would go here
-    if (!isOnCall) {
-      console.log("Starting voice call with AI assistant...")
+    if (!isOnCall && !isCallOpen) {
+      // Start the call by opening the call interface
+      openCall({
+        name: "AI Assistant",
+        type: "customer_service",
+        id: "ai-assistant"
+      })
+      setIsOnCall(true)
+      
       // Add a system message about the call
       const callMessage: Message = {
         id: Date.now().toString(),
@@ -125,16 +148,6 @@ export function ChatWidget({ className }: ChatWidgetProps) {
         type: 'text'
       }
       setMessages(prev => [...prev, callMessage])
-    } else {
-      console.log("Ending voice call...")
-      const endCallMessage: Message = {
-        id: Date.now().toString(),
-        content: "Voice call ended. Feel free to continue chatting or start another call anytime!",
-        sender: 'ai',
-        timestamp: new Date(),
-        type: 'text'
-      }
-      setMessages(prev => [...prev, endCallMessage])
     }
   }
 

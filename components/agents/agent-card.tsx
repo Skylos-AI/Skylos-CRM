@@ -31,9 +31,11 @@ interface AgentCardProps {
   agent: Agent
   onUpdate: (agent: Agent) => void
   onConfigure?: (agent: Agent) => void
+  onSelect?: (agentId: string, selected: boolean) => void
+  isSelected?: boolean
 }
 
-export function AgentCard({ agent, onUpdate, onConfigure }: AgentCardProps) {
+export function AgentCard({ agent, onUpdate, onConfigure, onSelect, isSelected = false }: AgentCardProps) {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleToggleStatus = async () => {
@@ -110,7 +112,8 @@ export function AgentCard({ agent, onUpdate, onConfigure }: AgentCardProps) {
       "bg-gradient-to-br from-background to-background/50 backdrop-blur-sm",
       agent.status === 'active' && "ring-2 ring-green-500/20 shadow-green-500/10",
       agent.status === 'training' && "ring-2 ring-yellow-500/20 shadow-yellow-500/10",
-      agent.status === 'maintenance' && "ring-2 ring-orange-500/20 shadow-orange-500/10"
+      agent.status === 'maintenance' && "ring-2 ring-orange-500/20 shadow-orange-500/10",
+      isSelected && "ring-2 ring-primary shadow-primary/10"
     )}>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
@@ -253,6 +256,28 @@ export function AgentCard({ agent, onUpdate, onConfigure }: AgentCardProps) {
             Last active: {agent.lastActiveAt.toLocaleString()}
           </div>
         )}
+        
+        {/* Action Buttons */}
+        <div className="flex items-center space-x-2 pt-3 border-t">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex-1 flex items-center space-x-2"
+            onClick={() => onConfigure?.(agent)}
+          >
+            <Settings className="h-4 w-4" />
+            <span>Configure</span>
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex-1 flex items-center space-x-2"
+          >
+            <MessageSquare className="h-4 w-4" />
+            <span>Chat</span>
+          </Button>
+        </div>
       </CardContent>
     </Card>
   )

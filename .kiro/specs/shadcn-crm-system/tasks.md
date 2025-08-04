@@ -269,6 +269,9 @@
 - [x] 14.1 Create agent data models and mock data
 
 
+
+
+
   - Define Agent and CallSession TypeScript interfaces
   - Create mock data for SDR and Customer Service agents
   - Implement AgentsService with mock API integration
@@ -277,36 +280,49 @@
 
 
 
-- [ ] 14.2 Build agent gallery and cards
+- [x] 14.2 Build agent gallery and cards
+
   - Create AgentGallery component with responsive grid layout
   - Implement AgentCard component with status indicators and metrics
   - Add agent type categorization and filtering
   - _Requirements: 9.1, 9.2_
 
-- [ ] 14.3 Implement agent configuration dialog
+- [x] 14.3 Implement agent configuration dialog
+
   - Build AgentConfigDialog with comprehensive settings forms
   - Add working hours, channel integration, and behavior configuration
   - Implement form validation and configuration saving
   - _Requirements: 9.3, 9.7_
 
-- [ ] 14.4 Create custom agent builder interface
+- [x] 14.4 Create custom agent builder interface
+
+
+
   - Build CustomAgentBuilder with requirement specification forms
   - Add template selection and capability definition
   - Implement request submission and tracking functionality
   - _Requirements: 9.4_
 
-- [ ] 14.5 Add agent management features
+- [x] 14.5 Add agent management features
+
+
+
   - Implement bulk actions for enabling/disabling agents
   - Create real-time activity feeds and workload status
   - Add agent performance monitoring dashboard
   - _Requirements: 9.5, 9.6_
 
 - [ ] 15. Implement AI Assistant Call Interface
-- [ ] 15.1 Create call interface dialog
-  - Build CallInterface component with phone call-like design
+- [x] 15.1 Create call interface dialog
+
+
+  - Build CallInterface component with phone call-like design on the bottom right element on the CRM (the chat with the agent) 
   - Implement call controls (mute, speaker, end call)
   - Add call duration timer and connection status indicators
   - _Requirements: 10.1, 10.2_
+
+
+
 
 - [ ] 15.2 Add voice controls and feedback
   - Create VoiceControls component with audio management

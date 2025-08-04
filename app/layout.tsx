@@ -9,6 +9,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { ErrorBoundary } from "@/components/shared/error-boundary"
+import { CallInterfaceProvider } from "@/components/ai-assistant/call-interface-provider"
 
 export const metadata: Metadata = {
   title: {
@@ -83,6 +84,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               </div>
               <TailwindIndicator />
               <Toaster />
+              <CallInterfaceProvider />
             </ErrorBoundary>
           </ThemeProvider>
         </body>

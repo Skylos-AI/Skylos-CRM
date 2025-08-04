@@ -69,10 +69,36 @@ export function AgentGallery({ agents, onAgentUpdate }: AgentGalleryProps) {
     setShowConfigDialog(true)
   }
 
-  const handleBulkAction = async (action: 'activate' | 'deactivate') => {
-    // Implementation for bulk actions would go here
-    console.log(`Bulk ${action} for agents:`, selectedAgents)
-    setSelectedAgents([])
+  const handleBulkAction = async (action: 'activate' | 'deactivate' | 'configure') => {
+    try {
+      setLoading(true)
+      
+      if (action === 'activate' || action === 'deactivate') {
+        const newStatus = action === 'activate' ? 'active' : 'inactive'
+        
+        // Update each selected agent
+        for (const agentId of selectedAgents) {
+          const agent = agents.find(a => a.id === agentId)
+          if (agent) {
+            const updatedAgent = await AgentsService.updateAgent(agentId, { status: newStatus })
+            onAgentUpdate(updatedAgent)
+          }
+        }
+        
+        // Show success message
+        const actionText = action === 'activate' ? 'activated' : 'deactivated'
+        console.log(`Successfully ${actionText} ${selectedAgents.length} agents`)
+      } else if (action === 'configure') {
+        // For bulk configuration, we could open a bulk config dialog
+        console.log('Bulk configuration for agents:', selectedAgents)
+      }
+      
+      setSelectedAgents([])
+    } catch (error) {
+      console.error(`Failed to ${action} agents:`, error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const getFilterCount = (filter: FilterType) => {
