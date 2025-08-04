@@ -60,7 +60,10 @@
 
 
 
-- [ ] 4.3 Integrate drag-and-drop functionality
+- [x] 4.3 Integrate drag-and-drop functionality
+
+
+
   - Install and configure @dnd-kit for lead card dragging
   - Implement drag handles and drop zones for pipeline stages
   - Add visual feedback during drag operations
