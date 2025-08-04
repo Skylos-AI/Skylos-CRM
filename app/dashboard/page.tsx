@@ -13,6 +13,7 @@ import { CompaniesService } from "@/lib/api/companies"
 import { ContactsService } from "@/lib/api/contacts"
 import { AnimatedCounter } from "@/components/shared/animated-counter"
 import { FadeIn } from "@/components/shared/fade-in"
+import { PageTransition, FadeInUp, SlideInLeft, StaggerContainer, StaggerItem } from "@/components/shared/page-transition"
 import { EnhancedKPICard, PrimaryKPICard, SecondaryKPICard } from "@/components/dashboard/enhanced-kpi-card"
 import { PipelineOverview } from "@/components/dashboard/pipeline-overview"
 import { EnhancedActivityFeed, transformActivityData } from "@/components/dashboard/enhanced-activity-feed"
@@ -21,7 +22,7 @@ import { Lead } from "@/lib/types/lead"
 
 // Dynamically import charts to reduce initial bundle size
 const DashboardCharts = dynamic(
-  () => import("@/components/dashboard/charts").then(mod => ({ default: mod.DashboardCharts })),
+  () => import("@/components/dashboard/charts"),
   {
     loading: () => (
       <div className="grid gap-4 md:grid-cols-2">
@@ -210,32 +211,40 @@ export default function DashboardPage() {
 
   return (
     <CrmLayout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div className="space-y-1">
-            <h1 className="text-3xl font-bold tracking-tight text-foreground">
-              Dashboard
-            </h1>
-            <p className="text-muted-foreground max-w-2xl">
-              Welcome back! Here's what's happening with your business today.
-            </p>
-          </div>
-          <div className="flex items-center space-x-3">
-            <Button variant="outline">
-              <TrendingUp className="mr-2 h-4 w-4" />
-              Export Report
-            </Button>
-            <Button>
-              <Activity className="mr-2 h-4 w-4" />
-              View Reports
-            </Button>
-          </div>
-        </div>
+      <PageTransition>
+        <div className="space-y-6">
+          <FadeInUp>
+            <div className="flex items-center justify-between">
+              <SlideInLeft>
+                <div className="space-y-1">
+                  <h1 className="text-3xl font-bold tracking-tight text-light-text-primary dark:text-slate-50">
+                    Dashboard
+                  </h1>
+                  <p className="text-muted-foreground max-w-2xl">
+                    Welcome back! Here's what's happening with your business today.
+                  </p>
+                </div>
+              </SlideInLeft>
+              <FadeInUp delay={0.2}>
+                <div className="flex items-center space-x-3">
+                  <Button variant="outline" className="transition-all duration-200 hover:scale-105">
+                    <TrendingUp className="mr-2 h-4 w-4" />
+                    Export Report
+                  </Button>
+                  <Button className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
+                    <Activity className="mr-2 h-4 w-4" />
+                    View Reports
+                  </Button>
+                </div>
+              </FadeInUp>
+            </div>
+          </FadeInUp>
         
         {/* Enhanced KPI Cards with Visual Hierarchy */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <StaggerContainer className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {/* Primary KPI - Most Important Metrics */}
-          <EnhancedKPICard
+          <StaggerItem>
+            <EnhancedKPICard
             title="Total Leads"
             value={stats.totalLeads}
             icon={<Users className="h-4 w-4" />}
@@ -248,93 +257,107 @@ export default function DashboardPage() {
             }}
             delay={100}
           />
+          </StaggerItem>
 
-          <EnhancedKPICard
-            title="Pipeline Value"
-            value={stats.pipelineValue}
-            icon={<DollarSign className="h-4 w-4" />}
-            priority="primary"
-            prefix="$"
-            trend={{
-              value: stats.activeDeals,
-              direction: stats.activeDeals > 0 ? 'up' : 'neutral',
-              period: 'active deals',
-              isPositive: true
-            }}
-            subtitle={`${stats.activeDeals} active deals`}
-            delay={200}
-          />
+          <StaggerItem>
+            <EnhancedKPICard
+              title="Pipeline Value"
+              value={stats.pipelineValue}
+              icon={<DollarSign className="h-4 w-4" />}
+              priority="primary"
+              prefix="$"
+              trend={{
+                value: stats.activeDeals,
+                direction: stats.activeDeals > 0 ? 'up' : 'neutral',
+                period: 'active deals',
+                isPositive: true
+              }}
+              subtitle={`${stats.activeDeals} active deals`}
+              delay={200}
+            />
+          </StaggerItem>
 
           {/* Secondary KPIs - Supporting Metrics */}
-          <EnhancedKPICard
-            title="Conversion Rate"
-            value={stats.conversionRate}
-            icon={<Percent className="h-4 w-4" />}
-            priority="secondary"
-            suffix="%"
-            decimals={1}
-            trend={{
-              value: stats.dealsClosedThisMonth,
-              direction: stats.conversionRate > 15 ? 'up' : stats.conversionRate < 10 ? 'down' : 'neutral',
-              period: 'closed this month',
-              isPositive: stats.conversionRate > 15
-            }}
-            delay={300}
-          />
+          <StaggerItem>
+            <EnhancedKPICard
+              title="Conversion Rate"
+              value={stats.conversionRate}
+              icon={<Percent className="h-4 w-4" />}
+              priority="secondary"
+              suffix="%"
+              decimals={1}
+              trend={{
+                value: stats.dealsClosedThisMonth,
+                direction: stats.conversionRate > 15 ? 'up' : stats.conversionRate < 10 ? 'down' : 'neutral',
+                period: 'closed this month',
+                isPositive: stats.conversionRate > 15
+              }}
+              delay={300}
+            />
+          </StaggerItem>
           
-          <EnhancedKPICard
-            title="Avg Deal Size"
-            value={stats.avgDealSize}
-            icon={<BarChart3 className="h-4 w-4" />}
-            priority="secondary"
-            prefix="$"
-            subtitle={`${stats.totalCompanies} companies`}
-            delay={400}
-          />
-        </div>
+          <StaggerItem>
+            <EnhancedKPICard
+              title="Avg Deal Size"
+              value={stats.avgDealSize}
+              icon={<BarChart3 className="h-4 w-4" />}
+              priority="secondary"
+              prefix="$"
+              subtitle={`${stats.totalCompanies} companies`}
+              delay={400}
+            />
+          </StaggerItem>
+        </StaggerContainer>
 
         {/* Enhanced Pipeline Overview */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-xl font-semibold text-foreground">Pipeline Overview</h2>
-              <p className="text-sm text-muted-foreground">Track leads through your sales process</p>
+        <FadeInUp delay={0.4}>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-semibold text-foreground">Pipeline Overview</h2>
+                <p className="text-sm text-muted-foreground">Track leads through your sales process</p>
+              </div>
+              <Button variant="outline" size="sm" className="transition-all duration-200 hover:scale-105">
+                <Target className="mr-2 h-4 w-4" />
+                Manage Pipeline
+              </Button>
             </div>
-            <Button variant="outline" size="sm">
-              <Target className="mr-2 h-4 w-4" />
-              Manage Pipeline
-            </Button>
+            <PipelineOverview leads={leads} />
           </div>
-          <PipelineOverview leads={leads} />
-        </div>
+        </FadeInUp>
         
-        <div className="grid gap-6 md:grid-cols-2">
-          {/* Enhanced Recent Activity */}
-          <EnhancedActivityFeed
-            activities={transformActivityData(recentActivity)}
-            onViewAll={() => console.log('View all activities')}
-          />
-          
-          {/* Enhanced Upcoming Follow-ups */}
-          <EnhancedFollowUps
-            followUps={upcomingFollowUps}
-            onViewAll={() => console.log('View all follow-ups')}
-            onFollowUpClick={(lead) => console.log('Follow-up clicked:', lead.name)}
-          />
-        </div>
+        <FadeInUp delay={0.5}>
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* Enhanced Recent Activity */}
+            <EnhancedActivityFeed
+              activities={transformActivityData(recentActivity)}
+              onViewAll={() => console.log('View all activities')}
+            />
+            
+            {/* Enhanced Upcoming Follow-ups */}
+            <EnhancedFollowUps
+              followUps={upcomingFollowUps}
+              onViewAll={() => console.log('View all follow-ups')}
+              onFollowUpClick={(lead) => console.log('Follow-up clicked:', lead.name)}
+            />
+          </div>
+        </FadeInUp>
 
         {/* Charts Section */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold tracking-tight text-foreground">Analytics</h2>
-            <Button variant="outline">
-              <TrendingUp className="mr-2 h-4 w-4" />
-              Export Report
-            </Button>
+        <FadeInUp delay={0.6}>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold tracking-tight text-foreground">Analytics</h2>
+              <Button variant="outline" className="transition-all duration-200 hover:scale-105">
+                <TrendingUp className="mr-2 h-4 w-4" />
+                Export Report
+              </Button>
+            </div>
+            <DashboardCharts leads={leads} />
           </div>
-          <DashboardCharts leads={leads} />
-        </div>
+        </FadeInUp>
       </div>
+      </PageTransition>
     </CrmLayout>
   )
 }

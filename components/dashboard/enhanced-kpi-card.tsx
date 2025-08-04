@@ -85,30 +85,27 @@ export function EnhancedKPICard({
     <FadeIn delay={delay}>
       <Card 
         className={cn(
-          // Enhanced professional border system
-          'bg-slate-800 border border-slate-700/40 rounded-xl shadow-card',
-          'hover:border-slate-600/60 hover:shadow-card-hover hover:-translate-y-0.5',
+          // Enhanced professional border system with light theme support
+          'bg-white dark:bg-slate-800 border border-light-border-subtle/60 dark:border-slate-700/40 rounded-xl',
+          'shadow-light-card dark:shadow-card',
+          'hover:border-light-border-default/80 dark:hover:border-slate-600/60',
+          'hover:shadow-light-card-hover dark:hover:shadow-card-hover hover:-translate-y-0.5',
           'transition-all duration-200 ease-in-out',
           // Primary cards have subtle accent styling
           isPrimary && [
-            'border-primary-500/30 bg-gradient-to-br from-slate-800 to-slate-800/80',
-            'shadow-glow-soft hover:shadow-glow-emphasis',
+            'border-primary-500/30 bg-gradient-to-br from-white to-gray-25 dark:from-slate-800 dark:to-slate-800/80',
+            'shadow-light-card dark:shadow-glow-soft hover:shadow-light-card-hover dark:hover:shadow-glow-emphasis',
             'hover:border-primary-400/50'
           ],
           // Secondary cards have standard professional styling
           !isPrimary && [
-            'shadow-glow-soft hover:shadow-glow',
+            'shadow-light-card dark:shadow-glow-soft hover:shadow-light-card-hover dark:hover:shadow-glow',
           ],
           // Ensure consistent height across all cards
           'h-[160px] flex flex-col',
           'group',
           className
         )}
-        style={{
-          boxShadow: isPrimary 
-            ? '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(59, 130, 246, 0.05)'
-            : '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(148, 163, 184, 0.05)'
-        }}
       >
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <div className="flex items-center space-x-3">

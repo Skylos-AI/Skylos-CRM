@@ -145,6 +145,20 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
 
   const handleSave = () => {
     if (editedLead && onSave) {
+      // Basic validation
+      if (!editedLead.name.trim()) {
+        alert('Lead name is required')
+        return
+      }
+      if (!editedLead.email.trim()) {
+        alert('Email is required')
+        return
+      }
+      if (editedLead.dealAmount <= 0) {
+        alert('Deal amount must be greater than 0')
+        return
+      }
+      
       onSave(editedLead)
     }
     setIsEditing(false)
@@ -207,6 +221,8 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
                       value={currentLead.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
                       className="text-xl font-semibold border-none p-0 h-auto"
+                      placeholder="Lead name (required)"
+                      required
                     />
                   ) : (
                     currentLead.name
@@ -273,13 +289,15 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                      <Label htmlFor="email">Email *</Label>
                       {isEditing ? (
                         <Input
                           id="email"
                           type="email"
                           value={currentLead.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
+                          placeholder="Email address (required)"
+                          required
                         />
                       ) : (
                         <div className="flex items-center space-x-2">
@@ -355,13 +373,17 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-3 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="dealAmount">Deal Amount</Label>
+                      <Label htmlFor="dealAmount">Deal Amount *</Label>
                       {isEditing ? (
                         <Input
                           id="dealAmount"
                           type="number"
                           value={currentLead.dealAmount}
-                          onChange={(e) => handleInputChange('dealAmount', parseFloat(e.target.value))}
+                          onChange={(e) => handleInputChange('dealAmount', parseFloat(e.target.value) || 0)}
+                          placeholder="Deal amount"
+                          min="0"
+                          step="0.01"
+                          required
                         />
                       ) : (
                         <div className="text-lg font-semibold text-green-600">
@@ -425,6 +447,38 @@ export function EnhancedLeadDetailsDialog({ lead, open, onOpenChange, onSave, de
                       variant="default"
                       editable={isEditing}
                     />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Notes Section */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Notes</CardTitle>
+                  <CardDescription>
+                    Additional information and observations about this lead
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    <Label htmlFor="notes">Lead Notes</Label>
+                    {isEditing ? (
+                      <Textarea
+                        id="notes"
+                        value={currentLead.notes || ''}
+                        onChange={(e) => handleInputChange('notes', e.target.value)}
+                        placeholder="Add notes about this lead..."
+                        className="min-h-[100px]"
+                      />
+                    ) : (
+                      <div className="p-3 bg-muted/30 rounded-md min-h-[100px]">
+                        {currentLead.notes ? (
+                          <p className="text-sm whitespace-pre-wrap">{currentLead.notes}</p>
+                        ) : (
+                          <p className="text-sm text-muted-foreground italic">No notes added yet</p>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>

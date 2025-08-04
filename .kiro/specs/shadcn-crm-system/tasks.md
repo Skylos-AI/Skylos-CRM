@@ -38,7 +38,9 @@
 
 - [x] 4. Implement lead management kanban board
 
-- [ ] 4.1 Create kanban board structure and layout
+- [x] 4.1 Create kanban board structure and layout
+
+
   - Build KanbanBoard component with four pipeline columns
   - Implement column headers and basic styling
   - Add responsive design for mobile kanban display
@@ -56,11 +58,15 @@
 
 
 
+
+
 - [ ] 4.3 Integrate drag-and-drop functionality
   - Install and configure @dnd-kit for lead card dragging
   - Implement drag handles and drop zones for pipeline stages
   - Add visual feedback during drag operations
   - _Requirements: 1.2_
+
+
 
 
 
@@ -79,6 +85,8 @@
   - Build LeadDetailsDialog with comprehensive lead information display
   - Implement modal opening/closing functionality
   - Add responsive dialog layout for mobile devices
+
+
   - _Requirements: 1.4, 2.2_
 
 
@@ -111,6 +119,9 @@
   - _Requirements: 3.1, 3.3_
 
 - [x] 6.2 Add filter dropdown and options
+
+
+
 
   - Create FilterDropdown component with multiple filter criteria
   - Implement filtering by tags, deal amount, and status
@@ -201,6 +212,9 @@
 
   - Add skeleton loaders for data fetching states
   - Create error boundary components for graceful error handling
+
+
+
   - Implement toast notifications for user feedback
 
 
@@ -247,6 +261,9 @@
   - Document API endpoints and data structures needed
   - Create environment configuration for development/production
   - _Requirements: 11.2_
+
+
+
 
 - [ ] 14. Build AI Agents Management Interface
 - [x] 14.1 Create agent data models and mock data

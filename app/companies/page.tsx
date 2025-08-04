@@ -8,11 +8,15 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Company } from "@/lib/types/company"
 import { CompaniesService } from "@/lib/api/companies"
+import { CompanyDetailsDialog } from "@/components/companies/company-details-dialog"
+import { PageTransition, FadeInUp, SlideInLeft } from "@/components/shared/page-transition"
 import { Plus, Building2, Eye, Edit, Trash2, Globe } from "lucide-react"
 
 export default function CompaniesPage() {
   const [companies, setCompanies] = useState<Company[]>([])
   const [loading, setLoading] = useState(true)
+  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null)
+  const [detailsDialogOpen, setDetailsDialogOpen] = useState(false)
 
   useEffect(() => {
     loadCompanies()
@@ -120,14 +124,16 @@ export default function CompaniesPage() {
     }
   ]
 
+  const handleViewDetails = (company: Company) => {
+    setSelectedCompany(company)
+    setDetailsDialogOpen(true)
+  }
+
   const actions: DataTableAction<Company>[] = [
     {
       label: 'View Details',
       icon: <Eye className="h-4 w-4" />,
-      onClick: (company) => {
-        console.log('View company:', company)
-        // TODO: Implement company details view
-      }
+      onClick: handleViewDetails
     },
     {
       label: 'Edit',
@@ -149,38 +155,53 @@ export default function CompaniesPage() {
   ]
 
   const handleRowClick = (company: Company) => {
-    console.log('Company clicked:', company)
-    // TODO: Navigate to company details page
+    handleViewDetails(company)
   }
 
   return (
     <CrmLayout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">Companies</h1>
-            <p className="text-muted-foreground">
-              Manage your company relationships and information.
-            </p>
-          </div>
-          <Button>
-            <Plus className="mr-2 h-4 w-4" />
-            Add Company
-          </Button>
-        </div>
+      <PageTransition>
+        <div className="space-y-6">
+          <FadeInUp>
+            <div className="flex items-center justify-between">
+              <SlideInLeft>
+                <div>
+                  <h1 className="text-3xl font-bold tracking-tight">Companies</h1>
+                  <p className="text-muted-foreground">
+                    Manage your company relationships and information.
+                  </p>
+                </div>
+              </SlideInLeft>
+              <FadeInUp delay={0.2}>
+                <Button className="transition-all duration-200 hover:scale-105 hover:shadow-lg">
+                  <Plus className="mr-2 h-4 w-4" />
+                  Add Company
+                </Button>
+              </FadeInUp>
+            </div>
+          </FadeInUp>
 
-        <DataTable
-          data={companies}
-          columns={columns}
-          actions={actions}
-          loading={loading}
-          searchable={true}
-          selectable={true}
-          pagination={true}
-          pageSize={10}
-          onRowClick={handleRowClick}
-        />
-      </div>
+          <FadeInUp delay={0.3}>
+            <DataTable
+              data={companies}
+              columns={columns}
+              actions={actions}
+              loading={loading}
+              searchable={true}
+              selectable={true}
+              pagination={true}
+              pageSize={10}
+              onRowClick={handleRowClick}
+            />
+          </FadeInUp>
+
+          <CompanyDetailsDialog
+            company={selectedCompany}
+            open={detailsDialogOpen}
+            onOpenChange={setDetailsDialogOpen}
+          />
+        </div>
+      </PageTransition>
     </CrmLayout>
   )
 }

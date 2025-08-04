@@ -268,7 +268,7 @@ export function KanbanBoard({ showFilters = true }: KanbanBoardProps) {
       
       <DragOverlay>
         {activeLead ? (
-          <div className="rotate-3 opacity-90">
+          <div className="rotate-3 opacity-90 transform scale-105 transition-all duration-200 ease-out shadow-2xl">
             <EnhancedLeadCard 
               lead={activeLead} 
               compact={true}

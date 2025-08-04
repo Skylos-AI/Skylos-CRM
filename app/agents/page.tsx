@@ -4,10 +4,11 @@ import { useState, useEffect } from "react"
 import { CrmLayout } from "@/components/layout/crm-layout"
 import { AgentsService } from "@/lib/api/agents"
 import { Agent, CustomAgentRequest } from "@/lib/types/agent"
-import { AgentGallery } from "@/components/agents/agent-gallery-simple"
+import { AgentGallery } from "@/components/agents/agent-gallery"
 import { CustomAgentBuilder } from "@/components/agents/custom-agent-builder"
 import { LoadingSkeleton } from "@/components/shared/loading-skeleton"
 import { ErrorBoundary } from "@/components/shared/error-boundary"
+import { PageTransition, FadeInUp, SlideInLeft, StaggerContainer, StaggerItem } from "@/components/shared/page-transition"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -78,84 +79,103 @@ export default function AgentsPage() {
   return (
     <CrmLayout>
       <ErrorBoundary>
-        <div className="container mx-auto p-6 space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">AI Agents</h1>
-            <p className="text-muted-foreground">
-              Manage your AI agents and automate customer interactions
-            </p>
-          </div>
-          <Button onClick={() => setShowCustomBuilder(true)}>
-            <Plus className="mr-2 h-4 w-4" />
-            Request Custom Agent
-          </Button>
-        </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Active Agents</CardTitle>
-              <Bot className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{activeAgents.length}</div>
-              <p className="text-xs text-muted-foreground">
-                Currently running
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Interactions</CardTitle>
-              <CheckCircle className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">
-                {agents.reduce((sum, agent) => 
-                  sum + (agent.performance.leadsGenerated || 0) + (agent.performance.ticketsResolved || 0), 0
-                )}
+        <PageTransition>
+          <div className="container mx-auto p-6 space-y-6">
+            {/* Header */}
+            <FadeInUp>
+              <div className="flex items-center justify-between">
+                <SlideInLeft>
+                  <div>
+                    <h1 className="text-3xl font-bold tracking-tight">AI Agents</h1>
+                    <p className="text-muted-foreground">
+                      Manage your AI agents and automate customer interactions
+                    </p>
+                  </div>
+                </SlideInLeft>
+                <FadeInUp delay={0.2}>
+                  <Button 
+                    onClick={() => setShowCustomBuilder(true)}
+                    className="transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                  >
+                    <Plus className="mr-2 h-4 w-4" />
+                    Request Custom Agent
+                  </Button>
+                </FadeInUp>
               </div>
-              <p className="text-xs text-muted-foreground">
-                This month
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Avg Response Time</CardTitle>
-              <Clock className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">
-                {(agents.reduce((sum, agent) => sum + (agent.performance.responseTime || 0), 0) / agents.length).toFixed(1)}s
-              </div>
-              <p className="text-xs text-muted-foreground">
-                Across all agents
-              </p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Custom Requests</CardTitle>
-              <Plus className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{customRequests.length}</div>
-              <p className="text-xs text-muted-foreground">
-                Pending & approved
-              </p>
-            </CardContent>
-          </Card>
-        </div>
+            </FadeInUp>
 
-        {/* Main Content */}
-        <Tabs defaultValue="gallery" className="space-y-4">
+            {/* Stats Cards */}
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <StaggerItem>
+                <Card className="transition-all duration-200 hover:shadow-md hover:-translate-y-1">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Active Agents</CardTitle>
+                    <Bot className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{activeAgents.length}</div>
+                    <p className="text-xs text-muted-foreground">
+                      Currently running
+                    </p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+          
+              <StaggerItem>
+                <Card className="transition-all duration-200 hover:shadow-md hover:-translate-y-1">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Total Interactions</CardTitle>
+                    <CheckCircle className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">
+                      {agents.reduce((sum, agent) => 
+                        sum + (agent.performance.leadsGenerated || 0) + (agent.performance.ticketsResolved || 0), 0
+                      )}
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      This month
+                    </p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+              
+              <StaggerItem>
+                <Card className="transition-all duration-200 hover:shadow-md hover:-translate-y-1">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Avg Response Time</CardTitle>
+                    <Clock className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">
+                      {(agents.reduce((sum, agent) => sum + (agent.performance.responseTime || 0), 0) / agents.length).toFixed(1)}s
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      Across all agents
+                    </p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+              
+              <StaggerItem>
+                <Card className="transition-all duration-200 hover:shadow-md hover:-translate-y-1">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Custom Requests</CardTitle>
+                    <Plus className="h-4 w-4 text-muted-foreground" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{customRequests.length}</div>
+                    <p className="text-xs text-muted-foreground">
+                      Pending & approved
+                    </p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
+            </StaggerContainer>
+
+            {/* Main Content */}
+            <FadeInUp delay={0.4}>
+              <Tabs defaultValue="gallery" className="space-y-4">
           <TabsList>
             <TabsTrigger value="gallery">Agent Gallery</TabsTrigger>
             <TabsTrigger value="requests">
@@ -240,16 +260,18 @@ export default function AgentsPage() {
               )}
             </div>
           </TabsContent>
-        </Tabs>
+            </Tabs>
+            </FadeInUp>
 
-        {/* Custom Agent Builder Modal */}
-        {showCustomBuilder && (
-          <CustomAgentBuilder
-            onSubmit={handleCustomRequestSubmit}
-            onClose={() => setShowCustomBuilder(false)}
-          />
-        )}
-        </div>
+            {/* Custom Agent Builder Modal */}
+            {showCustomBuilder && (
+              <CustomAgentBuilder
+                onSubmit={handleCustomRequestSubmit}
+                onClose={() => setShowCustomBuilder(false)}
+              />
+            )}
+          </div>
+        </PageTransition>
       </ErrorBoundary>
     </CrmLayout>
   )

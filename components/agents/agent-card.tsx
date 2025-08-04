@@ -106,31 +106,35 @@ export function AgentCard({ agent, onUpdate, onConfigure }: AgentCardProps) {
 
   return (
     <Card className={cn(
-      "relative transition-all duration-200 hover:shadow-md",
-      agent.status === 'active' && "ring-2 ring-green-500/20"
+      "relative transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] group",
+      "bg-gradient-to-br from-background to-background/50 backdrop-blur-sm",
+      agent.status === 'active' && "ring-2 ring-green-500/20 shadow-green-500/10",
+      agent.status === 'training' && "ring-2 ring-yellow-500/20 shadow-yellow-500/10",
+      agent.status === 'maintenance' && "ring-2 ring-orange-500/20 shadow-orange-500/10"
     )}>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-3">
             <div className="relative">
-              <Avatar className="h-12 w-12">
+              <Avatar className="h-12 w-12 transition-transform duration-200 group-hover:scale-110">
                 <AvatarImage src={agent.avatar} alt={agent.name} />
-                <AvatarFallback className="bg-primary/10">
+                <AvatarFallback className="bg-primary/10 group-hover:bg-primary/20 transition-colors">
                   {getAgentTypeIcon(agent.type)}
                 </AvatarFallback>
               </Avatar>
               <div className={cn(
-                "absolute -bottom-1 -right-1 h-4 w-4 rounded-full border-2 border-background",
-                getStatusColor(agent.status)
+                "absolute -bottom-1 -right-1 h-4 w-4 rounded-full border-2 border-background transition-all duration-200",
+                getStatusColor(agent.status),
+                agent.status === 'active' && "animate-pulse"
               )} />
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="font-semibold text-lg truncate">{agent.name}</h3>
               <div className="flex items-center space-x-2 mt-1">
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-xs transition-all duration-200 group-hover:scale-105">
                   {getAgentTypeName(agent.type)}
                 </Badge>
-                <Badge variant={getStatusBadgeVariant(agent.status)} className="text-xs">
+                <Badge variant={getStatusBadgeVariant(agent.status)} className="text-xs transition-all duration-200 group-hover:scale-105">
                   {agent.status}
                 </Badge>
               </div>
@@ -139,7 +143,7 @@ export function AgentCard({ agent, onUpdate, onConfigure }: AgentCardProps) {
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
+              <Button variant="ghost" size="icon" className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110">
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>

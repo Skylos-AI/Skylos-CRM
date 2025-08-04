@@ -28,8 +28,8 @@ export default function MediaPage() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-foreground">Media Library</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-3xl font-bold tracking-tight text-light-text-primary dark:text-slate-50">Media Library</h1>
+            <p className="text-light-text-tertiary dark:text-slate-400">
               Manage your media assets for campaigns and follow-up messages.
             </p>
           </div>

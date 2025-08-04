@@ -308,6 +308,20 @@ module.exports = {
           from: { transform: "scale(0.95)" },
           to: { transform: "scale(1)" },
         },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        "bounce-in": {
+          "0%": { transform: "scale(0.3)", opacity: 0 },
+          "50%": { transform: "scale(1.05)" },
+          "70%": { transform: "scale(0.9)" },
+          "100%": { transform: "scale(1)", opacity: 1 },
+        },
+        "wiggle": {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -315,6 +329,9 @@ module.exports = {
         "fade-in": "fade-in 0.3s ease-out",
         "slide-in": "slide-in-from-bottom 0.3s ease-out",
         "zoom-in": "zoom-in 0.3s ease-out",
+        "shimmer": "shimmer 2s linear infinite",
+        "bounce-in": "bounce-in 0.6s ease-out",
+        "wiggle": "wiggle 0.5s ease-in-out",
       },
     },
   },

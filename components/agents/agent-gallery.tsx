@@ -7,6 +7,7 @@ import { AgentConfigDialog } from "./agent-config-dialog"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { PageTransition, FadeInUp, StaggerContainer, StaggerItem } from "@/components/shared/page-transition"
 import { 
   Select, 
   SelectContent, 
@@ -94,9 +95,11 @@ export function AgentGallery({ agents, onAgentUpdate }: AgentGalleryProps) {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Search and Filter Bar */}
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+    <PageTransition>
+      <div className="space-y-6">
+        {/* Search and Filter Bar */}
+        <FadeInUp>
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <div className="flex flex-1 items-center space-x-2">
           <div className="relative flex-1 max-w-sm">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -184,11 +187,13 @@ export function AgentGallery({ agents, onAgentUpdate }: AgentGalleryProps) {
             </DropdownMenu>
           )}
         </div>
-      </div>
+          </div>
+        </FadeInUp>
 
-      {/* Filter Tags */}
-      {(searchQuery || filterType !== 'all') && (
-        <div className="flex items-center space-x-2">
+        {/* Filter Tags */}
+        {(searchQuery || filterType !== 'all') && (
+          <FadeInUp delay={0.1}>
+            <div className="flex items-center space-x-2">
           <span className="text-sm text-muted-foreground">Filters:</span>
           {searchQuery && (
             <Badge variant="secondary" className="gap-1">
@@ -212,52 +217,60 @@ export function AgentGallery({ agents, onAgentUpdate }: AgentGalleryProps) {
               </button>
             </Badge>
           )}
-        </div>
-      )}
+            </div>
+          </FadeInUp>
+        )}
 
-      {/* Results Count */}
-      <div className="text-sm text-muted-foreground">
-        Showing {filteredAgents.length} of {agents.length} agents
-      </div>
-
-      {/* Agent Grid/List */}
-      {filteredAgents.length === 0 ? (
-        <div className="text-center py-12">
-          <div className="text-muted-foreground">
-            {searchQuery || filterType !== 'all' 
-              ? "No agents match your current filters" 
-              : "No agents available"
-            }
+        {/* Results Count */}
+        <FadeInUp delay={0.2}>
+          <div className="text-sm text-muted-foreground">
+            Showing {filteredAgents.length} of {agents.length} agents
           </div>
-          {(searchQuery || filterType !== 'all') && (
-            <Button 
-              variant="outline" 
-              className="mt-4"
-              onClick={() => {
-                setSearchQuery("")
-                setFilterType('all')
-              }}
-            >
-              Clear Filters
-            </Button>
-          )}
-        </div>
-      ) : (
-        <div className={cn(
-          viewMode === 'grid' 
-            ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            : "space-y-4"
-        )}>
-          {filteredAgents.map((agent) => (
-            <AgentCard
-              key={agent.id}
-              agent={agent}
-              onUpdate={onAgentUpdate}
-              onConfigure={handleConfigureAgent}
-            />
-          ))}
-        </div>
-      )}
+        </FadeInUp>
+
+        {/* Agent Grid/List */}
+        {filteredAgents.length === 0 ? (
+          <FadeInUp delay={0.3}>
+            <div className="text-center py-12">
+              <div className="text-muted-foreground">
+                {searchQuery || filterType !== 'all' 
+                  ? "No agents match your current filters" 
+                  : "No agents available"
+                }
+              </div>
+              {(searchQuery || filterType !== 'all') && (
+                <Button 
+                  variant="outline" 
+                  className="mt-4 transition-all duration-200 hover:scale-105"
+                  onClick={() => {
+                    setSearchQuery("")
+                    setFilterType('all')
+                  }}
+                >
+                  Clear Filters
+                </Button>
+              )}
+            </div>
+          </FadeInUp>
+        ) : (
+          <StaggerContainer 
+            className={cn(
+              viewMode === 'grid' 
+                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                : "space-y-4"
+            )}
+          >
+            {filteredAgents.map((agent) => (
+              <StaggerItem key={agent.id}>
+                <AgentCard
+                  agent={agent}
+                  onUpdate={onAgentUpdate}
+                  onConfigure={handleConfigureAgent}
+                />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        )}
 
       {/* Configuration Dialog */}
       {showConfigDialog && selectedAgent && (
@@ -274,6 +287,7 @@ export function AgentGallery({ agents, onAgentUpdate }: AgentGalleryProps) {
           }}
         />
       )}
-    </div>
+      </div>
+    </PageTransition>
   )
 }

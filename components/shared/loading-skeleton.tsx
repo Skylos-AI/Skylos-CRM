@@ -61,28 +61,28 @@ export function KanbanSkeleton() {
     <div className="flex gap-6 overflow-x-auto pb-4">
       {Array.from({ length: 4 }).map((_, columnIndex) => (
         <div key={columnIndex} className="flex-shrink-0 w-80">
-          <Card className="h-full animate-pulse">
+          <Card className="h-full">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
-                <div className="h-5 bg-muted rounded w-32"></div>
-                <div className="h-6 w-8 bg-muted rounded"></div>
+                <div className="h-5 bg-gradient-to-r from-muted via-muted/50 to-muted animate-shimmer bg-[length:200%_100%] rounded w-32"></div>
+                <div className="h-6 w-8 bg-gradient-to-r from-muted via-muted/50 to-muted animate-shimmer bg-[length:200%_100%] rounded"></div>
               </div>
             </CardHeader>
             <CardContent className="pt-0">
               <div className="space-y-3">
                 {Array.from({ length: 3 }).map((_, cardIndex) => (
-                  <div key={cardIndex} className="p-4 border rounded-lg space-y-3">
+                  <div key={cardIndex} className="p-4 border rounded-lg space-y-3 animate-fade-in" style={{ animationDelay: `${cardIndex * 0.1}s` }}>
                     <div className="flex items-center justify-between">
-                      <div className="h-4 bg-muted rounded w-6"></div>
-                      <div className="h-4 bg-muted rounded w-4"></div>
+                      <div className="h-4 bg-gradient-to-r from-muted via-muted/50 to-muted animate-shimmer bg-[length:200%_100%] rounded w-6"></div>
+                      <div className="h-4 bg-gradient-to-r from-muted via-muted/50 to-muted animate-shimmer bg-[length:200%_100%] rounded w-4"></div>
                     </div>
                     <div className="space-y-2">
-                      <div className="h-4 bg-muted rounded w-3/4"></div>
-                      <div className="h-3 bg-muted rounded w-1/2"></div>
+                      <div className="h-4 bg-gradient-to-r from-muted via-muted/50 to-muted animate-shimmer bg-[length:200%_100%] rounded w-3/4"></div>
+                      <div className="h-3 bg-gradient-to-r from-muted via-muted/50 to-muted animate-shimmer bg-[length:200%_100%] rounded w-1/2"></div>
                     </div>
                     <div className="flex space-x-2">
-                      <div className="h-6 bg-muted rounded w-16"></div>
-                      <div className="h-6 bg-muted rounded w-12"></div>
+                      <div className="h-6 bg-gradient-to-r from-muted via-muted/50 to-muted animate-shimmer bg-[length:200%_100%] rounded w-16"></div>
+                      <div className="h-6 bg-gradient-to-r from-muted via-muted/50 to-muted animate-shimmer bg-[length:200%_100%] rounded w-12"></div>
                     </div>
                   </div>
                 ))}

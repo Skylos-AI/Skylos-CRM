@@ -192,10 +192,7 @@ export function DataTable<T extends Record<string, any>>({
       )}
 
       {/* Table */}
-      <div className="bg-slate-800 border border-slate-700/40 rounded-xl shadow-card"
-           style={{
-             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(148, 163, 184, 0.05)'
-           }}>
+      <div className="bg-white dark:bg-slate-800 border border-light-border-subtle/60 dark:border-slate-700/40 rounded-xl shadow-light-card dark:shadow-card">
         <Table>
           <TableHeader>
             <TableRow>

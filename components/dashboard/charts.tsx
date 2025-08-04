@@ -37,7 +37,7 @@ const PRIORITY_COLORS = {
   urgent: '#ef4444'
 }
 
-export function DashboardCharts({ leads }: ChartsProps) {
+function DashboardCharts({ leads }: ChartsProps) {
   // Pipeline data for bar chart
   const pipelineData = [
     {
@@ -272,3 +272,6 @@ export function DashboardCharts({ leads }: ChartsProps) {
     </div>
   )
 }
+
+export default DashboardCharts
+export { DashboardCharts }

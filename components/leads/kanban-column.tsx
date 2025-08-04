@@ -47,8 +47,10 @@ export function KanbanColumnComponent({ column, onLeadClick, onFollowUpClick }: 
   return (
     <div className="flex-shrink-0 w-80">
       <Card className={cn(
-        "h-full transition-colors border-0 shadow-sm",
-        isOver && "ring-2 ring-primary ring-offset-2"
+        "h-full transition-all duration-300 ease-in-out",
+        "bg-white dark:bg-slate-800 border border-light-border-subtle/60 dark:border-slate-700/40",
+        "shadow-light-card dark:shadow-card rounded-xl",
+        isOver && "ring-2 ring-primary ring-offset-2 scale-[1.02] shadow-xl transform"
       )}>
         <CardHeader className={cn(
           "pb-4 pt-4 rounded-t-lg shadow-sm",
@@ -76,7 +78,7 @@ export function KanbanColumnComponent({ column, onLeadClick, onFollowUpClick }: 
             </div>
           </div>
         </CardHeader>
-        <CardContent className="pt-0 px-4 pb-4">
+        <CardContent className="pt-0 px-4 pb-4 bg-gray-25 dark:bg-slate-800/50 rounded-b-xl">
           <div
             ref={setNodeRef}
             className="min-h-[400px] space-y-3"
@@ -100,13 +102,13 @@ export function KanbanColumnComponent({ column, onLeadClick, onFollowUpClick }: 
             
             {column.leads.length === 0 && (
               <div className="flex h-40 items-center justify-center text-center">
-                <div className="text-muted-foreground space-y-2">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-muted/50 flex items-center justify-center">
-                    <div className="w-6 h-6 rounded-full border-2 border-dashed border-muted-foreground/30" />
+                <div className="text-light-text-muted dark:text-slate-400 space-y-2">
+                  <div className="w-12 h-12 mx-auto rounded-full bg-gray-100 dark:bg-slate-700/50 flex items-center justify-center">
+                    <div className="w-6 h-6 rounded-full border-2 border-dashed border-light-border-default/40 dark:border-slate-600/40" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium">No leads in this stage</p>
-                    <p className="text-xs">Drag leads here to move them</p>
+                    <p className="text-sm font-medium text-light-text-secondary dark:text-slate-300">No leads in this stage</p>
+                    <p className="text-xs text-light-text-muted dark:text-slate-400">Drag leads here to move them</p>
                   </div>
                 </div>
               </div>

@@ -8,8 +8,8 @@ export default function CampaignsPage() {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-foreground">Campaigns</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-3xl font-bold tracking-tight text-light-text-primary dark:text-slate-50">Campaigns</h1>
+            <p className="text-light-text-tertiary dark:text-slate-400">
               Create and manage your marketing campaigns with rich media content.
             </p>
           </div>

@@ -124,16 +124,16 @@ export function EnhancedLeadCard({
         ref={setNodeRef}
         style={style}
         className={cn(
-          "group cursor-pointer transition-all duration-200 ease-in-out",
+          "group cursor-pointer transition-all duration-300 ease-out",
           // Enhanced professional border system with light theme support
           "bg-white dark:bg-slate-800 border border-light-border-subtle/60 dark:border-slate-700/40 rounded-xl",
           "shadow-light-card dark:shadow-card",
           "hover:border-light-border-default/80 dark:hover:border-slate-600/60",
-          "hover:shadow-light-card-hover dark:hover:shadow-card-hover hover:-translate-y-0.5",
+          "hover:shadow-light-card-hover dark:hover:shadow-card-hover hover:-translate-y-1 hover:scale-[1.02]",
           // Subtle stage accent with enhanced styling
           stageAccents[lead.stage],
-          // Dragging state
-          isDragging && "opacity-50 rotate-2 shadow-xl scale-105 z-50"
+          // Dragging state with enhanced animations
+          isDragging && "opacity-60 rotate-3 shadow-2xl scale-110 z-50 transition-all duration-200"
         )}
         style={{
           ...style,
