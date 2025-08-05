@@ -2,6 +2,8 @@
 
 import { ScrollTriggeredSection } from "@/components/animations/scroll-triggered-section"
 import { StaggerContainer } from "@/components/animations/stagger-container"
+import { SectionBadge } from "@/components/ui/section-badge"
+import { SubtleBackgroundElements } from "@/components/ui/subtle-background-elements"
 import { Clock, DollarSign, Users, CheckCircle } from "lucide-react"
 
 interface ProcessStep {
@@ -127,11 +129,17 @@ export function StreamlinedProcessSection() {
   ]
 
   return (
-    <div className="py-24 bg-slate-50">
-      <div className="container mx-auto px-4">
+    <div className="relative py-24 bg-slate-50">
+      <SubtleBackgroundElements 
+        showGradientLines={true}
+        showFloatingShapes={true}
+        sectionType="slate"
+      />
+      <div className="container mx-auto px-4 relative">
         <ScrollTriggeredSection animationType="fadeIn">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-800 mb-6">
+            <SectionBadge text="THE PROCESS" />
+            <h2 className="text-5xl font-bold text-black mb-6 leading-tight">
               From Idea to Implementation in 3 Simple Steps
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -142,7 +150,7 @@ export function StreamlinedProcessSection() {
         </ScrollTriggeredSection>
 
         {/* Process Steps */}
-        <ScrollTriggeredSection animationType="slideUp" delay={0.2}>
+        <ScrollTriggeredSection animationType="fadeInUp" delay={0.2}>
           <StaggerContainer className="grid md:grid-cols-3 gap-8 mb-16">
             {processSteps.map((step, index) => (
               <div key={index} className="group bg-white p-8 rounded-xl border-2 border-slate-200 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300 hover:-translate-y-2 relative">
@@ -195,7 +203,7 @@ export function StreamlinedProcessSection() {
         </ScrollTriggeredSection>
 
         {/* Cost Comparison */}
-        <ScrollTriggeredSection animationType="slideUp" delay={0.4}>
+        <ScrollTriggeredSection animationType="fadeInUp" delay={0.4}>
           <div className="bg-white p-8 rounded-xl border-2 border-slate-200 shadow-lg mb-16">
             <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">
               Competitive Cost Advantages
@@ -226,7 +234,7 @@ export function StreamlinedProcessSection() {
         </ScrollTriggeredSection>
 
         {/* Timeline */}
-        <ScrollTriggeredSection animationType="slideUp" delay={0.6}>
+        <ScrollTriggeredSection animationType="fadeInUp" delay={0.6}>
           <div className="bg-white p-8 rounded-xl border-2 border-slate-200 shadow-lg">
             <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">
               Implementation Timeline

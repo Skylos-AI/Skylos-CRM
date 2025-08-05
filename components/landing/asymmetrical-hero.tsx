@@ -87,10 +87,10 @@ export function AsymmetricalHero({
 
       {/* Enhanced Background Pattern */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-white to-blue-600"></div>
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/4 left-0 w-1 h-32 bg-white opacity-20"></div>
-        <div className="absolute bottom-1/4 right-0 w-1 h-32 bg-white opacity-20"></div>
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-gray-300 to-blue-600 opacity-20"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-gray-200 opacity-10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-0 w-1 h-32 bg-gray-300 opacity-20"></div>
+        <div className="absolute bottom-1/4 right-0 w-1 h-32 bg-gray-300 opacity-20"></div>
       </div>
 
       <div className="container relative">
@@ -121,7 +121,7 @@ export function AsymmetricalHero({
                 >
                   <Badge 
                     variant={badge.variant || 'secondary'} 
-                    className="w-fit text-sm font-medium bg-white text-black hover:bg-gray-100 transition-colors duration-300 border-2 border-white"
+                    className="w-fit text-sm font-medium bg-black text-white hover:bg-gray-800 transition-colors duration-300 border-2 border-black"
                   >
                     {badge.text}
                   </Badge>
@@ -136,7 +136,7 @@ export function AsymmetricalHero({
                 className="relative"
               >
                 <DisplayHero className={cn(
-                  'text-white font-bold relative z-10',
+                  'text-black font-bold relative z-10',
                   titlePosition === 'right' && 'lg:text-right'
                 )}>
                   {headline}
@@ -152,7 +152,7 @@ export function AsymmetricalHero({
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <DisplaySubtitle className={cn(
-                  'text-gray-300 leading-relaxed',
+                  'text-gray-700 leading-relaxed',
                   titlePosition === 'right' && 'lg:text-right'
                 )}>
                   {subheadline}
@@ -199,7 +199,7 @@ export function AsymmetricalHero({
               titlePosition === 'right' && 'lg:order-1'
             )}
           >
-            <div className="relative aspect-square lg:aspect-[4/3] bg-white rounded-2xl border-4 border-white shadow-2xl flex items-center justify-center overflow-hidden group hover:shadow-3xl transition-all duration-300">
+            <div className="relative aspect-square lg:aspect-[4/3] bg-gray-100 rounded-2xl border-4 border-gray-200 shadow-2xl flex items-center justify-center overflow-hidden group hover:shadow-3xl transition-all duration-300">
               {/* Enhanced visual content placeholder */}
               <div className="text-center space-y-6 p-8">
                 <div className="mx-auto h-20 w-20 bg-black rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -228,12 +228,12 @@ export function AsymmetricalHero({
       </div>
 
       {/* Enhanced Decorative Elements */}
-      <div className="absolute top-1/4 left-0 w-1 h-32 bg-gradient-to-b from-transparent via-white to-transparent opacity-30" />
-      <div className="absolute bottom-1/4 right-0 w-1 h-32 bg-gradient-to-b from-transparent via-white to-transparent opacity-30" />
+      <div className="absolute top-1/4 left-0 w-1 h-32 bg-gradient-to-b from-transparent via-gray-300 to-transparent opacity-30" />
+      <div className="absolute bottom-1/4 right-0 w-1 h-32 bg-gradient-to-b from-transparent via-gray-300 to-transparent opacity-30" />
       
       {/* Additional corner elements */}
       <div className="absolute top-8 right-8 w-4 h-4 border-2 border-blue-600 rotate-45"></div>
-      <div className="absolute bottom-8 left-8 w-4 h-4 border-2 border-white rotate-45"></div>
+      <div className="absolute bottom-8 left-8 w-4 h-4 border-2 border-gray-400 rotate-45"></div>
     </section>
   )
 }

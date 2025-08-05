@@ -122,20 +122,17 @@ export function UnifiedSolutionShowcase() {
   return (
     <div className="relative bg-white">
       {/* Subtle background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
-        <div className="absolute top-20 right-20 w-32 h-32 bg-blue-50 rounded-full opacity-30"></div>
-        <div className="absolute bottom-20 left-20 w-24 h-24 bg-slate-50 rounded-full opacity-50"></div>
-      </div>
+      <SubtleBackgroundElements 
+        showGradientLines={true}
+        showFloatingShapes={true}
+        sectionType="white"
+      />
       
       <div className="container mx-auto px-4 relative py-24">
         <ScrollTriggeredSection animationType="fadeIn">
-          <div className="text-center mb-16 pt-8">
-            <div className="inline-block px-6 py-2 bg-blue-600 text-white rounded-full text-sm font-semibold mb-6">
-              THE SOLUTION
-            </div>
-            <h2 className="text-5xl font-bold text-black mb-6">
+          <div className="text-center mb-16">
+            <SectionBadge text="THE SOLUTION" />
+            <h2 className="text-5xl font-bold text-black mb-6 leading-tight">
               {solutionOverview.headline}
             </h2>
             <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
@@ -146,7 +143,7 @@ export function UnifiedSolutionShowcase() {
         </ScrollTriggeredSection>
 
         {/* Tabbed Content */}
-        <ScrollTriggeredSection animationType="slideUp" delay={0.2}>
+        <ScrollTriggeredSection animationType="fadeInUp" delay={0.2}>
           <div className="mb-16">
             {/* Tab Navigation */}
             <div className="flex justify-center mb-8">
@@ -245,7 +242,7 @@ export function UnifiedSolutionShowcase() {
         </ScrollTriggeredSection>
 
         {/* Whitelist CTA */}
-        <ScrollTriggeredSection animationType="slideUp" delay={0.4}>
+        <ScrollTriggeredSection animationType="fadeInUp" delay={0.4}>
           <div className="bg-blue-600 text-white p-10 rounded-2xl text-center border-4 border-blue-700 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1">
             <h3 className="text-3xl font-bold mb-6">{whitelistCTA.headline}</h3>
             <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">{whitelistCTA.description}</p>

@@ -1,6 +1,7 @@
 "use client"
 
 import { ScrollTriggeredSection } from "@/components/animations/scroll-triggered-section"
+import { SectionBadge } from "@/components/ui/section-badge"
 import { CheckCircle, Clock, Shield, Star } from "lucide-react"
 
 interface CTAConfig {
@@ -73,7 +74,8 @@ export function SingleCTASection() {
       <div className="container mx-auto px-4">
         <ScrollTriggeredSection animationType="fadeIn">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">
+            <SectionBadge text="GET STARTED" className="bg-white text-black" />
+            <h2 className="text-5xl font-bold mb-6 leading-tight">
               {primaryCTA.headline}
             </h2>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
@@ -86,7 +88,7 @@ export function SingleCTASection() {
         </ScrollTriggeredSection>
 
         {/* Supporting Elements */}
-        <ScrollTriggeredSection animationType="slideUp" delay={0.2}>
+        <ScrollTriggeredSection animationType="fadeInUp" delay={0.2}>
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {supportingElements.map((element, index) => (
               <div key={index} className="group text-center p-8 bg-blue-700 rounded-xl border-2 border-blue-500 hover:border-blue-400 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
@@ -101,7 +103,7 @@ export function SingleCTASection() {
         </ScrollTriggeredSection>
 
         {/* Primary CTA */}
-        <ScrollTriggeredSection animationType="slideUp" delay={0.4}>
+        <ScrollTriggeredSection animationType="fadeInUp" delay={0.4}>
           <div className="text-center mb-12">
             <button className="bg-white text-blue-600 px-16 py-6 rounded-2xl text-2xl font-bold hover:bg-blue-50 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 border-4 border-white hover:border-blue-100">
               {primaryCTA.buttonText}
@@ -110,7 +112,7 @@ export function SingleCTASection() {
         </ScrollTriggeredSection>
 
         {/* Risk Mitigation */}
-        <ScrollTriggeredSection animationType="slideUp" delay={0.6}>
+        <ScrollTriggeredSection animationType="fadeInUp" delay={0.6}>
           <div className="bg-blue-700 p-10 rounded-2xl mb-12 border-4 border-blue-500 shadow-2xl">
             <h3 className="text-2xl font-semibold text-center mb-8">Why Choose Us? Zero Risk, Maximum Reward</h3>
             <div className="grid md:grid-cols-2 gap-6">

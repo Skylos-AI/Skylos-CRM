@@ -79,11 +79,21 @@ export default function LandingPage() {
       />
 
       {/* Hero Section */}
-      <section id="hero" className="bg-black">
+      <section id="hero" className="relative bg-white">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 right-20 w-16 h-16 bg-gray-200 rounded-full opacity-5" />
+          <div className="absolute top-40 left-16 w-24 h-24 bg-gray-200 rounded-full opacity-5" />
+          <div className="absolute bottom-32 right-32 w-20 h-20 bg-gray-200 rounded-full opacity-5" />
+          <div className="absolute bottom-20 left-20 w-12 h-12 bg-gray-200 rounded-full opacity-5" />
+        </div>
         <AsymmetricalHero 
           titlePosition="left"
           headline="Stop Losing to Competitors Who Already Use AI"
           subheadline="Get custom conversational agents tailored to your business needs - deployed in days, not months"
+          badge={{
+            text: "WELCOME",
+            variant: "default"
+          }}
           ctaButtons={[
             {
               text: "Join Exclusive Whitelist",
