@@ -122,7 +122,6 @@ export function EnhancedLeadCard({
     <TooltipProvider>
       <Card
         ref={setNodeRef}
-        style={style}
         className={cn(
           "group cursor-pointer transition-all duration-300 ease-out",
           // Enhanced professional border system with light theme support

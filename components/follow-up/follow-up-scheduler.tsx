@@ -10,26 +10,26 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 // import { Calendar } from '@/components/ui/calendar' // Not available, using date input instead
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { 
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { Badge } from '@/components/ui/badge'
 // import { Separator } from '@/components/ui/separator' // Using div instead
-import { 
-  Calendar as CalendarIcon, 
-  Clock, 
-  Mail, 
-  MessageSquare, 
-  Phone, 
+import {
+  Calendar as CalendarIcon,
+  Clock,
+  Mail,
+  MessageSquare,
+  Phone,
   Video,
   Repeat,
   User,
@@ -217,7 +217,7 @@ export function FollowUpScheduler({
               Add Media
             </Button>
           </div>
-          
+
           {selectedMedia.length > 0 && (
             <div className="space-y-2">
               <div className="text-sm text-muted-foreground">
@@ -263,7 +263,7 @@ export function FollowUpScheduler({
               </div>
             </div>
           )}
-          
+
           {selectedMedia.length === 0 && (
             <div className="text-center py-6 border-2 border-dashed border-muted-foreground/25 rounded-lg">
               <Paperclip className="h-8 w-8 mx-auto text-muted-foreground mb-2" />
@@ -365,11 +365,11 @@ export function FollowUpScheduler({
               </div>
               <div className="flex items-center space-x-2 text-muted-foreground">
                 <CalendarIcon className="h-3 w-3" />
-                <span>{selectedDate.toLocaleDateString('en-US', { 
-                  weekday: 'long', 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
+                <span>{selectedDate.toLocaleDateString('en-US', {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
                 })}</span>
                 <span>at {selectedTime}</span>
               </div>
@@ -394,7 +394,7 @@ export function FollowUpScheduler({
           <Button variant="outline" onClick={onCancel}>
             Cancel
           </Button>
-          <Button 
+          <Button
             onClick={handleSchedule}
             disabled={!selectedDate}
           >
@@ -403,7 +403,7 @@ export function FollowUpScheduler({
           </Button>
         </div>
       </CardContent>
-      
+
       {/* Media Selection Modal */}
       <MediaSelectionModal
         open={mediaModalOpen}

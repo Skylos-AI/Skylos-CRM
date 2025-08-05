@@ -57,7 +57,7 @@ function DefaultErrorFallback({ error, resetError }: { error?: Error; resetError
           </div>
           <CardTitle>Something went wrong</CardTitle>
           <CardDescription>
-            We encountered an unexpected error. This has been logged and we'll look into it.
+            We encountered an unexpected error. This has been logged and we&apos;ll look into it.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

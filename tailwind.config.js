@@ -235,6 +235,8 @@ module.exports = {
       },
       // Design system typography
       fontFamily: {
+        primary: ["Winner Sans", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", ...fontFamily.sans],
+        secondary: ["Roboto", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", ...fontFamily.sans],
         sans: ["var(--font-sans)", "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", ...fontFamily.sans],
         mono: ["JetBrains Mono", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", ...fontFamily.mono],
       },
