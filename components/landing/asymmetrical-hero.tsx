@@ -87,19 +87,35 @@ export function AsymmetricalHero({
 
       {/* Enhanced Background Pattern */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-gray-300 to-blue-600 opacity-20"></div>
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-gray-200 opacity-10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/4 left-0 w-1 h-32 bg-gray-300 opacity-20"></div>
-        <div className="absolute bottom-1/4 right-0 w-1 h-32 bg-gray-300 opacity-20"></div>
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-white to-blue-600"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-0 w-1 h-32 bg-white opacity-20"></div>
+        <div className="absolute bottom-1/4 right-0 w-1 h-32 bg-white opacity-20"></div>
+      </div>
+
+      {/* Background Image Placeholder on Right Side */}
+      <div className="absolute inset-0 -z-5">
+        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 h-3/4 opacity-10">
+          <div className="relative w-full h-full bg-white rounded-2xl border-4 border-white/20 shadow-2xl flex items-center justify-center overflow-hidden">
+            {/* Image placeholder content */}
+            <div className="text-center space-y-6 p-8">
+              <div className="mx-auto h-20 w-20 bg-white/20 rounded-xl flex items-center justify-center shadow-lg">
+                <div className="h-10 w-10 bg-blue-600 rounded-lg" />
+              </div>
+              <div>
+                <p className="font-bold text-white text-lg">AI Visualization</p>
+                <p className="text-sm text-white/70">Interactive demo placeholder</p>
+              </div>
+            </div>
+            {/* Corner accents */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-blue-600 rounded-tl-2xl"></div>
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-blue-600 rounded-br-2xl"></div>
+          </div>
+        </div>
       </div>
 
       <div className="container relative">
-        <div className={cn(
-          'grid gap-12 items-center',
-          titlePosition === 'left' 
-            ? 'lg:grid-cols-[1.2fr,0.8fr]' 
-            : 'lg:grid-cols-[0.8fr,1.2fr]'
-        )}>
+        <div className="flex items-center justify-start min-h-[80vh]">
           {/* Content Section */}
           <ScrollTriggeredSection
             animationType="hero"
@@ -121,7 +137,7 @@ export function AsymmetricalHero({
                 >
                   <Badge 
                     variant={badge.variant || 'secondary'} 
-                    className="w-fit text-sm font-medium bg-black text-white hover:bg-gray-800 transition-colors duration-300 border-2 border-black"
+                    className="w-fit text-sm font-medium bg-white text-black hover:bg-gray-100 transition-colors duration-300 border-2 border-white"
                   >
                     {badge.text}
                   </Badge>
@@ -136,7 +152,7 @@ export function AsymmetricalHero({
                 className="relative"
               >
                 <DisplayHero className={cn(
-                  'text-black font-bold relative z-10',
+                  'text-white font-bold relative z-10',
                   titlePosition === 'right' && 'lg:text-right'
                 )}>
                   {headline}
@@ -152,7 +168,7 @@ export function AsymmetricalHero({
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <DisplaySubtitle className={cn(
-                  'text-gray-700 leading-relaxed',
+                  'text-gray-300 leading-relaxed',
                   titlePosition === 'right' && 'lg:text-right'
                 )}>
                   {subheadline}
@@ -190,50 +206,17 @@ export function AsymmetricalHero({
             </div>
           </ScrollTriggeredSection>
 
-          {/* Visual/Media Section */}
-          <ScrollTriggeredSection
-            animationType="fadeInRight"
-            delay={300}
-            className={cn(
-              'relative',
-              titlePosition === 'right' && 'lg:order-1'
-            )}
-          >
-            <div className="relative aspect-square lg:aspect-[4/3] bg-gray-100 rounded-2xl border-4 border-gray-200 shadow-2xl flex items-center justify-center overflow-hidden group hover:shadow-3xl transition-all duration-300">
-              {/* Enhanced visual content placeholder */}
-              <div className="text-center space-y-6 p-8">
-                <div className="mx-auto h-20 w-20 bg-black rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <div className="h-10 w-10 bg-blue-600 rounded-lg" />
-                </div>
-                <div>
-                  <p className="font-bold text-black text-lg">AI Visualization</p>
-                  <p className="text-sm text-gray-600">Interactive demo placeholder</p>
-                </div>
-              </div>
 
-              {/* Enhanced background pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-blue-600/20" />
-                <div className="absolute top-4 right-4 w-32 h-32 bg-black/10 rounded-full blur-xl" />
-                <div className="absolute bottom-4 left-4 w-24 h-24 bg-blue-600/10 rounded-full blur-lg" />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-black rounded-full animate-pulse" />
-              </div>
-
-              {/* Corner accents */}
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-blue-600 rounded-tl-2xl"></div>
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-blue-600 rounded-br-2xl"></div>
-            </div>
-          </ScrollTriggeredSection>
         </div>
       </div>
 
       {/* Enhanced Decorative Elements */}
-      <div className="absolute top-1/4 left-0 w-1 h-32 bg-gradient-to-b from-transparent via-gray-300 to-transparent opacity-30" />
-      <div className="absolute bottom-1/4 right-0 w-1 h-32 bg-gradient-to-b from-transparent via-gray-300 to-transparent opacity-30" />
+      <div className="absolute top-1/4 left-0 w-1 h-32 bg-gradient-to-b from-transparent via-white to-transparent opacity-30" />
+      <div className="absolute bottom-1/4 right-0 w-1 h-32 bg-gradient-to-b from-transparent via-white to-transparent opacity-30" />
       
       {/* Additional corner elements */}
       <div className="absolute top-8 right-8 w-4 h-4 border-2 border-blue-600 rotate-45"></div>
-      <div className="absolute bottom-8 left-8 w-4 h-4 border-2 border-gray-400 rotate-45"></div>
+      <div className="absolute bottom-8 left-8 w-4 h-4 border-2 border-white rotate-45"></div>
     </section>
   )
 }

@@ -120,12 +120,12 @@ export function UnifiedSolutionShowcase() {
   ]
 
   return (
-    <div className="relative bg-white">
+    <div className="relative bg-slate-50">
       {/* Subtle background elements */}
       <SubtleBackgroundElements 
         showGradientLines={true}
         showFloatingShapes={true}
-        sectionType="white"
+        sectionType="slate"
       />
       
       <div className="container mx-auto px-4 relative py-24">
