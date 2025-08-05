@@ -1,0 +1,335 @@
+/**
+ * Landing Page Specific Styles
+ * 
+ * Consistent styling for the redesigned landing page
+ * with smooth transitions and cohesive branding.
+ */
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Landing page specific variables */
+:root {
+  --landing-section-spacing: 6rem;
+  --landing-content-max-width: 1200px;
+  --landing-transition-duration: 0.3s;
+  --landing-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Brand-specific colors */
+  --landing-primary: hsl(222.2, 47.4%, 11.2%);
+  --landing-primary-foreground: hsl(210, 40%, 98%);
+  --landing-accent: hsl(221.2, 83.2%, 53.3%);
+  --landing-gradient-start: hsl(222.2, 47.4%, 11.2%);
+  --landing-gradient-end: hsl(221.2, 83.2%, 53.3%);
+}
+
+/* Dark theme adjustments */
+.dark {
+  --landing-gradient-start: hsl(221.2, 83.2%, 53.3%);
+  --landing-gradient-end: hsl(222.2, 47.4%, 11.2%);
+}
+
+/* Base landing page container */
+.landing-page {
+  font-family: var(--font-secondary), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+}
+
+/* Section spacing consistency */
+.landing-section {
+  padding-top: var(--landing-section-spacing);
+  padding-bottom: var(--landing-section-spacing);
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-section:first-child {
+  padding-top: 0;
+}
+
+.landing-section:last-child {
+  padding-bottom: var(--landing-section-spacing);
+}
+
+/* Content container with consistent max-width */
+.landing-content {
+  max-width: var(--landing-content-max-width);
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .landing-content {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .landing-content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Typography consistency */
+.landing-heading-hero {
+  font-family: var(--font-primary), system-ui, -apple-system, sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.landing-heading-section {
+  font-family: var(--font-primary), system-ui, -apple-system, sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.landing-heading-subsection {
+  font-family: var(--font-primary), system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+.landing-text-lead {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  line-height: 1.7;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 1.5rem;
+}
+
+.landing-text-body {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: hsl(var(--foreground));
+  margin-bottom: 1rem;
+}
+
+/* Button consistency */
+.landing-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--landing-transition-duration) var(--landing-transition-easing);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--ring));
+}
+
+.landing-button-primary {
+  background: var(--landing-primary);
+  color: var(--landing-primary-foreground);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.landing-button-primary:hover {
+  background: hsl(222.2, 47.4%, 8%);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  transform: translateY(-1px);
+}
+
+.landing-button-secondary {
+  background: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  border-color: hsl(var(--border));
+}
+
+.landing-button-secondary:hover {
+  background: hsl(var(--secondary) / 0.8);
+  border-color: hsl(var(--border) / 0.8);
+  transform: translateY(-1px);
+}
+
+.landing-button-outline {
+  background: transparent;
+  color: var(--landing-primary);
+  border-color: var(--landing-primary);
+}
+
+.landing-button-outline:hover {
+  background: var(--landing-primary);
+  color: var(--landing-primary-foreground);
+  transform: translateY(-1px);
+}
+
+/* Card consistency */
+.landing-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  transition: all var(--landing-transition-duration) var(--landing-transition-easing);
+}
+
+.landing-card:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  transform: translateY(-2px);
+}
+
+/* Background variations */
+.landing-bg-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--landing-gradient-start) 0%,
+    var(--landing-gradient-end) 100%
+  );
+}
+
+.landing-bg-subtle {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--background)) 0%,
+    hsl(var(--muted) / 0.3) 50%,
+    hsl(var(--background)) 100%
+  );
+}
+
+/* Animation utilities */
+.landing-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: landingFadeIn 0.6s ease-out forwards;
+}
+
+.landing-slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: landingSlideUp 0.8s ease-out forwards;
+}
+
+.landing-slide-left {
+  opacity: 0;
+  transform: translateX(40px);
+  animation: landingSlideLeft 0.8s ease-out forwards;
+}
+
+.landing-slide-right {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: landingSlideRight 0.8s ease-out forwards;
+}
+
+@keyframes landingFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes landingSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes landingSlideLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes landingSlideRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Stagger animation delays */
+.landing-stagger-1 { animation-delay: 0.1s; }
+.landing-stagger-2 { animation-delay: 0.2s; }
+.landing-stagger-3 { animation-delay: 0.3s; }
+.landing-stagger-4 { animation-delay: 0.4s; }
+.landing-stagger-5 { animation-delay: 0.5s; }
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  :root {
+    --landing-section-spacing: 4rem;
+  }
+  
+  .landing-button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .landing-card {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --landing-section-spacing: 3rem;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .landing-fade-in,
+  .landing-slide-up,
+  .landing-slide-left,
+  .landing-slide-right {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .landing-button,
+  .landing-card {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .landing-button-primary {
+    border: 2px solid currentColor;
+  }
+  
+  .landing-card {
+    border-width: 2px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .landing-page {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .landing-button {
+    border: 1px solid black;
+    background: white;
+    color: black;
+  }
+}

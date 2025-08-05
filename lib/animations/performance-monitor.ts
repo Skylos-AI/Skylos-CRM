@@ -5,6 +5,8 @@
  * adaptive animation quality based on device capabilities.
  */
 
+import React from 'react'
+
 interface PerformanceMetrics {
   fps: number
   frameDrops: number

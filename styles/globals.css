@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import accessibility styles */
+@import './accessibility.css';
+
+/* Import landing page styles */
+@import './landing-page.css';
+
 @layer base {
   :root {
     --background: 0 0% 100%;
