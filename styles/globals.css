@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './mobile-responsive.css';
+
 /* Import accessibility styles */
 @import './accessibility.css';
 

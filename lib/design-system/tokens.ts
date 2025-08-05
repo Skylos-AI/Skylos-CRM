@@ -41,57 +41,8 @@ export const colors = {
     950: '#172554',
   },
   
-  // Semantic colors for status and feedback
-  semantic: {
-    success: {
-      50: '#f0fdf4',
-      100: '#dcfce7',
-      200: '#bbf7d0',
-      300: '#86efac',
-      400: '#4ade80',
-      500: '#22c55e',
-      600: '#16a34a',
-      700: '#15803d',
-      800: '#166534',
-      900: '#14532d',
-    },
-    warning: {
-      50: '#fffbeb',
-      100: '#fef3c7',
-      200: '#fde68a',
-      300: '#fcd34d',
-      400: '#fbbf24',
-      500: '#f59e0b',
-      600: '#d97706',
-      700: '#b45309',
-      800: '#92400e',
-      900: '#78350f',
-    },
-    error: {
-      50: '#fef2f2',
-      100: '#fee2e2',
-      200: '#fecaca',
-      300: '#fca5a5',
-      400: '#f87171',
-      500: '#ef4444',
-      600: '#dc2626',
-      700: '#b91c1c',
-      800: '#991b1b',
-      900: '#7f1d1d',
-    },
-    info: {
-      50: '#eff6ff',
-      100: '#dbeafe',
-      200: '#bfdbfe',
-      300: '#93c5fd',
-      400: '#60a5fa',
-      500: '#3b82f6',
-      600: '#2563eb',
-      700: '#1d4ed8',
-      800: '#1e40af',
-      900: '#1e3a8a',
-    },
-  },
+  // SIMPLIFIED COLOR SYSTEM - Only primary blue variations allowed
+  // Removed semantic colors (success, warning, error, info) to maintain visual consistency
   
   // Neutral colors for backgrounds and text - optimized for dark theme readability
   neutral: {
@@ -123,47 +74,47 @@ export const colors = {
     975: '#020509',
   },
   
-  // Priority colors for lead management
+  // SIMPLIFIED PRIORITY SYSTEM - Using only primary blue and neutral variations
   priority: {
     low: {
-      bg: '#f3f4f6',
-      text: '#4b5563',
-      border: '#d1d5db',
+      bg: '#f8fafc',    // slate-50
+      text: '#64748b',  // slate-500
+      border: '#e2e8f0', // slate-200
     },
     medium: {
-      bg: '#dbeafe',
-      text: '#1e40af',
-      border: '#93c5fd',
+      bg: '#f1f5f9',    // slate-100
+      text: '#475569',  // slate-600
+      border: '#cbd5e1', // slate-300
     },
     high: {
-      bg: '#fed7aa',
-      text: '#c2410c',
-      border: '#fdba74',
+      bg: '#dbeafe',    // blue-100
+      text: '#1e40af',  // blue-800
+      border: '#93c5fd', // blue-300
     },
     urgent: {
-      bg: '#fee2e2',
-      text: '#dc2626',
-      border: '#fca5a5',
+      bg: '#bfdbfe',    // blue-200
+      text: '#1e3a8a',  // blue-900
+      border: '#60a5fa', // blue-400
     },
   },
   
-  // Stage colors for kanban board with dark theme variants
+  // SIMPLIFIED STAGE COLORS - Using only primary blue variations
   stage: {
     incoming: {
-      light: { bg: '#dbeafe', border: '#3b82f6', text: '#1e40af' },
-      dark: { bg: '#1e3a8a20', border: '#60a5fa', text: '#93c5fd' },
+      light: { bg: '#f8fafc', border: '#cbd5e1', text: '#475569' }, // slate variations
+      dark: { bg: '#1e293b', border: '#475569', text: '#cbd5e1' },
     },
     decision: {
-      light: { bg: '#fef3c7', border: '#f59e0b', text: '#d97706' },
-      dark: { bg: '#f59e0b20', border: '#fbbf24', text: '#fcd34d' },
+      light: { bg: '#f1f5f9', border: '#94a3b8', text: '#334155' }, // slate variations
+      dark: { bg: '#334155', border: '#64748b', text: '#e2e8f0' },
     },
     negotiation: {
-      light: { bg: '#fed7aa', border: '#f97316', text: '#c2410c' },
-      dark: { bg: '#f9731620', border: '#fb923c', text: '#fdba74' },
+      light: { bg: '#dbeafe', border: '#93c5fd', text: '#1e40af' }, // blue variations
+      dark: { bg: '#1e40af', border: '#3b82f6', text: '#dbeafe' },
     },
     final: {
-      light: { bg: '#dcfce7', border: '#22c55e', text: '#16a34a' },
-      dark: { bg: '#22c55e20', border: '#4ade80', text: '#86efac' },
+      light: { bg: '#bfdbfe', border: '#60a5fa', text: '#1e3a8a' }, // blue variations
+      dark: { bg: '#1e3a8a', border: '#2563eb', text: '#bfdbfe' },
     },
   },
   
@@ -183,14 +134,9 @@ export const colors = {
       tertiary: '#94a3b8',     // Medium gray
       muted: '#64748b',        // Darker gray for less important text
     },
-    // Accent colors that work well in dark mode
+    // SIMPLIFIED ACCENT - Only blue variations allowed
     accent: {
-      blue: '#60a5fa',
-      green: '#4ade80',
-      yellow: '#fbbf24',
-      orange: '#fb923c',
-      red: '#f87171',
-      purple: '#a78bfa',
+      blue: '#60a5fa',  // Only blue accent color allowed
     },
     // Border colors that provide subtle separation
     border: {

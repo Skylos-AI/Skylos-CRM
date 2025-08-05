@@ -17,7 +17,7 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 
-export default function LandingPage() {
+export default function SimplifiedLandingPage() {
   const [showWhitelistModal, setShowWhitelistModal] = useState(false)
 
   const navigationSections = [
@@ -79,7 +79,7 @@ export default function LandingPage() {
       />
 
       {/* Hero Section */}
-      <section id="hero" className="bg-black">
+      <section id="hero" className="mb-24">
         <AsymmetricalHero 
           titlePosition="left"
           headline="Stop Losing to Competitors Who Already Use AI"
@@ -100,22 +100,22 @@ export default function LandingPage() {
       </section>
 
       {/* Consolidated Problem/Urgency Section */}
-      <section id="problem" className="bg-slate-50 py-24">
+      <section id="problem" className="mb-24">
         <ConsolidatedProblemSection />
       </section>
 
       {/* Unified Solution Section */}
-      <section id="solution" className="bg-white py-24">
+      <section id="solution" className="mb-24">
         <UnifiedSolutionShowcase />
       </section>
 
       {/* Streamlined Process Section */}
-      <section id="process" className="bg-slate-50 py-24">
+      <section id="process" className="mb-24">
         <StreamlinedProcessSection />
       </section>
 
       {/* Single CTA Section */}
-      <section id="whitelist" className="bg-blue-600">
+      <section id="whitelist">
         <SingleCTASection />
       </section>
 

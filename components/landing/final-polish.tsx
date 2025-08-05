@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
-import { ArrowUp, Sparkles, Zap } from "lucide-react"
+import { ArrowUp, Star, Zap } from "lucide-react"
 
 interface FinalPolishProps {
   children: React.ReactNode
@@ -83,7 +83,7 @@ export function FinalPolish({ children }: FinalPolishProps) {
             ease: "easeInOut"
           }}
         >
-          <Sparkles className="w-4 h-4 text-primary/20" />
+          <Star className="w-4 h-4 text-primary/20" />
         </motion.div>
 
         <motion.div
@@ -118,7 +118,7 @@ export function FinalPolish({ children }: FinalPolishProps) {
             delay: 4
           }}
         >
-          <Sparkles className="w-2 h-2 text-secondary/25" />
+          <Star className="w-2 h-2 text-secondary/25" />
         </motion.div>
       </div>
 

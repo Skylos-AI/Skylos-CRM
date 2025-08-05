@@ -57,42 +57,42 @@ const defaultSections: NavigationSection[] = [
     label: 'Problem',
     icon: <Target className="w-4 h-4" />,
     href: '#problem',
-    color: 'red'
+    color: 'blue'
   },
   {
     id: 'solution',
     label: 'Solution',
     icon: <Lightbulb className="w-4 h-4" />,
     href: '#solution',
-    color: 'yellow'
+    color: 'blue'
   },
   {
     id: 'process',
     label: 'Process',
     icon: <Settings className="w-4 h-4" />,
     href: '#process',
-    color: 'green'
+    color: 'blue'
   },
   {
     id: 'competitive',
     label: 'Advantages',
     icon: <Trophy className="w-4 h-4" />,
     href: '#competitive',
-    color: 'purple'
+    color: 'blue'
   },
   {
     id: 'testimonials',
     label: 'Testimonials',
     icon: <Users className="w-4 h-4" />,
     href: '#testimonials',
-    color: 'pink'
+    color: 'blue'
   },
   {
     id: 'contact',
     label: 'Contact',
     icon: <MessageSquare className="w-4 h-4" />,
     href: '#contact',
-    color: 'indigo'
+    color: 'blue'
   }
 ]
 

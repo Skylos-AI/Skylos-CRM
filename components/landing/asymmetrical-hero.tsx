@@ -74,7 +74,7 @@ export function AsymmetricalHero({
 
   return (
     <section className={cn(
-      'relative overflow-hidden bg-background',
+      'relative overflow-hidden bg-black',
       spacingClasses[spacing],
       className
     )}>
@@ -84,6 +84,14 @@ export function AsymmetricalHero({
           {backgroundElement}
         </div>
       )}
+
+      {/* Enhanced Background Pattern */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-white to-blue-600"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-0 w-1 h-32 bg-white opacity-20"></div>
+        <div className="absolute bottom-1/4 right-0 w-1 h-32 bg-white opacity-20"></div>
+      </div>
 
       <div className="container relative">
         <div className={cn(
@@ -113,7 +121,7 @@ export function AsymmetricalHero({
                 >
                   <Badge 
                     variant={badge.variant || 'secondary'} 
-                    className="w-fit text-sm font-medium"
+                    className="w-fit text-sm font-medium bg-white text-black hover:bg-gray-100 transition-colors duration-300 border-2 border-white"
                   >
                     {badge.text}
                   </Badge>
@@ -125,13 +133,16 @@ export function AsymmetricalHero({
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative"
               >
                 <DisplayHero className={cn(
-                  'text-foreground',
+                  'text-white font-bold relative z-10',
                   titlePosition === 'right' && 'lg:text-right'
                 )}>
                   {headline}
                 </DisplayHero>
+                {/* Accent line under headline */}
+                <div className="absolute -bottom-2 left-0 w-24 h-1 bg-blue-600 rounded-full"></div>
               </motion.div>
 
               {/* Subheadline */}
@@ -141,6 +152,7 @@ export function AsymmetricalHero({
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <DisplaySubtitle className={cn(
+                  'text-gray-300 leading-relaxed',
                   titlePosition === 'right' && 'lg:text-right'
                 )}>
                   {subheadline}
@@ -187,32 +199,41 @@ export function AsymmetricalHero({
               titlePosition === 'right' && 'lg:order-1'
             )}
           >
-            <div className="relative aspect-square lg:aspect-[4/3] bg-muted/50 rounded-2xl border-2 border-dashed border-muted-foreground/25 flex items-center justify-center overflow-hidden">
-              {/* Placeholder for visual content */}
-              <div className="text-center space-y-4 p-8">
-                <div className="mx-auto h-16 w-16 bg-background rounded-lg flex items-center justify-center shadow-sm">
-                  <div className="h-8 w-8 bg-primary/20 rounded" />
+            <div className="relative aspect-square lg:aspect-[4/3] bg-white rounded-2xl border-4 border-white shadow-2xl flex items-center justify-center overflow-hidden group hover:shadow-3xl transition-all duration-300">
+              {/* Enhanced visual content placeholder */}
+              <div className="text-center space-y-6 p-8">
+                <div className="mx-auto h-20 w-20 bg-black rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <div className="h-10 w-10 bg-blue-600 rounded-lg" />
                 </div>
                 <div>
-                  <p className="font-medium text-muted-foreground">Visual Content</p>
-                  <p className="text-sm text-muted-foreground">Add your hero image or video here</p>
+                  <p className="font-bold text-black text-lg">AI Visualization</p>
+                  <p className="text-sm text-gray-600">Interactive demo placeholder</p>
                 </div>
               </div>
 
-              {/* Subtle background pattern */}
-              <div className="absolute inset-0 opacity-5">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
-                <div className="absolute top-4 right-4 w-32 h-32 bg-primary/5 rounded-full blur-xl" />
-                <div className="absolute bottom-4 left-4 w-24 h-24 bg-secondary/5 rounded-full blur-lg" />
+              {/* Enhanced background pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-blue-600/20" />
+                <div className="absolute top-4 right-4 w-32 h-32 bg-black/10 rounded-full blur-xl" />
+                <div className="absolute bottom-4 left-4 w-24 h-24 bg-blue-600/10 rounded-full blur-lg" />
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-black rounded-full animate-pulse" />
               </div>
+
+              {/* Corner accents */}
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-blue-600 rounded-tl-2xl"></div>
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-blue-600 rounded-br-2xl"></div>
             </div>
           </ScrollTriggeredSection>
         </div>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-1/4 left-0 w-px h-32 bg-gradient-to-b from-transparent via-border to-transparent" />
-      <div className="absolute bottom-1/4 right-0 w-px h-32 bg-gradient-to-b from-transparent via-border to-transparent" />
+      {/* Enhanced Decorative Elements */}
+      <div className="absolute top-1/4 left-0 w-1 h-32 bg-gradient-to-b from-transparent via-white to-transparent opacity-30" />
+      <div className="absolute bottom-1/4 right-0 w-1 h-32 bg-gradient-to-b from-transparent via-white to-transparent opacity-30" />
+      
+      {/* Additional corner elements */}
+      <div className="absolute top-8 right-8 w-4 h-4 border-2 border-blue-600 rotate-45"></div>
+      <div className="absolute bottom-8 left-8 w-4 h-4 border-2 border-white rotate-45"></div>
     </section>
   )
 }
