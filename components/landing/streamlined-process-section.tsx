@@ -4,6 +4,7 @@ import { ScrollTriggeredSection } from "@/components/animations/scroll-triggered
 import { StaggerContainer } from "@/components/animations/stagger-container"
 import { SectionBadge } from "@/components/ui/section-badge"
 import { SubtleBackgroundElements } from "@/components/ui/subtle-background-elements"
+import { InfographicTimeline } from "@/components/landing/modern-timeline"
 import { Clock, DollarSign, Users, CheckCircle } from "lucide-react"
 
 interface ProcessStep {
@@ -233,86 +234,9 @@ export function StreamlinedProcessSection() {
           </div>
         </ScrollTriggeredSection>
 
-        {/* Enhanced Timeline */}
+        {/* Modern Timeline */}
         <ScrollTriggeredSection animationType="fadeInUp" delay={0.6}>
-          <div className="bg-gradient-to-br from-white to-blue-50 p-12 rounded-2xl border-2 border-blue-200 shadow-2xl relative overflow-hidden">
-            {/* Background decorative elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full opacity-20 blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-slate-100 rounded-full opacity-30 blur-2xl"></div>
-            
-            <h3 className="text-3xl font-bold text-slate-800 mb-12 text-center relative z-10">
-              Implementation Timeline
-              <div className="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
-            </h3>
-            
-            <div className="relative">
-              {/* Vertical timeline line */}
-              <div className="absolute left-8 top-8 bottom-8 w-1 bg-gradient-to-b from-blue-600 via-blue-500 to-blue-400 rounded-full shadow-lg"></div>
-              
-              <div className="space-y-12">
-                {timeline.map((phase, index) => (
-                  <div key={index} className="group relative">
-                    <div className="flex items-start space-x-8">
-                      {/* Enhanced timeline node */}
-                      <div className="relative flex-shrink-0 z-10">
-                        <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 group-hover:from-blue-700 group-hover:to-blue-800 text-white rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 group-hover:scale-125 shadow-2xl border-4 border-white">
-                          {phase.phase}
-                        </div>
-                        {/* Pulse animation */}
-                        <div className="absolute inset-0 w-16 h-16 bg-blue-600 rounded-full animate-ping opacity-20 group-hover:opacity-40"></div>
-                      </div>
-                      
-                      {/* Enhanced content card */}
-                      <div className="flex-grow bg-white p-8 rounded-2xl border-2 border-slate-200 group-hover:border-blue-300 shadow-lg group-hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 relative overflow-hidden">
-                        {/* Card background gradient */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-50 to-transparent opacity-50 group-hover:opacity-80 transition-opacity duration-300"></div>
-                        
-                        <div className="relative z-10">
-                          <div className="flex items-center justify-between mb-6">
-                            <h4 className="text-2xl font-bold text-slate-800 group-hover:text-blue-800 transition-colors duration-300">
-                              {phase.duration}
-                            </h4>
-                            <div className="px-4 py-2 bg-blue-100 group-hover:bg-blue-200 text-blue-800 rounded-full text-sm font-semibold transition-colors duration-300">
-                              {phase.phase}
-                            </div>
-                          </div>
-                          
-                          <div className="grid gap-4">
-                            {phase.activities.map((activity, idx) => (
-                              <div key={idx} className="flex items-start space-x-4 p-4 bg-slate-50 group-hover:bg-blue-50 rounded-xl transition-all duration-300 hover:scale-105">
-                                <div className="flex-shrink-0 mt-1">
-                                  <CheckCircle className="w-6 h-6 text-blue-600 group-hover:text-blue-700 transition-colors duration-300" />
-                                </div>
-                                <span className="text-slate-700 group-hover:text-slate-800 leading-relaxed font-medium transition-colors duration-300">
-                                  {activity}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        
-                        {/* Card corner accent */}
-                        <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-blue-600 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      </div>
-                    </div>
-                    
-                    {/* Connection line to next phase */}
-                    {index < timeline.length - 1 && (
-                      <div className="absolute left-8 -bottom-6 w-1 h-12 bg-gradient-to-b from-blue-500 to-blue-400 rounded-full opacity-60"></div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Bottom accent */}
-            <div className="mt-12 text-center relative z-10">
-              <div className="inline-flex items-center space-x-3 px-8 py-4 bg-blue-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <Clock className="w-5 h-5" />
-                <span>Total Implementation: 3-4 Weeks</span>
-              </div>
-            </div>
-          </div>
+          <InfographicTimeline />
         </ScrollTriggeredSection>
 
         {/* Key Benefits Summary */}
