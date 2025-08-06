@@ -7,6 +7,7 @@ import { StreamlinedProcessSection } from "@/components/landing/streamlined-proc
 import { SingleCTASection } from "@/components/landing/single-cta-section"
 import { ProfessionalWhitelistModal } from "@/components/landing/professional-whitelist-modal"
 import { FloatingNavigation, SectionProgressIndicator } from "@/components/landing/floating-navigation"
+import { VisualPolish, SectionSeparator } from "@/components/landing/visual-polish"
 
 import { 
   Home, 
@@ -64,71 +65,82 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Section Progress Indicator */}
-      <SectionProgressIndicator sections={navigationSections} />
+    <VisualPolish>
+      <div className="min-h-screen bg-white overflow-x-hidden">
+        {/* Section Progress Indicator */}
+        <SectionProgressIndicator sections={navigationSections} />
 
-      {/* Floating Navigation */}
-      <FloatingNavigation 
-        sections={navigationSections}
-        position="right"
-        showProgress={true}
-        showScrollToTop={true}
-        exitIntentEnabled={true}
-        onExitIntent={handleExitIntent}
-      />
-
-      {/* Hero Section */}
-      <section id="hero" className="bg-black">
-        <AsymmetricalHero 
-          titlePosition="left"
-          headline="Stop Losing to Competitors Who Already Use AI"
-          subheadline="Get custom conversational agents tailored to your business needs - deployed in days, not months"
-          badge={{
-            text: "WELCOME",
-            variant: "default"
-          }}
-          ctaButtons={[
-            {
-              text: "Join Exclusive Whitelist",
-              variant: "default",
-              href: "#whitelist"
-            },
-            {
-              text: "Learn More", 
-              variant: "outline",
-              href: "#problem"
-            }
-          ]}
+        {/* Floating Navigation */}
+        <FloatingNavigation 
+          sections={navigationSections}
+          position="right"
+          showProgress={true}
+          showScrollToTop={true}
+          exitIntentEnabled={true}
+          onExitIntent={handleExitIntent}
         />
-      </section>
 
-      {/* Consolidated Problem/Urgency Section */}
-      <section id="problem" className="bg-slate-50 py-24">
-        <ConsolidatedProblemSection />
-      </section>
+        {/* Hero Section */}
+        <section id="hero" className="bg-black relative">
+          <AsymmetricalHero 
+            titlePosition="left"
+            headline="Stop Losing to Competitors Who Already Use AI"
+            subheadline="Get custom conversational agents tailored to your business needs - deployed in days, not months"
+            badge={{
+              text: "WELCOME",
+              variant: "default"
+            }}
+            ctaButtons={[
+              {
+                text: "Join Exclusive Whitelist",
+                variant: "default",
+                href: "#whitelist"
+              },
+              {
+                text: "Learn More", 
+                variant: "outline",
+                href: "#problem"
+              }
+            ]}
+          />
+          {/* Enhanced transition gradient */}
+          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent via-black/50 to-slate-50"></div>
+        </section>
 
-      {/* Unified Solution Section */}
-      <section id="solution" className="bg-slate-50 py-24">
-        <UnifiedSolutionShowcase />
-      </section>
+        {/* Consolidated Problem/Urgency Section */}
+        <section id="problem" className="bg-slate-50 py-24 relative">
+          <ConsolidatedProblemSection />
+        </section>
 
-      {/* Streamlined Process Section */}
-      <section id="process" className="bg-white py-24">
-        <StreamlinedProcessSection />
-      </section>
+        {/* Enhanced Section Divider */}
+        <SectionSeparator variant="gradient" className="bg-slate-50" />
 
-      {/* Single CTA Section */}
-      <section id="whitelist" className="bg-blue-600">
-        <SingleCTASection />
-      </section>
+        {/* Unified Solution Section */}
+        <section id="solution" className="bg-slate-50 py-24 relative">
+          <UnifiedSolutionShowcase />
+          {/* Enhanced transition gradient */}
+          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent via-slate-50/50 to-white"></div>
+        </section>
 
-      {/* Professional Whitelist Modal */}
-      <ProfessionalWhitelistModal
-        isOpen={showWhitelistModal}
-        onClose={() => setShowWhitelistModal(false)}
-        onSubmit={handleWhitelistSubmit}
-      />
-    </div>
+        {/* Streamlined Process Section */}
+        <section id="process" className="bg-white py-24 relative">
+          <StreamlinedProcessSection />
+          {/* Enhanced transition gradient */}
+          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent via-white/50 to-black"></div>
+        </section>
+
+        {/* Single CTA Section */}
+        <section id="whitelist" className="bg-black relative">
+          <SingleCTASection />
+        </section>
+
+        {/* Professional Whitelist Modal */}
+        <ProfessionalWhitelistModal
+          isOpen={showWhitelistModal}
+          onClose={() => setShowWhitelistModal(false)}
+          onSubmit={handleWhitelistSubmit}
+        />
+      </div>
+    </VisualPolish>
   )
 }

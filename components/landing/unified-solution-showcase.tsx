@@ -102,15 +102,15 @@ export function UnifiedSolutionShowcase() {
   ]
 
   const whitelistCTA: WhitelistCTAConfig = {
-    headline: "Join the Exclusive Beta Program",
-    description: "Get early access to our next-generation conversational AI platform with exclusive benefits for early adopters.",
+    headline: "Request Your Exclusive Whitelist Invitation",
+    description: "We're accepting a limited number of businesses for fully customizable AI agents tailored to your specific needs and ready for real-world deployment.",
     benefits: [
-      "Priority implementation and support",
-      "Beta pricing with significant discounts",
-      "Direct input on feature development",
-      "Dedicated success manager"
+      "Exclusive access to custom AI agent development",
+      "Solutions designed specifically for your use case",
+      "Real-world deployment ready from day one",
+      "Direct collaboration with our development team"
     ],
-    ctaText: "Join Exclusive Whitelist"
+    ctaText: "Request Whitelist Invitation"
   }
 
   const tabs = [
@@ -243,23 +243,23 @@ export function UnifiedSolutionShowcase() {
 
         {/* Whitelist CTA */}
         <ScrollTriggeredSection animationType="fadeInUp" delay={0.4}>
-          <div className="bg-blue-600 text-white p-10 rounded-2xl text-center border-4 border-blue-700 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1">
+          <div className="bg-black text-white p-10 rounded-2xl text-center border-4 border-gray-800 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1">
             <h3 className="text-3xl font-bold mb-6">{whitelistCTA.headline}</h3>
-            <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">{whitelistCTA.description}</p>
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">{whitelistCTA.description}</p>
             
             <div className="grid md:grid-cols-2 gap-6 mb-10">
               {whitelistCTA.benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center space-x-3 text-left group">
-                  <CheckCircle className="w-6 h-6 text-blue-200 flex-shrink-0 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
-                  <span className="text-blue-100 group-hover:text-white transition-colors duration-300">{benefit}</span>
+                  <CheckCircle className="w-6 h-6 text-blue-400 flex-shrink-0 group-hover:text-blue-300 group-hover:scale-110 transition-all duration-300" />
+                  <span className="text-gray-300 group-hover:text-white transition-colors duration-300">{benefit}</span>
                 </div>
               ))}
             </div>
 
-            <button className="bg-white text-blue-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-2 border-white">
+            <button className="bg-white text-black px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl border-2 border-white">
               {whitelistCTA.ctaText}
             </button>
-            <p className="text-blue-200 text-sm mt-4 bg-blue-700 px-4 py-2 rounded-full inline-block">Limited spots available • No commitment required</p>
+            <p className="text-gray-400 text-sm mt-4 bg-gray-800 px-4 py-2 rounded-full inline-block border border-blue-400">Limited whitelist invitations available • We carefully select each business</p>
           </div>
         </ScrollTriggeredSection>
       </div>
