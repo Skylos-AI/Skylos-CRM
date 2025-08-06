@@ -13,7 +13,7 @@ module.exports = {
       },
     },
     extend: {
-      // Design system colors
+      // Sophisticated landing page color system
       colors: {
         // Keep existing shadcn colors for compatibility
         border: "hsl(var(--border))",
@@ -21,21 +21,82 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        
+        // Sophisticated color palette: #241b50, #4567b7, #87ceeb, #7a288a, #ffffff, #000000
+        sophisticated: {
+          // Deep purple - primary brand color
+          'deep-purple': {
+            DEFAULT: '#241b50',
+            10: 'rgba(36, 27, 80, 0.1)',
+            20: 'rgba(36, 27, 80, 0.2)',
+            50: '#f8f7fc',
+            100: '#efedf8',
+            200: '#ddd8f0',
+            300: '#c4bce4',
+            400: '#a599d5',
+            500: '#8a7bc6',
+            600: '#7461b3',
+            700: '#634f9d',
+            800: '#534282',
+            900: '#241b50',
+          },
+          // Professional blue - secondary accent
+          'professional-blue': {
+            DEFAULT: '#4567b7',
+            10: 'rgba(69, 103, 183, 0.1)',
+            20: 'rgba(69, 103, 183, 0.2)',
+            50: '#f6f8fd',
+            100: '#ecf1fb',
+            200: '#d4e2f6',
+            300: '#b1cbee',
+            400: '#88afe4',
+            500: '#6593d9',
+            600: '#4567b7',
+            700: '#4567b7',
+            800: '#3a5599',
+            900: '#32477a',
+          },
+          // Sky blue - light accent
+          'sky-blue': {
+            DEFAULT: '#87ceeb',
+            10: 'rgba(135, 206, 235, 0.1)',
+            20: 'rgba(135, 206, 235, 0.2)',
+            50: '#f0f9ff',
+            100: '#e0f2fe',
+            200: '#bae6fd',
+            300: '#7dd3fc',
+            400: '#38bdf8',
+            500: '#0ea5e9',
+            600: '#87ceeb',
+            700: '#0369a1',
+            800: '#075985',
+            900: '#0c4a6e',
+          },
+          // Rich purple - accent color
+          'rich-purple': {
+            DEFAULT: '#7a288a',
+            10: 'rgba(122, 40, 138, 0.1)',
+            20: 'rgba(122, 40, 138, 0.2)',
+            50: '#fdf4ff',
+            100: '#fae8ff',
+            200: '#f5d0fe',
+            300: '#f0abfc',
+            400: '#e879f9',
+            500: '#d946ef',
+            600: '#c026d3',
+            700: '#a21caf',
+            800: '#7a288a',
+            900: '#701a75',
+          },
+          // Pure colors
+          white: '#ffffff',
+          black: '#000000',
+        },
+        
+        // Legacy primary for compatibility
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          25: '#fafbff',
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554',
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

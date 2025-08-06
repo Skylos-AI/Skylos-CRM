@@ -46,6 +46,24 @@
     /* Typography variables */
     --font-primary: var(--font-primary);
     --font-secondary: var(--font-secondary);
+
+    /* Sophisticated color system variables */
+    --sophisticated-deep-purple: #241b50;
+    --sophisticated-professional-blue: #4567b7;
+    --sophisticated-sky-blue: #87ceeb;
+    --sophisticated-rich-purple: #7a288a;
+    --sophisticated-white: #ffffff;
+    --sophisticated-black: #000000;
+    
+    /* Sophisticated opacity variants */
+    --sophisticated-deep-purple-10: rgba(36, 27, 80, 0.1);
+    --sophisticated-deep-purple-20: rgba(36, 27, 80, 0.2);
+    --sophisticated-professional-blue-10: rgba(69, 103, 183, 0.1);
+    --sophisticated-professional-blue-20: rgba(69, 103, 183, 0.2);
+    --sophisticated-sky-blue-10: rgba(135, 206, 235, 0.1);
+    --sophisticated-sky-blue-20: rgba(135, 206, 235, 0.2);
+    --sophisticated-rich-purple-10: rgba(122, 40, 138, 0.1);
+    --sophisticated-rich-purple-20: rgba(122, 40, 138, 0.2);
   }
 
   .dark {
