@@ -2,9 +2,10 @@
 
 import { AsymmetricalHero } from "@/components/landing/asymmetrical-hero"
 import { ConsolidatedProblemSection } from "@/components/landing/consolidated-problem-section"
-import { UnifiedSolutionShowcase } from "@/components/landing/unified-solution-showcase"
+import { SolutionBridge } from "@/components/landing/solution-bridge"
 import { StreamlinedProcessSection } from "@/components/landing/streamlined-process-section"
-import { SingleCTASection } from "@/components/landing/single-cta-section"
+import { UnifiedSolutionShowcase } from "@/components/landing/unified-solution-showcase"
+import { EnhancedUrgencyCTA } from "@/components/landing/enhanced-urgency-cta"
 import { ProfessionalWhitelistModal } from "@/components/landing/professional-whitelist-modal"
 import { FloatingNavigation, SectionProgressIndicator } from "@/components/landing/floating-navigation"
 import { VisualPolish, SectionSeparator } from "@/components/landing/visual-polish"
@@ -35,10 +36,10 @@ export default function LandingPage() {
       href: '#problem'
     },
     {
-      id: 'solution',
+      id: 'bridge',
       label: 'Solution',
       icon: <Lightbulb className="w-4 h-4" />,
-      href: '#solution'
+      href: '#bridge'
     },
     {
       id: 'process',
@@ -47,10 +48,16 @@ export default function LandingPage() {
       href: '#process'
     },
     {
-      id: 'whitelist',
-      label: 'Join Whitelist',
+      id: 'benefits',
+      label: 'Benefits',
       icon: <MessageSquare className="w-4 h-4" />,
-      href: '#whitelist'
+      href: '#benefits'
+    },
+    {
+      id: 'cta',
+      label: 'Get Started',
+      icon: <MessageSquare className="w-4 h-4" />,
+      href: '#cta'
     }
   ]
 
@@ -112,26 +119,27 @@ export default function LandingPage() {
           <ConsolidatedProblemSection />
         </section>
 
-        {/* Enhanced Section Divider */}
-        <SectionSeparator variant="gradient" className="bg-slate-50" />
-
-        {/* Unified Solution Section */}
-        <section id="solution" className="bg-slate-50 py-24 relative">
-          <UnifiedSolutionShowcase />
-          {/* Enhanced transition gradient */}
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent via-slate-50/50 to-white"></div>
+        {/* Solution Bridge Section */}
+        <section id="bridge" className="relative">
+          <SolutionBridge />
         </section>
 
         {/* Streamlined Process Section */}
         <section id="process" className="bg-white py-24 relative">
           <StreamlinedProcessSection />
-          {/* Enhanced transition gradient */}
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent via-white/50 to-black"></div>
         </section>
 
-        {/* Single CTA Section */}
-        <section id="whitelist" className="bg-black relative">
-          <SingleCTASection />
+        {/* Enhanced Section Divider */}
+        <SectionSeparator variant="gradient" className="bg-white" />
+
+        {/* Unified Solution Benefits Section */}
+        <section id="benefits" className="bg-slate-50 py-24 relative">
+          <UnifiedSolutionShowcase />
+        </section>
+
+        {/* Enhanced Urgency CTA Section */}
+        <section id="cta" className="relative">
+          <EnhancedUrgencyCTA />
         </section>
 
         {/* Professional Whitelist Modal */}
