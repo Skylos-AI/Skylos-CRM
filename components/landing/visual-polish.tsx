@@ -55,8 +55,7 @@ export function VisualPolish({ children }: VisualPolishProps) {
         />
       </div>
 
-      {/* Enhanced Cursor Trail Effect */}
-      <CursorTrail />
+
 
       {/* Main Content */}
       <motion.div
@@ -73,57 +72,7 @@ export function VisualPolish({ children }: VisualPolishProps) {
   )
 }
 
-function CursorTrail() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeave = () => setIsHovering(false)
-
-    window.addEventListener('mousemove', handleMouseMove)
-    
-    // Add hover detection for interactive elements
-    const interactiveElements = document.querySelectorAll('button, a, [role="button"]')
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', handleMouseEnter)
-      el.addEventListener('mouseleave', handleMouseLeave)
-    })
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-      interactiveElements.forEach(el => {
-        el.removeEventListener('mouseenter', handleMouseEnter)
-        el.removeEventListener('mouseleave', handleMouseLeave)
-      })
-    }
-  }, [])
-
-  return (
-    <div className="fixed inset-0 pointer-events-none z-40">
-      <motion.div
-        className={`absolute w-6 h-6 rounded-full border-2 transition-all duration-300 ${
-          isHovering 
-            ? 'border-blue-400 bg-blue-400/20 scale-150' 
-            : 'border-white/50 bg-white/10'
-        }`}
-        animate={{
-          x: mousePosition.x - 12,
-          y: mousePosition.y - 12,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 28
-        }}
-      />
-    </div>
-  )
-}
 
 function ScrollProgressIndicator() {
   const [scrollProgress, setScrollProgress] = useState(0)
