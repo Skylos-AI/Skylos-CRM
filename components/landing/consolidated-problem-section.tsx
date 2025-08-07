@@ -118,21 +118,70 @@ export function ConsolidatedProblemSection() {
           </div>
         </ScrollTriggeredSection>
 
-        {/* FOMA Statistics */}
-        <ScrollTriggeredSection animationType="slideUp" delay={0.2}>
+        {/* Enhanced Statistics with Bento-style Cards */}
+        <ScrollTriggeredSection animationType="fadeInUp" delay={0.2}>
           <StaggerContainer className="grid md:grid-cols-3 gap-8 mb-16">
             {fomaContent.statistics.map((stat, index) => (
-              <div key={index} className="group text-center p-8 bg-white rounded-xl border-2 border-slate-200 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300 hover:-translate-y-1">
-                <div className="text-4xl font-bold text-blue-600 mb-3 group-hover:scale-110 transition-transform duration-300">{stat.value}</div>
-                <div className="text-lg font-semibold text-slate-800 mb-2">{stat.label}</div>
-                <div className="text-slate-600 text-sm leading-relaxed">{stat.description}</div>
+              <div 
+                key={index} 
+                className="group relative overflow-hidden rounded-2xl border border-white/20 flex flex-col justify-start items-start"
+                style={{
+                  background: "rgba(231, 236, 235, 0.08)",
+                  backdropFilter: "blur(4px)",
+                  WebkitBackdropFilter: "blur(4px)",
+                }}
+              >
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl" />
+                
+                {/* Content area */}
+                <div className="self-stretch p-6 flex flex-col justify-start items-start gap-2 relative z-10">
+                  <div className="self-stretch flex flex-col justify-start items-start gap-1.5">
+                    <p className="self-stretch text-foreground text-lg font-normal leading-7">
+                      {stat.value} {stat.label} <br />
+                      <span className="text-muted-foreground">{stat.description}</span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Visual component area */}
+                <div className="self-stretch h-72 relative -mt-0.5 z-10 flex items-center justify-center">
+                  {/* Enhanced visual based on statistic */}
+                  {stat.value === "73%" && (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg m-4">
+                      <div className="text-center">
+                        <div className="text-6xl font-bold text-blue-600 mb-2">{stat.value}</div>
+                        <div className="text-sm text-blue-700 font-medium">AI Adoption Rate</div>
+                        <div className="text-xs text-blue-600 mt-2">Industry Leading</div>
+                      </div>
+                    </div>
+                  )}
+                  {stat.value === "40%" && (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-50 to-green-100 rounded-lg m-4">
+                      <div className="text-center">
+                        <div className="text-6xl font-bold text-green-600 mb-2">{stat.value}</div>
+                        <div className="text-sm text-green-700 font-medium">Cost Savings</div>
+                        <div className="text-xs text-green-600 mt-2">Proven ROI</div>
+                      </div>
+                    </div>
+                  )}
+                  {stat.value === "6 months" && (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-red-50 to-red-100 rounded-lg m-4">
+                      <div className="text-center">
+                        <div className="text-5xl font-bold text-red-600 mb-2">{stat.value}</div>
+                        <div className="text-sm text-red-700 font-medium">Delay Impact</div>
+                        <div className="text-xs text-red-600 mt-2">Critical Gap</div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </StaggerContainer>
         </ScrollTriggeredSection>
 
         {/* Pain Points */}
-        <ScrollTriggeredSection animationType="slideUp" delay={0.4}>
+        <ScrollTriggeredSection animationType="fadeInUp" delay={0.4}>
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">
               Common Business Pain Points We Solve
@@ -161,7 +210,7 @@ export function ConsolidatedProblemSection() {
         </ScrollTriggeredSection>
 
         {/* Competitive Threats */}
-        <ScrollTriggeredSection animationType="slideUp" delay={0.6}>
+        <ScrollTriggeredSection animationType="fadeInUp" delay={0.6}>
           <div className="bg-white p-8 rounded-xl border-2 border-slate-200 shadow-lg">
             <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">
               The Competitive Reality

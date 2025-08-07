@@ -1,6 +1,6 @@
 "use client"
 
-import { AsymmetricalHero } from "@/components/landing/asymmetrical-hero"
+import { AIHeroConfig } from "@/components/kokonutui/animated-hero-header/crm-content-config"
 import { ConsolidatedProblemSection } from "@/components/landing/consolidated-problem-section"
 import { SolutionBridge } from "@/components/landing/solution-bridge"
 import { StreamlinedProcessSection } from "@/components/landing/streamlined-process-section"
@@ -88,30 +88,13 @@ export default function LandingPage() {
         />
 
         {/* Hero Section */}
-        <section id="hero" className="bg-black relative">
-          <AsymmetricalHero 
-            titlePosition="left"
-            headline="Stop Losing to Competitors Who Already Use AI"
-            subheadline="Get custom conversational agents tailored to your business needs - deployed in days, not months"
-            badge={{
-              text: "WELCOME",
-              variant: "default"
-            }}
-            ctaButtons={[
-              {
-                text: "Join Exclusive Whitelist",
-                variant: "default",
-                href: "#whitelist"
-              },
-              {
-                text: "Learn More", 
-                variant: "outline",
-                href: "#problem"
-              }
-            ]}
+        <section id="hero" className="relative">
+          <AIHeroConfig 
+            variant="transform"
+            onCtaClick={() => setShowWhitelistModal(true)}
           />
           {/* Enhanced transition gradient */}
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent via-black/50 to-slate-50"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent via-neutral-950/50 to-slate-50"></div>
         </section>
 
         {/* Consolidated Problem/Urgency Section */}
