@@ -45,7 +45,7 @@ export function KanbanColumnComponent({ column, onLeadClick, onFollowUpClick }: 
   const stageColor = stageColors[column.id as keyof typeof stageColors]
 
   return (
-    <div className="flex-shrink-0 w-80">
+    <div className="w-full min-w-0">
       <Card className={cn(
         "h-full transition-all duration-300 ease-in-out",
         "bg-white dark:bg-slate-800 border border-light-border-subtle/60 dark:border-slate-700/40",
@@ -78,7 +78,7 @@ export function KanbanColumnComponent({ column, onLeadClick, onFollowUpClick }: 
             </div>
           </div>
         </CardHeader>
-        <CardContent className="pt-0 px-4 pb-4 bg-gray-25 dark:bg-slate-800/50 rounded-b-xl">
+        <CardContent className="pt-4 px-4 pb-4 bg-gray-25 dark:bg-slate-800/50 rounded-b-xl">
           <div
             ref={setNodeRef}
             className="min-h-[400px] space-y-3"

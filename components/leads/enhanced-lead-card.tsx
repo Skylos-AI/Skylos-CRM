@@ -249,21 +249,19 @@ export function EnhancedLeadCard({
             </div>
           )}
 
-          {/* Follow-up Button */}
-          {lead.nextFollowUp && (
-            <Button
-              variant="outline"
-              size="sm"
-              className="w-full text-xs h-8 font-medium"
-              onClick={(e) => {
-                e.stopPropagation()
-                onFollowUpClick?.(lead)
-              }}
-            >
-              <MessageSquare className="h-3 w-3 mr-2" />
-              Follow-up
-            </Button>
-          )}
+          {/* Follow-up Button - Always visible */}
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full text-xs h-8 font-medium"
+            onClick={(e) => {
+              e.stopPropagation()
+              onFollowUpClick?.(lead)
+            }}
+          >
+            <MessageSquare className="h-3 w-3 mr-2" />
+            Follow-up
+          </Button>
         </CardContent>
       </Card>
     </TooltipProvider>
