@@ -108,9 +108,7 @@ export function FloatingNavigation({
   const [activeSection, setActiveSection] = useState<string>('')
   const [isVisible, setIsVisible] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
-  const [showExitIntent, setShowExitIntent] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
-  const exitIntentTriggered = useRef(false)
 
   const { scrollY } = useScroll()
   const progressWidth = useTransform(scrollY, [0, 1000], [0, 100])
@@ -149,21 +147,21 @@ export function FloatingNavigation({
     return () => window.removeEventListener('scroll', handleScroll)
   }, [sections])
 
-  // Exit intent detection
-  useEffect(() => {
-    if (!exitIntentEnabled) return
+  // Exit intent detection - DISABLED
+  // useEffect(() => {
+  //   if (!exitIntentEnabled) return
 
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !exitIntentTriggered.current) {
-        exitIntentTriggered.current = true
-        setShowExitIntent(true)
-        onExitIntent?.()
-      }
-    }
+  //   const handleMouseLeave = (e: MouseEvent) => {
+  //     if (e.clientY <= 0 && !exitIntentTriggered.current) {
+  //       exitIntentTriggered.current = true
+  //       setShowExitIntent(true)
+  //       onExitIntent?.()
+  //     }
+  //   }
 
-    document.addEventListener('mouseleave', handleMouseLeave)
-    return () => document.removeEventListener('mouseleave', handleMouseLeave)
-  }, [exitIntentEnabled, onExitIntent])
+  //   document.addEventListener('mouseleave', handleMouseLeave)
+  //   return () => document.removeEventListener('mouseleave', handleMouseLeave)
+  // }, [exitIntentEnabled, onExitIntent])
 
   const handleSectionClick = (href: string) => {
     const element = document.querySelector(href)
@@ -309,71 +307,7 @@ export function FloatingNavigation({
         )}
       </AnimatePresence>
 
-      {/* Exit Intent Modal */}
-      <AnimatePresence>
-        {showExitIntent && (
-          <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl"
-              initial={{ opacity: 0, scale: 0.8, y: 50 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 50 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-            >
-              <div className="text-center">
-                <motion.div
-                  className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <MessageSquare className="w-8 h-8 text-primary" />
-                </motion.div>
-                
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Wait! Don't Miss Out
-                </h3>
-                
-                <p className="text-gray-600 mb-6">
-                  Get a free consultation and see how AI can transform your business. 
-                  Our experts are ready to help you get started today.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <EnhancedCTAButton
-                    variant="primary"
-                    size="md"
-                    className="flex-1"
-                    icon={<ExternalLink className="w-4 h-4" />}
-                    iconPosition="right"
-                    glowEffect={true}
-                  >
-                    Get Free Consultation
-                  </EnhancedCTAButton>
-                  
-                  <button
-                    onClick={() => setShowExitIntent(false)}
-                    className="flex-1 px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-                  >
-                    Maybe Later
-                  </button>
-                </div>
-              </div>
-              
-              <button
-                onClick={() => setShowExitIntent(false)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Exit Intent Modal - REMOVED */}
     </>
   )
 }
