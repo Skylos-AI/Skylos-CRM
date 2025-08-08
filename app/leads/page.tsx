@@ -1,4 +1,5 @@
 import { CrmLayout } from "@/components/layout/crm-layout"
+import { ProtectedRoute } from "@/components/auth/protected-route"
 import { KanbanBoard } from "@/components/leads/kanban-board"
 import { Button } from "@/components/ui/button"
 import { PageTransition, FadeInUp, SlideInLeft } from "@/components/shared/page-transition"
@@ -6,7 +7,8 @@ import { Plus } from "lucide-react"
 
 export default function LeadsPage() {
   return (
-    <CrmLayout>
+    <ProtectedRoute>
+      <CrmLayout>
       <PageTransition>
         <div className="space-y-6">
           <FadeInUp>
@@ -34,5 +36,6 @@ export default function LeadsPage() {
         </div>
       </PageTransition>
     </CrmLayout>
+    </ProtectedRoute>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { CrmLayout } from "@/components/layout/crm-layout"
+import { ProtectedRoute } from "@/components/auth/protected-route"
 import { ChannelConfigDialog } from "@/components/channels/channel-config-dialog"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -173,7 +174,8 @@ export default function ChannelsPage() {
   const totalMessages = channels.reduce((sum, c) => sum + (c.messagesCount || 0), 0)
 
   return (
-    <CrmLayout>
+    <ProtectedRoute>
+      <CrmLayout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -363,5 +365,6 @@ export default function ChannelsPage() {
         />
       </div>
     </CrmLayout>
+    </ProtectedRoute>
   )
 }

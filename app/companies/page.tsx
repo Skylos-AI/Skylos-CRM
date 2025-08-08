@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { CrmLayout } from "@/components/layout/crm-layout"
+import { ProtectedRoute } from "@/components/auth/protected-route"
 import { DataTable, DataTableColumn, DataTableAction } from "@/components/shared/data-table"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -159,7 +160,8 @@ export default function CompaniesPage() {
   }
 
   return (
-    <CrmLayout>
+    <ProtectedRoute>
+      <CrmLayout>
       <PageTransition>
         <div className="space-y-6">
           <FadeInUp>
@@ -203,5 +205,6 @@ export default function CompaniesPage() {
         </div>
       </PageTransition>
     </CrmLayout>
+    </ProtectedRoute>
   )
 }

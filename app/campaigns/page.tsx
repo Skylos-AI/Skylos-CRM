@@ -1,10 +1,12 @@
 import { CrmLayout } from "@/components/layout/crm-layout"
+import { ProtectedRoute } from "@/components/auth/protected-route"
 import { Button } from "@/components/ui/button"
 import { Plus, Megaphone } from "lucide-react"
 
 export default function CampaignsPage() {
   return (
-    <CrmLayout>
+    <ProtectedRoute>
+      <CrmLayout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -30,5 +32,6 @@ export default function CampaignsPage() {
         </div>
       </div>
     </CrmLayout>
+    </ProtectedRoute>
   )
 }

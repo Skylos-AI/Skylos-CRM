@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { CrmLayout } from "@/components/layout/crm-layout"
+import { ProtectedRoute } from "@/components/auth/protected-route"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -145,7 +146,8 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <CrmLayout>
+      <ProtectedRoute>
+        <CrmLayout>
         <div className="space-y-8">
           {/* Header Skeleton */}
           <div className="flex items-center justify-between">
@@ -203,6 +205,7 @@ export default function DashboardPage() {
           </div>
         </div>
       </CrmLayout>
+      </ProtectedRoute>
     )
   }
 
@@ -210,8 +213,9 @@ export default function DashboardPage() {
   const upcomingFollowUps = getUpcomingFollowUps()
 
   return (
-    <CrmLayout>
-      <PageTransition>
+    <ProtectedRoute>
+      <CrmLayout>
+        <PageTransition>
         <div className="space-y-6">
           <FadeInUp>
             <div className="flex items-center justify-between">
@@ -357,7 +361,8 @@ export default function DashboardPage() {
           </div>
         </FadeInUp>
       </div>
-      </PageTransition>
-    </CrmLayout>
+        </PageTransition>
+      </CrmLayout>
+    </ProtectedRoute>
   )
 }

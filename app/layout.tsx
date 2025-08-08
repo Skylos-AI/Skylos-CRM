@@ -12,6 +12,8 @@ import { ErrorBoundary } from "@/components/shared/error-boundary"
 import { CallInterfaceProvider } from "@/components/ai-assistant/call-interface-provider"
 import { AccessibilityProvider } from "@/components/ui/accessibility-provider"
 import { SkipLinks } from "@/components/ui/skip-links"
+import { AuthProvider } from "@/hooks/use-auth"
+import { SiteHeader } from "@/components/site-header"
 
 export const metadata: Metadata = {
   title: {
@@ -83,25 +85,28 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <AccessibilityProvider>
-              <ErrorBoundary>
-                {/* Skip Links for keyboard navigation */}
-                <SkipLinks
-                  links={[
-                    { href: "#main-content", label: "Skip to main content" },
-                    { href: "#navigation", label: "Skip to navigation" },
-                    { href: "#footer", label: "Skip to footer" },
-                  ]}
-                />
-                
-                <div className="relative flex min-h-screen flex-col">
-                  <main id="main-content" className="flex-1" tabIndex={-1}>
-                    {children}
-                  </main>
-                </div>
-                <TailwindIndicator />
-                <Toaster />
-                <CallInterfaceProvider />
-              </ErrorBoundary>
+              <AuthProvider>
+                <ErrorBoundary>
+                  {/* Skip Links for keyboard navigation */}
+                  <SkipLinks
+                    links={[
+                      { href: "#main-content", label: "Skip to main content" },
+                      { href: "#navigation", label: "Skip to navigation" },
+                      { href: "#footer", label: "Skip to footer" },
+                    ]}
+                  />
+                  
+                  <div className="relative flex min-h-screen flex-col">
+                    <SiteHeader />
+                    <main id="main-content" className="flex-1" tabIndex={-1}>
+                      {children}
+                    </main>
+                  </div>
+                  <TailwindIndicator />
+                  <Toaster />
+                  <CallInterfaceProvider />
+                </ErrorBoundary>
+              </AuthProvider>
             </AccessibilityProvider>
           </ThemeProvider>
         </body>

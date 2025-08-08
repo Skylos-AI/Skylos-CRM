@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/hooks/use-auth"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -12,6 +13,7 @@ import { Eye, EyeOff, LayoutDashboard, AlertCircle, Image } from "lucide-react"
 
 export default function LoginPage() {
   const router = useRouter()
+  const { login } = useAuth()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -55,13 +57,8 @@ export default function LoginPage() {
     setError("")
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      // For demo purposes, accept any valid email/password combination
-      if (formData.email && formData.password.length >= 6) {
-        // In a real app, you would validate credentials with your backend
-        console.log("Login successful:", formData)
+      const success = await login(formData.email, formData.password)
+      if (success) {
         router.push("/dashboard")
       } else {
         setError("Invalid credentials")

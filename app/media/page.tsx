@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { CrmLayout } from "@/components/layout/crm-layout"
+import { ProtectedRoute } from "@/components/auth/protected-route"
 import { SimpleMediaLibrary } from "@/components/media/simple-media-library"
 import { SimpleMediaUpload } from "@/components/media/simple-media-upload"
 import { Button } from "@/components/ui/button"
@@ -24,7 +25,8 @@ export default function MediaPage() {
   }
 
   return (
-    <CrmLayout>
+    <ProtectedRoute>
+      <CrmLayout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -95,5 +97,6 @@ export default function MediaPage() {
         )}
       </div>
     </CrmLayout>
+    </ProtectedRoute>
   )
 }

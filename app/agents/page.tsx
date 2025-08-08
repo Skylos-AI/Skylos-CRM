@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { CrmLayout } from "@/components/layout/crm-layout"
+import { ProtectedRoute } from "@/components/auth/protected-route"
 import { AgentsService } from "@/lib/api/agents"
 import { Agent, CustomAgentRequest } from "@/lib/types/agent"
 import { AgentGallery } from "@/components/agents/agent-gallery"
@@ -55,21 +56,25 @@ export default function AgentsPage() {
 
   if (loading) {
     return (
-      <CrmLayout>
+      <ProtectedRoute>
+        <CrmLayout>
         <div className="container mx-auto p-6">
           <LoadingSkeleton />
         </div>
       </CrmLayout>
+      </ProtectedRoute>
     )
   }
 
   if (error) {
     return (
-      <CrmLayout>
+      <ProtectedRoute>
+        <CrmLayout>
         <div className="container mx-auto p-6">
           <ErrorBoundary error={error} />
         </div>
       </CrmLayout>
+      </ProtectedRoute>
     )
   }
 
@@ -77,7 +82,8 @@ export default function AgentsPage() {
   const inactiveAgents = agents.filter(agent => agent.status !== 'active')
 
   return (
-    <CrmLayout>
+    <ProtectedRoute>
+      <CrmLayout>
       <ErrorBoundary>
         <PageTransition>
           <div className="container mx-auto p-6 space-y-6">
@@ -274,5 +280,6 @@ export default function AgentsPage() {
         </PageTransition>
       </ErrorBoundary>
     </CrmLayout>
+    </ProtectedRoute>
   )
 }

@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { UserMenu } from "@/components/user-menu"
 import { Bell, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
@@ -24,10 +25,7 @@ export function CrmHeader() {
           <Bell className="h-4 w-4" />
         </Button>
         <ThemeToggle />
-        <Avatar>
-          <AvatarImage src="/avatars/user.jpg" alt="User" />
-          <AvatarFallback>JD</AvatarFallback>
-        </Avatar>
+        <UserMenu />
       </div>
     </header>
   )

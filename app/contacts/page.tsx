@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { CrmLayout } from "@/components/layout/crm-layout"
+import { ProtectedRoute } from "@/components/auth/protected-route"
 import { DataTable, DataTableColumn, DataTableAction } from "@/components/shared/data-table"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -168,7 +169,8 @@ export default function ContactsPage() {
   }
 
   return (
-    <CrmLayout>
+    <ProtectedRoute>
+      <CrmLayout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
@@ -196,5 +198,6 @@ export default function ContactsPage() {
         />
       </div>
     </CrmLayout>
+    </ProtectedRoute>
   )
 }
