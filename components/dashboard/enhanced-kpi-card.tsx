@@ -86,16 +86,16 @@ export function EnhancedKPICard({
       <Card 
         className={cn(
           // Enhanced professional border system with light theme support
-          'bg-white dark:bg-slate-800 border border-light-border-subtle/60 dark:border-slate-700/40 rounded-xl',
+          'bg-white dark:bg-slate-800 border border-black rounded-xl',
           'shadow-light-card dark:shadow-card',
-          'hover:border-light-border-default/80 dark:hover:border-slate-600/60',
+          'hover:border-black',
           'hover:shadow-light-card-hover dark:hover:shadow-card-hover hover:-translate-y-0.5',
           'transition-all duration-200 ease-in-out',
           // Primary cards have subtle accent styling
           isPrimary && [
             'border-primary-500/30 bg-gradient-to-br from-white to-gray-25 dark:from-slate-800 dark:to-slate-800/80',
             'shadow-light-card dark:shadow-glow-soft hover:shadow-light-card-hover dark:hover:shadow-glow-emphasis',
-            'hover:border-primary-400/50'
+            'hover:border-black'
           ],
           // Secondary cards have standard professional styling
           !isPrimary && [

@@ -125,9 +125,9 @@ export function EnhancedLeadCard({
         className={cn(
           "group cursor-pointer transition-all duration-300 ease-out",
           // Enhanced professional border system with light theme support
-          "bg-white dark:bg-slate-800 border border-light-border-subtle/60 dark:border-slate-700/40 rounded-xl",
+          "bg-white dark:bg-slate-800 border border-black rounded-xl",
           "shadow-light-card dark:shadow-card",
-          "hover:border-light-border-default/80 dark:hover:border-slate-600/60",
+          "hover:border-black",
           "hover:shadow-light-card-hover dark:hover:shadow-card-hover hover:-translate-y-1 hover:scale-[1.02]",
           // Subtle stage accent with enhanced styling
           stageAccents[lead.stage],

@@ -192,7 +192,7 @@ export function DataTable<T extends Record<string, any>>({
       )}
 
       {/* Table */}
-      <div className="bg-white dark:bg-slate-800 border border-light-border-subtle/60 dark:border-slate-700/40 rounded-xl shadow-light-card dark:shadow-card">
+      <div className="bg-white dark:bg-slate-800 border border-black rounded-xl shadow-light-card dark:shadow-card">
         <Table>
           <TableHeader>
             <TableRow>
