@@ -1,0 +1,330 @@
+/* Dashboard Charts Responsive Grid Layout */
+
+/* Mobile First - Single column layout */
+.dashboard-charts-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+/* Tablet - 2 column layout with revenue chart spanning full width */
+@media (min-width: 768px) {
+  .dashboard-charts-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+  
+  /* Revenue chart takes 60% (3 of 5 columns) */
+  .revenue-chart {
+    grid-column: span 3;
+  }
+  
+  /* Priority chart takes 40% (2 of 5 columns) */
+  .priority-chart {
+    grid-column: span 2;
+  }
+  
+  /* Pipeline chart takes 40% (2 of 5 columns) */
+  .pipeline-chart {
+    grid-column: span 2;
+  }
+  
+  /* Performance chart takes 60% (3 of 5 columns) */
+  .performance-chart {
+    grid-column: span 3;
+  }
+  
+  /* Deal size chart spans full width when present */
+  .deal-size-chart {
+    grid-column: span 5;
+  }
+}
+
+/* Large screens - maintain the same proportions */
+@media (min-width: 1024px) {
+  .dashboard-charts-grid {
+    gap: 1.5rem;
+  }
+}
+
+/* Extra large screens - add more spacing */
+@media (min-width: 1280px) {
+  .dashboard-charts-grid {
+    gap: 2rem;
+  }
+}
+
+/* Mobile landscape - adjust for better viewing */
+@media (max-width: 767px) and (orientation: landscape) {
+  .dashboard-charts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .revenue-chart {
+    grid-column: span 2;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .dashboard-charts-grid {
+    gap: 0.75rem;
+  }
+  
+  /* Reduce chart heights on small screens */
+  .chart-container {
+    height: 250px !important;
+  }
+  
+  .revenue-chart .chart-container {
+    height: 300px !important;
+  }
+}
+/*
+ Accessibility Enhancements */
+
+/* Circular focus indicators */
+.chart-focus-indicator {
+  border-radius: 9999px;
+  transition: box-shadow 150ms ease-in-out;
+}
+
+.chart-focus-indicator:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #000000;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .dashboard-charts-grid {
+    --chart-background: #ffffff;
+    --chart-foreground: #000000;
+    --chart-border: #000000;
+    --chart-accent: #000000;
+    --chart-muted: #666666;
+  }
+  
+  .chart-focus-indicator:focus {
+    box-shadow: 0 0 0 3px #000000, 0 0 0 6px #ffffff;
+  }
+  
+  /* High contrast chart elements */
+  .recharts-tooltip-wrapper .recharts-default-tooltip {
+    border: 2px solid #000000 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  
+  .recharts-cartesian-axis-tick-value {
+    fill: #000000 !important;
+  }
+  
+  .recharts-legend-item-text {
+    color: #000000 !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-charts-grid * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .recharts-surface {
+    animation: none !important;
+  }
+  
+  .recharts-area,
+  .recharts-line,
+  .recharts-bar,
+  .recharts-pie-sector {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Skip links */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000000;
+  color: #ffffff;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Keyboard navigation indicators */
+.chart-container:focus-within {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Interactive chart elements */
+.recharts-active-dot,
+.recharts-dot:focus,
+.recharts-bar-rectangle:focus,
+.recharts-pie-sector:focus {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
+
+/* Accessible tooltips */
+.recharts-tooltip-wrapper {
+  z-index: 1000;
+}
+
+.recharts-default-tooltip {
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Chart legend accessibility */
+.recharts-legend-wrapper {
+  outline: none;
+}
+
+.recharts-legend-item:focus {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Data table alternative styling */
+.chart-data-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.chart-data-table th,
+.chart-data-table td {
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.chart-data-table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+}
+
+.chart-data-table tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.chart-data-table tr:focus-within {
+  background-color: #e5e7eb;
+  outline: 2px solid #000000;
+  outline-offset: -2px;
+}
+
+/* High contrast data table */
+@media (prefers-contrast: high) {
+  .chart-data-table th,
+  .chart-data-table td {
+    border: 2px solid #000000;
+  }
+  
+  .chart-data-table th {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .chart-data-table tr:nth-child(even) {
+    background-color: #f0f0f0;
+  }
+  
+  .chart-data-table tr:focus-within {
+    background-color: #e0e0e0;
+    outline: 3px solid #000000;
+  }
+}
+
+/* Focus management for chart interactions */
+.chart-interactive-element {
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.chart-interactive-element:focus {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+  border-radius: 9999px;
+}
+
+.chart-interactive-element:hover {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-interactive-element:hover {
+    transform: none;
+  }
+  
+  .chart-interactive-element {
+    transition: none;
+  }
+}
+
+/* Accessibility status indicators */
+.accessibility-indicator {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.high-contrast-indicator {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.reduced-motion-indicator {
+  background-color: #374151;
+  color: #ffffff;
+  right: 8rem;
+}

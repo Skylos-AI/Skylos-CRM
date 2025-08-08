@@ -10,6 +10,9 @@
 /* Import landing page styles */
 @import './landing-page.css';
 
+/* Import dashboard charts styles */
+@import './dashboard-charts.css';
+
 @layer base {
   :root {
     --background: 0 0% 100%;
