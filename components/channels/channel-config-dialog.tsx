@@ -198,6 +198,62 @@ const getChannelConfig = (channelType: string): ConfigField[] => {
           required: true
         }
       ]
+    case 'google-meet':
+      return [
+        {
+          key: 'clientId',
+          label: 'Google Client ID',
+          type: 'text',
+          placeholder: 'Your Google OAuth Client ID',
+          required: true,
+          description: 'From Google Cloud Console',
+          helpUrl: 'https://console.cloud.google.com/apis/credentials'
+        },
+        {
+          key: 'clientSecret',
+          label: 'Google Client Secret',
+          type: 'password',
+          placeholder: 'Your Google OAuth Client Secret',
+          required: true,
+          description: 'Keep this secure and never share publicly'
+        },
+        {
+          key: 'calendarId',
+          label: 'Default Calendar ID',
+          type: 'text',
+          placeholder: 'primary',
+          required: false,
+          description: 'Calendar ID for scheduling meetings (optional, defaults to primary)'
+        }
+      ]
+    case 'google-sheets':
+      return [
+        {
+          key: 'clientId',
+          label: 'Google Client ID',
+          type: 'text',
+          placeholder: 'Your Google OAuth Client ID',
+          required: true,
+          description: 'From Google Cloud Console',
+          helpUrl: 'https://console.cloud.google.com/apis/credentials'
+        },
+        {
+          key: 'clientSecret',
+          label: 'Google Client Secret',
+          type: 'password',
+          placeholder: 'Your Google OAuth Client Secret',
+          required: true,
+          description: 'Keep this secure and never share publicly'
+        },
+        {
+          key: 'spreadsheetId',
+          label: 'Default Spreadsheet ID',
+          type: 'text',
+          placeholder: 'Google Sheets ID for data sync',
+          required: false,
+          description: 'Optional: Default sheet for CRM data export'
+        }
+      ]
     default:
       return []
   }
@@ -228,17 +284,44 @@ export function ChannelConfigDialog({ channel, open, onOpenChange, onSave }: Cha
     setTestResult(null)
 
     try {
-      // Simulate API test
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      // Mock test result based on channel type
-      const success = Math.random() > 0.3 // 70% success rate for demo
-      setTestResult({
-        success,
-        message: success 
-          ? `Successfully connected to ${channel.name}!`
-          : `Failed to connect to ${channel.name}. Please check your credentials.`
-      })
+      // For Google services, we need different testing logic
+      if (channel.type === 'google-meet' || channel.type === 'google-sheets') {
+        // Check if required Google OAuth fields are present
+        const clientId = config.clientId
+        const clientSecret = config.clientSecret
+
+        if (!clientId || !clientSecret) {
+          setTestResult({
+            success: false,
+            message: 'Please provide both Google Client ID and Client Secret before testing.'
+          })
+          return
+        }
+
+        // Simulate Google OAuth validation
+        await new Promise(resolve => setTimeout(resolve, 2000))
+        
+        // Mock validation result
+        const success = Math.random() > 0.2 // 80% success rate for Google services
+        setTestResult({
+          success,
+          message: success 
+            ? `Google OAuth credentials validated successfully for ${channel.name}!`
+            : `Failed to validate Google OAuth credentials. Please check your Client ID and Secret.`
+        })
+      } else {
+        // Original logic for other channels
+        await new Promise(resolve => setTimeout(resolve, 2000))
+        
+        // Mock test result based on channel type
+        const success = Math.random() > 0.3 // 70% success rate for demo
+        setTestResult({
+          success,
+          message: success 
+            ? `Successfully connected to ${channel.name}!`
+            : `Failed to connect to ${channel.name}. Please check your credentials.`
+        })
+      }
     } catch (error) {
       setTestResult({
         success: false,
@@ -457,26 +540,49 @@ export function ChannelConfigDialog({ channel, open, onOpenChange, onSave }: Cha
                   </Badge>
                 </div>
 
-                <div className="space-y-2">
-                  <h4 className="font-medium">Webhook URL</h4>
-                  <div className="flex items-center space-x-2">
-                    <Input
-                      value={`https://your-domain.com/webhooks/${channel.type}`}
-                      readOnly
-                      className="font-mono text-xs"
-                    />
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => copyToClipboard(`https://your-domain.com/webhooks/${channel.type}`)}
-                    >
-                      <Copy className="h-4 w-4" />
-                    </Button>
+                {(channel.type === 'google-meet' || channel.type === 'google-sheets') ? (
+                  <div className="space-y-2">
+                    <h4 className="font-medium">OAuth Redirect URI</h4>
+                    <div className="flex items-center space-x-2">
+                      <Input
+                        value={`${typeof window !== 'undefined' ? window.location.origin : 'https://your-domain.com'}/auth/google/callback`}
+                        readOnly
+                        className="font-mono text-xs"
+                      />
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => copyToClipboard(`${typeof window !== 'undefined' ? window.location.origin : 'https://your-domain.com'}/auth/google/callback`)}
+                      >
+                        <Copy className="h-4 w-4" />
+                      </Button>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      Add this redirect URI to your Google Cloud Console OAuth configuration
+                    </p>
                   </div>
-                  <p className="text-xs text-muted-foreground">
-                    Use this URL in your {channel.name} webhook configuration
-                  </p>
-                </div>
+                ) : (
+                  <div className="space-y-2">
+                    <h4 className="font-medium">Webhook URL</h4>
+                    <div className="flex items-center space-x-2">
+                      <Input
+                        value={`https://your-domain.com/webhooks/${channel.type}`}
+                        readOnly
+                        className="font-mono text-xs"
+                      />
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => copyToClipboard(`https://your-domain.com/webhooks/${channel.type}`)}
+                      >
+                        <Copy className="h-4 w-4" />
+                      </Button>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      Use this URL in your {channel.name} webhook configuration
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </TabsContent>

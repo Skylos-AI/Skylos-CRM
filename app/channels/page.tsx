@@ -21,14 +21,16 @@ import {
   CheckCircle,
   AlertCircle,
   Clock,
-  Zap
+  Zap,
+  Video,
+  FileSpreadsheet
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface Channel {
   id: string
   name: string
-  type: 'email' | 'sms' | 'whatsapp' | 'facebook' | 'twitter' | 'linkedin' | 'instagram' | 'phone'
+  type: 'email' | 'sms' | 'whatsapp' | 'facebook' | 'twitter' | 'linkedin' | 'instagram' | 'phone' | 'google-meet' | 'google-sheets'
   icon: React.ReactNode
   description: string
   status: 'connected' | 'disconnected' | 'pending' | 'error'
@@ -109,6 +111,28 @@ export default function ChannelsPage() {
       status: 'disconnected',
       isEnabled: false,
       features: ['Mention monitoring', 'Direct messages', 'Tweet scheduling', 'Analytics'],
+      setupComplexity: 'medium'
+    },
+    {
+      id: 'google-meet',
+      name: 'Google Meet',
+      type: 'google-meet',
+      icon: <Video className="h-6 w-6" />,
+      description: 'Schedule and manage video meetings directly from your CRM',
+      status: 'disconnected',
+      isEnabled: false,
+      features: ['Video meetings', 'Calendar integration', 'Meeting recordings', 'Screen sharing'],
+      setupComplexity: 'medium'
+    },
+    {
+      id: 'google-sheets',
+      name: 'Google Sheets',
+      type: 'google-sheets',
+      icon: <FileSpreadsheet className="h-6 w-6" />,
+      description: 'Sync CRM data with spreadsheets for reporting and analysis',
+      status: 'disconnected',
+      isEnabled: false,
+      features: ['Data sync', 'Automated reports', 'Real-time updates', 'Custom formulas'],
       setupComplexity: 'medium'
     }
   ])

@@ -1,37 +1,15 @@
-import { CrmLayout } from "@/components/layout/crm-layout"
-import { ProtectedRoute } from "@/components/auth/protected-route"
-import { Button } from "@/components/ui/button"
-import { Plus, Megaphone } from "lucide-react"
+"use client"
+
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 export default function CampaignsPage() {
-  return (
-    <ProtectedRoute>
-      <CrmLayout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-light-text-primary dark:text-slate-50">Campaigns</h1>
-            <p className="text-light-text-tertiary dark:text-slate-400">
-              Create and manage your marketing campaigns with rich media content.
-            </p>
-          </div>
-          <Button>
-            <Plus className="mr-2 h-4 w-4" />
-            New Campaign
-          </Button>
-        </div>
-        
-        {/* Placeholder content */}
-        <div className="flex flex-col items-center justify-center py-12 text-center">
-          <Megaphone className="h-16 w-16 text-muted-foreground mb-4" />
-          <h2 className="text-xl font-semibold mb-2">Campaign Management Coming Soon</h2>
-          <p className="text-muted-foreground max-w-md">
-            We're building powerful campaign management tools with media library support, 
-            audience segmentation, and automation workflows.
-          </p>
-        </div>
-      </div>
-    </CrmLayout>
-    </ProtectedRoute>
-  )
+  const router = useRouter()
+
+  useEffect(() => {
+    // Redirect to dashboard since campaigns feature has been removed
+    router.replace("/dashboard")
+  }, [router])
+
+  return null
 }
