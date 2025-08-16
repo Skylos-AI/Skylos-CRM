@@ -7,7 +7,7 @@ import React from 'react'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import { Lead } from '@/lib/types/lead'
-import { 
+import {
   useOptimizedPerformanceData,
   useOptimizedPipelineData,
   useOptimizedPriorityData,
@@ -91,7 +91,7 @@ describe('Chart Performance Optimizations', () => {
       }
 
       render(<TestComponent />)
-      
+
       // Both calls should return the same cached data
       const component = screen.getByTestId('test-component')
       const { data1, data2 } = JSON.parse(component.textContent || '{}')
@@ -106,7 +106,7 @@ describe('Chart Performance Optimizations', () => {
       }
 
       render(<TestComponent />)
-      
+
       const component = screen.getByTestId('pipeline-test')
       const { data1, data2 } = JSON.parse(component.textContent || '{}')
       expect(data1).toEqual(data2)
@@ -120,7 +120,7 @@ describe('Chart Performance Optimizations', () => {
       }
 
       render(<TestComponent />)
-      
+
       const component = screen.getByTestId('priority-test')
       const { data1, data2 } = JSON.parse(component.textContent || '{}')
       expect(data1).toEqual(data2)
@@ -134,7 +134,7 @@ describe('Chart Performance Optimizations', () => {
       }
 
       render(<TestComponent />)
-      
+
       const component = screen.getByTestId('revenue-test')
       const { data1, data2 } = JSON.parse(component.textContent || '{}')
       expect(data1).toEqual(data2)
@@ -144,14 +144,14 @@ describe('Chart Performance Optimizations', () => {
   describe('Debounced Hover', () => {
     it('should debounce hover interactions', async () => {
       let hoverCount = 0
-      
+
       const TestComponent = () => {
         const { isHovered, debouncedHovered, handleMouseEnter, handleMouseLeave } = useDebouncedHover(100)
-        
+
         if (debouncedHovered) {
           hoverCount++
         }
-        
+
         return (
           <div
             data-testid="hover-test"
@@ -164,16 +164,16 @@ describe('Chart Performance Optimizations', () => {
       }
 
       render(<TestComponent />)
-      
+
       const element = screen.getByTestId('hover-test')
-      
+
       // Rapid hover events should be debounced
       fireEvent.mouseEnter(element)
       fireEvent.mouseLeave(element)
       fireEvent.mouseEnter(element)
       fireEvent.mouseLeave(element)
       fireEvent.mouseEnter(element)
-      
+
       // Wait for debounce delay
       await waitFor(() => {
         expect(hoverCount).toBeLessThanOrEqual(1)
@@ -184,20 +184,20 @@ describe('Chart Performance Optimizations', () => {
   describe('Performance Monitoring', () => {
     it('should record chart render performance', async () => {
       const startTime = performance.now()
-      
+
       // Create a simple test component instead of the full dashboard
       const TestComponent = () => {
         const data = useOptimizedPerformanceData(mockLeads, 'monthly')
         return <div data-testid="test-performance">Performance data loaded: {data.length}</div>
       }
-      
+
       render(<TestComponent />)
-      
+
       // Wait for components to render
       await waitFor(() => {
         expect(screen.getByTestId('test-performance')).toBeInTheDocument()
       })
-      
+
       const renderTime = performance.now() - startTime
       expect(renderTime).toBeGreaterThan(0)
     })
@@ -207,9 +207,9 @@ describe('Chart Performance Optimizations', () => {
         // Simulate cache behavior
         return key === 'hit' ? { data: 'cached' } : null
       }
-      
+
       const results = performanceTestUtils.testCachePerformance(testCache, ['hit', 'miss', 'hit', 'hit'])
-      
+
       expect(results.hits).toBe(3)
       expect(results.misses).toBe(1)
       expect(results.avgAccessTime).toBeGreaterThan(0)
@@ -219,7 +219,7 @@ describe('Chart Performance Optimizations', () => {
   describe('Memory Usage', () => {
     it('should generate heavy chart data for testing', () => {
       const heavyData = performanceTestUtils.generateHeavyChartData(1000)
-      
+
       expect(heavyData).toHaveLength(1000)
       expect(heavyData[0]).toHaveProperty('id')
       expect(heavyData[0]).toHaveProperty('value')
@@ -232,7 +232,7 @@ describe('Chart Performance Optimizations', () => {
         // Simulate async rendering
         await new Promise(resolve => setTimeout(resolve, 10))
       }
-      
+
       const renderTime = await performanceTestUtils.measureRenderTime(renderFunction)
       expect(renderTime).toBeGreaterThanOrEqual(10)
     })
@@ -241,39 +241,39 @@ describe('Chart Performance Optimizations', () => {
   describe('Component Memoization', () => {
     it('should not re-render when props are the same', () => {
       let renderCount = 0
-      
+
       const TestComponent = React.memo(({ leads }: { leads: Lead[] }) => {
         renderCount++
         return <div data-testid="memo-test">Render count: {renderCount}</div>
       })
-      
+
       const { rerender } = render(<TestComponent leads={mockLeads} />)
-      
+
       const initialRenderCount = renderCount
-      
+
       // Re-render with same props
       rerender(<TestComponent leads={mockLeads} />)
-      
+
       // Should not re-render due to memoization
       expect(renderCount).toBe(initialRenderCount)
     })
 
     it('should re-render when leads change', () => {
       let renderCount = 0
-      
+
       const TestComponent = ({ leads }: { leads: Lead[] }) => {
         renderCount++
         return <div data-testid="memo-test">Render count: {renderCount}</div>
       }
-      
+
       const { rerender } = render(<TestComponent leads={mockLeads} />)
-      
+
       expect(renderCount).toBe(1)
-      
+
       // Re-render with different props
       const newLeads = [...mockLeads, { ...mockLeads[0], id: '3' }]
       rerender(<TestComponent leads={newLeads} />)
-      
+
       // Should re-render due to prop change
       expect(renderCount).toBe(2)
     })
@@ -283,9 +283,9 @@ describe('Chart Performance Optimizations', () => {
     it('should lazy load chart components', async () => {
       // Test lazy loading by importing the lazy loader
       const { LazyRevenueChart } = await import('@/components/charts/lazy-chart-loader')
-      
+
       render(<LazyRevenueChart leads={mockLeads} />)
-      
+
       // Should eventually load the chart
       await waitFor(() => {
         expect(screen.getByTestId('responsive-container')).toBeInTheDocument()
@@ -299,7 +299,7 @@ describe('Chart Performance Optimizations', () => {
       const TestComponent = () => {
         const [period, setPeriod] = React.useState<'monthly' | 'weekly'>('monthly')
         const data = useOptimizedPerformanceData(mockLeads, period)
-        
+
         return (
           <div>
             <button onClick={() => setPeriod('weekly')}>Weekly</button>
@@ -307,13 +307,13 @@ describe('Chart Performance Optimizations', () => {
           </div>
         )
       }
-      
+
       render(<TestComponent />)
-      
+
       // Find and click time period selector
       const weeklyButton = screen.getByText('Weekly')
       fireEvent.click(weeklyButton)
-      
+
       // Should handle the change without errors
       await waitFor(() => {
         expect(screen.getByTestId('period-data')).toHaveTextContent('Period: weekly')

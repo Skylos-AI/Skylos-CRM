@@ -6,11 +6,11 @@ import { SophisticatedScrollTrigger } from '@/components/animations/sophisticate
 import { SophisticatedCreativeButton, GeometricShape, SubtleBackgroundPattern } from '@/components/ui/sophisticated-interactive-elements';
 import { HeroHeading, AccentText } from '@/components/ui/sophisticated-typography';
 import { sophisticatedColors } from '@/lib/design-system/sophisticated-tokens';
-import { 
-  ArrowRight, 
-  Calendar, 
-  MessageSquare, 
-  Zap, 
+import {
+  ArrowRight,
+  Calendar,
+  MessageSquare,
+  Zap,
   Clock,
   CheckCircle,
   Star,
@@ -57,13 +57,13 @@ export function SophisticatedFinalCTA() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     // Handle form submission
     console.log('CTA submission:', { email, company });
-    
+
     setIsSubmitting(false);
     setEmail('');
     setCompany('');
@@ -71,11 +71,11 @@ export function SophisticatedFinalCTA() {
 
   return (
     <div className="relative py-24 bg-sophisticated-black overflow-hidden">
-      
+
       {/* Subtle Background Pattern */}
-      <SubtleBackgroundPattern 
-        pattern="diagonal-lines" 
-        color="professionalBlue" 
+      <SubtleBackgroundPattern
+        pattern="diagonal-lines"
+        color="professionalBlue"
         opacity={0.03}
       />
 
@@ -114,7 +114,7 @@ export function SophisticatedFinalCTA() {
       />
 
       {/* Diagonal Accent Overlays */}
-      <div 
+      <div
         className="absolute inset-0 opacity-10"
         style={{
           background: `linear-gradient(135deg, ${sophisticatedColors.deepPurple.DEFAULT} 0%, transparent 30%, ${sophisticatedColors.professionalBlue.DEFAULT} 70%, transparent 100%)`
@@ -122,7 +122,7 @@ export function SophisticatedFinalCTA() {
       />
 
       <div className="container mx-auto px-6 relative z-10">
-        
+
         {/* Urgency Indicators */}
         <SophisticatedScrollTrigger variant="fadeIn">
           <div className="flex flex-wrap justify-center gap-8 mb-12">
@@ -162,7 +162,7 @@ export function SophisticatedFinalCTA() {
 
           <SophisticatedScrollTrigger variant="slideUp" staggerDelay={0.6}>
             <p className="body-large text-sophisticated-white/80 mb-12 max-w-3xl mx-auto">
-              Join the exclusive group of forward-thinking businesses that are already transforming 
+              Join the exclusive group of forward-thinking businesses that are already transforming
               their operations with AI. Limited spots available for our next implementation cycle.
             </p>
           </SophisticatedScrollTrigger>
@@ -170,7 +170,7 @@ export function SophisticatedFinalCTA() {
 
         {/* Two-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
+
           {/* Benefits List */}
           <SophisticatedScrollTrigger variant="slideLeft">
             <div className="space-y-6">
@@ -200,7 +200,7 @@ export function SophisticatedFinalCTA() {
                   <span className="text-sophisticated-white font-medium">Trusted by 200+ businesses</span>
                 </div>
                 <p className="text-sophisticated-white/70 text-sm">
-                  "The fastest and most effective AI implementation we've ever experienced. 
+                  "The fastest and most effective AI implementation we've ever experienced.
                   ROI was visible within the first week." - Sarah Chen, CEO TechFlow
                 </p>
               </div>
@@ -256,7 +256,7 @@ export function SophisticatedFinalCTA() {
                 <p className="text-sophisticated-white/60 text-xs mb-4">
                   No spam. Unsubscribe anytime. Your data is secure.
                 </p>
-                
+
                 {/* Alternative CTA Options */}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 border border-sophisticated-white/30 rounded-lg text-sophisticated-white/80 hover:bg-sophisticated-white/5 transition-colors">
@@ -278,7 +278,7 @@ export function SophisticatedFinalCTA() {
           <div className="text-center mt-16">
             <motion.div
               className="inline-flex items-center space-x-2 px-6 py-3 bg-sophisticated-rich-purple/20 border border-sophisticated-rich-purple/30 rounded-full"
-              animate={{ 
+              animate={{
                 boxShadow: [
                   '0 0 20px rgba(122, 40, 138, 0.3)',
                   '0 0 30px rgba(122, 40, 138, 0.5)',

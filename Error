@@ -1,0 +1,25 @@
+this error hasnt been fixed yet:
+
+Failed to compile
+Next.js (13.5.11) is outdated (learn more)
+./components/dashboard/charts.tsx
+Error: 
+  × Unexpected token `div`. Expected jsx identifier
+     ╭─[C:\Users\Apocaliptyco\Desktop\the better cursor\next-template\components\dashboard\charts.tsx:173:1]
+ 173 │   ].filter(item => item.count > 0)
+ 174 │ 
+ 175 │   return (
+ 176 │     <div className="dashboard-charts-grid grid gap-4 grid-cols-1 md:grid-cols-5 lg:grid-cols-5">
+     ·      ───
+ 177 │       {/* Accessibility indicators */}
+ 178 │       <HighContrastIndicator />
+ 178 │       <ReducedMotionIndicator />
+     ╰────
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/dashboard/charts.tsx
+./app/dashboard/page.tsx
+This error occurred during the build process and can only be dismissed by fixing the error.z
