@@ -21,11 +21,8 @@ export function UserMenu() {
   if (!isAuthenticated) {
     return (
       <div className="flex items-center space-x-2">
-        <Button variant="ghost" asChild>
-          <Link href="/login">Login</Link>
-        </Button>
         <Button asChild>
-          <Link href="/signup">Sign Up</Link>
+          <Link href="/login">Login</Link>
         </Button>
       </div>
     )

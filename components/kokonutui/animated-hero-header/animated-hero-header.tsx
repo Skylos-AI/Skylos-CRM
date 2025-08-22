@@ -24,6 +24,12 @@ export function AnimatedHeroHeader({
   const { theme: systemTheme, setTheme } = useTheme();
   const reducedMotion = useReducedMotion();
   const [shouldOptimize, setShouldOptimize] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Performance optimization check
   useEffect(() => {
@@ -39,7 +45,7 @@ export function AnimatedHeroHeader({
   }, [theme, setTheme]);
 
   const currentTheme = theme === 'auto' ? systemTheme : theme;
-  const isDark = currentTheme === 'dark';
+  const isDark = mounted && currentTheme === 'dark';
   const shouldReduceAnimations = reducedMotion || shouldOptimize;
 
   const handleCtaClick = () => {
@@ -47,6 +53,11 @@ export function AnimatedHeroHeader({
       onCtaClick();
     }
   };
+
+  // Return null on first render to prevent hydration mismatch
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <section 

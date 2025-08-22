@@ -1,6 +1,11 @@
-import { redirect } from "next/navigation"
+import SkylositLandingComplete from "@/components/landing/skylos-landing-complete"
+import SkylosFooter from "@/components/landing/skylos-footer"
 
 export default function IndexPage() {
-  // Redirect to landing page as the first thing clients see
-  redirect("/landing")
+  return (
+    <>
+      <SkylositLandingComplete />
+      <SkylosFooter />
+    </>
+  )
 }

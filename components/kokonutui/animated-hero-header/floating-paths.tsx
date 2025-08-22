@@ -2,11 +2,17 @@
 
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { FloatingPathsProps } from "./types";
 
 export function FloatingPaths({ position, reducedMotion = false, className = "" }: FloatingPathsProps) {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   // Generate flowing wave-like paths similar to the reference
   const paths = useMemo(() => {
@@ -34,8 +40,13 @@ export function FloatingPaths({ position, reducedMotion = false, className = "" 
     });
   }, [position]);
 
-  // Use proper color scheme based on theme
-  const isDark = theme === 'dark';
+  // Use proper color scheme based on theme - prevent hydration mismatch
+  const isDark = mounted && theme === 'dark';
+  
+  // Return null on first render to prevent hydration mismatch
+  if (!mounted) {
+    return null;
+  }
   
   if (reducedMotion) {
     return (

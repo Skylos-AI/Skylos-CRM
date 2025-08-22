@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react"
 import { useRouter } from "next/navigation"
+import { useSession, signIn, signOut, SessionProvider } from "next-auth/react"
 
 interface User {
   id: string
@@ -13,6 +14,7 @@ interface AuthContextType {
   user: User | null
   isLoading: boolean
   login: (email: string, password: string) => Promise<boolean>
+  loginWithGoogle: () => Promise<void>
   logout: () => void
   isAuthenticated: boolean
 }
@@ -24,12 +26,30 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
+  return (
+    <SessionProvider>
+      <AuthProviderInner>{children}</AuthProviderInner>
+    </SessionProvider>
+  )
+}
+
+function AuthProviderInner({ children }: AuthProviderProps) {
+  const { data: session, status } = useSession()
   const [user, setUser] = useState<User | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
 
+  const isLoading = status === "loading"
+
   useEffect(() => {
-    const checkAuth = () => {
+    if (session?.user) {
+      const userData = {
+        id: session.user.id || "google-user",
+        email: session.user.email || "",
+        name: session.user.name || session.user.email?.split("@")[0] || ""
+      }
+      setUser(userData)
+    } else {
+      // Fallback to localStorage for regular login
       const savedUser = localStorage.getItem("user")
       if (savedUser) {
         try {
@@ -37,16 +57,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
         } catch (error) {
           localStorage.removeItem("user")
         }
+      } else {
+        setUser(null)
       }
-      setIsLoading(false)
     }
-
-    checkAuth()
-  }, [])
+  }, [session])
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    setIsLoading(true)
     try {
+      // Demo login logic (replace with real authentication)
       await new Promise(resolve => setTimeout(resolve, 1000))
       
       if (email && password.length >= 6) {
@@ -63,23 +82,30 @@ export function AuthProvider({ children }: AuthProviderProps) {
       return false
     } catch (error) {
       return false
-    } finally {
-      setIsLoading(false)
     }
   }
 
+  const loginWithGoogle = async () => {
+    await signIn("google", { callbackUrl: "/dashboard" })
+  }
+
   const logout = () => {
-    setUser(null)
-    localStorage.removeItem("user")
-    router.push("/")
+    if (session) {
+      signOut({ callbackUrl: "/" })
+    } else {
+      setUser(null)
+      localStorage.removeItem("user")
+      router.push("/")
+    }
   }
 
   const authValue = {
     user,
     isLoading,
     login,
+    loginWithGoogle,
     logout,
-    isAuthenticated: !!user
+    isAuthenticated: !!user || !!session
   }
 
   return React.createElement(
