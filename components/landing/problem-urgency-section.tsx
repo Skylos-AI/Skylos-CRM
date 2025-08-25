@@ -5,6 +5,7 @@ import { StaggerContainer } from "@/components/animations/stagger-container"
 import { AnimatedCounter } from "@/components/shared/animated-counter"
 import { cn } from "@/lib/utils"
 import { industryData, competitiveMetrics, urgencyFactors } from "@/lib/mock-data/market-trends"
+import { Zap, Shield } from "lucide-react"
 
 interface StatisticProps {
   value: number
@@ -355,7 +356,7 @@ export function ProblemUrgencySection() {
             </div>
             
             <p className="text-sm text-gray-400 mt-4">
-              ⚡ Implementation starts in 48 hours • 🔒 Enterprise security included
+              <Zap className="h-4 w-4 inline mr-1" /> Implementation starts in 48 hours • <Shield className="h-4 w-4 inline mx-1" /> Enterprise security included
             </p>
           </div>
         </ScrollTriggeredSection>

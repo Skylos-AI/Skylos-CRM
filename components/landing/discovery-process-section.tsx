@@ -112,7 +112,7 @@ const painPointCategories = [
   },
   {
     category: 'Sales Operations',
-    icon: '💼',
+    icon: TrendingUp,
     commonIssues: [
       'Lead qualification bottlenecks slowing conversions',
       'Inconsistent follow-up processes losing prospects',
@@ -124,7 +124,7 @@ const painPointCategories = [
   },
   {
     category: 'Business Operations',
-    icon: '⚙️',
+    icon: Cog,
     commonIssues: [
       'Manual data entry consuming valuable time',
       'Process inefficiencies creating bottlenecks',

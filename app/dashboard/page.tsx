@@ -45,7 +45,8 @@ import {
   Clock,
   CheckCircle,
   BarChart3,
-  Percent
+  Percent,
+  Bot
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -231,6 +232,14 @@ export default function DashboardPage() {
               </SlideInLeft>
               <FadeInUp delay={0.2}>
                 <div className="flex items-center space-x-3">
+                  <Button 
+                    variant="outline" 
+                    className="transition-all duration-200 hover:scale-105 bg-gradient-to-r from-blue-50 to-cyan-50 hover:from-blue-100 hover:to-cyan-100 border-blue-200"
+                    onClick={() => window.open('/agents/demo', '_blank')}
+                  >
+                    <Bot className="mr-2 h-4 w-4 text-blue-600" />
+                    Demo Agentes IA
+                  </Button>
                   <Button variant="outline" className="transition-all duration-200 hover:scale-105">
                     <TrendingUp className="mr-2 h-4 w-4" />
                     Export Report

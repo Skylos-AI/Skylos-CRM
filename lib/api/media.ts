@@ -184,12 +184,12 @@ export class MediaService {
   }
 
   static getFileIcon(mimeType: string): string {
-    if (mimeType.startsWith('image/')) return '🖼️'
+    if (mimeType.startsWith('image/')) return 'image'
     if (mimeType.startsWith('video/')) return '🎥'
     if (mimeType.startsWith('audio/')) return '🎵'
     if (mimeType.includes('pdf')) return '📄'
     if (mimeType.includes('word')) return '📝'
-    if (mimeType.includes('powerpoint') || mimeType.includes('presentation')) return '📊'
+    if (mimeType.includes('powerpoint') || mimeType.includes('presentation')) return 'presentation'
     return '📎'
   }
 }

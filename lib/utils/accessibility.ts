@@ -12,10 +12,16 @@ class LiveRegionAnnouncer {
   private liveRegion: HTMLElement | null = null
   private politeRegion: HTMLElement | null = null
   private assertiveRegion: HTMLElement | null = null
+  private initialized = false
 
   constructor() {
-    if (typeof window !== 'undefined') {
+    // Don't initialize during constructor - wait for first use
+  }
+
+  private ensureInitialized() {
+    if (!this.initialized && typeof window !== 'undefined') {
       this.createLiveRegions()
+      this.initialized = true
     }
   }
 
@@ -36,6 +42,7 @@ class LiveRegionAnnouncer {
   }
 
   announce(message: string, priority: 'polite' | 'assertive' = 'polite') {
+    this.ensureInitialized()
     const region = priority === 'assertive' ? this.assertiveRegion : this.politeRegion
     
     if (region) {

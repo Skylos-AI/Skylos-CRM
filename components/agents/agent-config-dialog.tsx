@@ -45,7 +45,11 @@ import {
   CheckCircle,
   Info,
   Plus,
-  Trash2
+  Trash2,
+  Mail,
+  Phone,
+  Building2,
+  Target
 } from "lucide-react"
 
 // Form validation schema
@@ -158,12 +162,12 @@ export function AgentConfigDialog({ agent, onSave, onClose }: AgentConfigDialogP
   }
 
   const availableChannels = [
-    { id: 'email', name: 'Email', icon: '📧', description: 'Send and receive emails' },
-    { id: 'chat', name: 'Live Chat', icon: '💬', description: 'Real-time website chat' },
-    { id: 'phone', name: 'Phone', icon: '📞', description: 'Voice calls and SMS' },
-    { id: 'linkedin', name: 'LinkedIn', icon: '💼', description: 'Professional networking' },
-    { id: 'whatsapp', name: 'WhatsApp', icon: '📱', description: 'WhatsApp messaging' },
-    { id: 'sms', name: 'SMS', icon: '💬', description: 'Text messaging' }
+    { id: 'email', name: 'Email', icon: <Mail className="h-4 w-4" />, description: 'Send and receive emails' },
+    { id: 'chat', name: 'Live Chat', icon: <MessageSquare className="h-4 w-4" />, description: 'Real-time website chat' },
+    { id: 'phone', name: 'Phone', icon: <Phone className="h-4 w-4" />, description: 'Voice calls and SMS' },
+    { id: 'linkedin', name: 'LinkedIn', icon: <Building2 className="h-4 w-4" />, description: 'Professional networking' },
+    { id: 'whatsapp', name: 'WhatsApp', icon: <MessageSquare className="h-4 w-4" />, description: 'WhatsApp messaging' },
+    { id: 'sms', name: 'SMS', icon: <MessageSquare className="h-4 w-4" />, description: 'Text messaging' }
   ]
 
   const defaultCapabilities = [
@@ -406,7 +410,7 @@ export function AgentConfigDialog({ agent, onSave, onClose }: AgentConfigDialogP
                             <SelectContent>
                               <SelectItem value="professional">
                                 <div className="flex items-center space-x-2">
-                                  <span>🎯</span>
+                                  <Target className="h-4 w-4" />
                                   <div>
                                     <div>Professional</div>
                                     <div className="text-xs text-muted-foreground">Formal and business-like</div>
@@ -424,7 +428,7 @@ export function AgentConfigDialog({ agent, onSave, onClose }: AgentConfigDialogP
                               </SelectItem>
                               <SelectItem value="casual">
                                 <div className="flex items-center space-x-2">
-                                  <span>👋</span>
+                                  <User className="h-4 w-4" />
                                   <div>
                                     <div>Casual</div>
                                     <div className="text-xs text-muted-foreground">Relaxed and informal</div>
@@ -453,7 +457,7 @@ export function AgentConfigDialog({ agent, onSave, onClose }: AgentConfigDialogP
                             <SelectContent>
                               <SelectItem value="concise">
                                 <div className="flex items-center space-x-2">
-                                  <span>⚡</span>
+                                  <Zap className="h-4 w-4" />
                                   <div>
                                     <div>Concise</div>
                                     <div className="text-xs text-muted-foreground">Brief and to the point</div>

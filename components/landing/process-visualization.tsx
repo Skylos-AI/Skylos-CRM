@@ -199,7 +199,7 @@ export function ProcessVisualization({
                   {/* Time to Value */}
                   {step.timeToValue && (
                     <div className="text-sm text-green-600 font-medium">
-                      ⚡ {step.timeToValue}
+                      <Zap className="h-3 w-3 inline mr-1" /> {step.timeToValue}
                     </div>
                   )}
 

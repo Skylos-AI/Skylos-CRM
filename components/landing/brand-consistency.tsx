@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react"
 import { cn } from "@/lib/utils"
+import { Zap } from "lucide-react"
 
 // Brand messaging constants
 export const BRAND_MESSAGING = {
@@ -170,9 +171,7 @@ export function BrandedCTA({
     >
       {children}
       {urgency && (
-        <span className="ml-2 text-xs opacity-75">
-          ⚡
-        </span>
+        <Zap className="ml-2 h-3 w-3 opacity-75" />
       )}
     </Component>
   )

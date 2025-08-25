@@ -4,7 +4,7 @@ export const industries: Industry[] = [
   {
     id: 'customer-service',
     name: 'Customer Service',
-    icon: '🎧',
+    icon: 'headphones',
     description: 'Transform customer support with intelligent conversational agents',
     commonPainPoints: ['Long response times', 'Repetitive inquiries', 'Inconsistent service quality'],
     agentTypes: ['Support Agent', 'FAQ Bot', 'Escalation Manager']
@@ -12,7 +12,7 @@ export const industries: Industry[] = [
   {
     id: 'sales',
     name: 'Sales',
-    icon: '💼',
+    icon: 'briefcase',
     description: 'Accelerate sales processes with AI-powered lead qualification',
     commonPainPoints: ['Lead qualification bottlenecks', 'Follow-up delays', 'Inconsistent messaging'],
     agentTypes: ['SDR Agent', 'Lead Qualifier', 'Follow-up Assistant']
@@ -20,7 +20,7 @@ export const industries: Industry[] = [
   {
     id: 'operations',
     name: 'Operations',
-    icon: '⚙️',
+    icon: 'settings',
     description: 'Streamline operational workflows with intelligent automation',
     commonPainPoints: ['Manual data entry', 'Process inefficiencies', 'Communication gaps'],
     agentTypes: ['Process Optimizer', 'Data Assistant', 'Workflow Manager']
@@ -28,7 +28,7 @@ export const industries: Industry[] = [
   {
     id: 'healthcare',
     name: 'Healthcare',
-    icon: '🏥',
+    icon: 'hospital',
     description: 'Enhance patient care with compliant AI assistants',
     commonPainPoints: ['Appointment scheduling', 'Patient inquiries', 'Documentation burden'],
     agentTypes: ['Patient Assistant', 'Scheduler', 'Documentation Helper']
@@ -36,7 +36,7 @@ export const industries: Industry[] = [
   {
     id: 'ecommerce',
     name: 'E-commerce',
-    icon: '🛒',
+    icon: 'shopping-cart',
     description: 'Boost conversions with personalized shopping assistants',
     commonPainPoints: ['Cart abandonment', 'Product discovery', 'Order support'],
     agentTypes: ['Shopping Assistant', 'Order Tracker', 'Product Recommender']
@@ -44,7 +44,7 @@ export const industries: Industry[] = [
   {
     id: 'finance',
     name: 'Finance',
-    icon: '💰',
+    icon: 'dollar-sign',
     description: 'Secure financial services with compliant AI solutions',
     commonPainPoints: ['Compliance complexity', 'Customer onboarding', 'Risk assessment'],
     agentTypes: ['Compliance Assistant', 'Onboarding Agent', 'Risk Analyzer']
